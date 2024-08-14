@@ -23,8 +23,8 @@ import {
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-export const LoginPage = () => {
-  const { handleLogin, showSnackbar, handleCloseSnackbar, authError } = useAuth();
+export const SignupPage = () => {
+  const { handleSignup, showSnackbar, handleCloseSnackbar, authError } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -42,7 +42,7 @@ export const LoginPage = () => {
           severity="error"
           variant="filled"
           sx={{ width: '100%' }}>
-          Login failed! Please ensure the email and password are valid.
+          Sign up failed! Please ensure the email and password are valid.
         </Alert>
       </Snackbar>
       <CssBaseline />
@@ -57,9 +57,9 @@ export const LoginPage = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign up
         </Typography>
-        <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSignup} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
@@ -91,18 +91,33 @@ export const LoginPage = () => {
               label="Password"
             />
           </FormControl>
+          <FormControl margin="normal" required fullWidth variant="outlined" error={authError}>
+            <InputLabel htmlFor="outlined-adornment-password">Repeat password</InputLabel>
+            <OutlinedInput
+              id="password-repeat"
+              name="password-repeat"
+              autoComplete="password-repeat"
+              type={showPassword ? 'text' : 'password'}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    edge="end">
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Repeat password"
+            />
+          </FormControl>
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Sign In
+            Sign Up
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
             <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link href="/login" variant="body2">
+                {'Already have an account? Sign In'}
               </Link>
             </Grid>
           </Grid>
