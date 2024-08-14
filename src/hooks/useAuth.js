@@ -1,4 +1,4 @@
-import { getAccountInfo, login } from '../services/authService.js';
+import { getAccountInfo, login, signup } from '../services/authService.js';
 import { setAccount } from '../store/slice/accountSlice.js';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -37,10 +37,38 @@ export default function useAuth() {
     }
   };
 
+  const handleSignup = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const email = data.get('email')?.trim();
+    const password = data.get('password')?.trim();
+    const repeatPassword = data.get('password-repeat')?.trim();
+
+    if (!email || !password || !repeatPassword || password !== repeatPassword) {
+      setAuthError(true);
+      setShowSnackbar(true);
+      return;
+    }
+
+    try {
+      const data = {
+        email,
+        password,
+      };
+      await signup(data);
+      navigate('/login');
+    } catch (e) {
+      console.error(e);
+      setAuthError(true);
+      setShowSnackbar(true);
+    }
+  };
+
   return {
     showSnackbar,
     handleCloseSnackbar,
     handleLogin,
+    handleSignup,
     authError,
   };
 }

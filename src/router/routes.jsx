@@ -1,5 +1,6 @@
 import App from '../App.jsx';
 import { LoginPage } from '../pages/LoginPage.jsx';
+import { SignupPage } from '../pages/SignupPage.jsx';
 
 export default [
   {
@@ -9,6 +10,10 @@ export default [
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/signup',
+    element: <SignupPage />,
   },
   {
     path: '/hello',
