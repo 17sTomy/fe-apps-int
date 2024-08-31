@@ -1,11 +1,16 @@
 import App from '../App.jsx';
 import { LoginPage } from '../pages/LoginPage.jsx';
 import { SignupPage } from '../pages/SignupPage.jsx';
+import { AuthRoute } from './AuthRoute.jsx';
 
 export default [
   {
     path: '/',
-    element: <App />,
+    element: (
+      <AuthRoute>
+        <App />
+      </AuthRoute>
+    ),
   },
   {
     path: '/login',
@@ -14,9 +19,5 @@ export default [
   {
     path: '/signup',
     element: <SignupPage />,
-  },
-  {
-    path: '/hello',
-    element: <div>Hello world!</div>,
   },
 ];
