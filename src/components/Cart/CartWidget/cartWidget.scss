@@ -1,0 +1,16 @@
+.cart-widget {
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(120%);
+  }
+
+  .cart-icon {
+    font-family: "sans-serif";
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+  }
+}
