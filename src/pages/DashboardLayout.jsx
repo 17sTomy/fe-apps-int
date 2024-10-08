@@ -1,4 +1,5 @@
 import * as React from "react";
+import CartWidget from "../components/Cart/CartWidget";
 import PropTypes from "prop-types";
 import { createTheme } from "@mui/material/styles";
 import { Box } from "@mui/system";
@@ -20,7 +21,7 @@ const NAVIGATION = [
   {
     segment: "cart",
     title: "Carrito",
-    icon: <ShoppingCartIcon />,
+    icon: <CartWidget />,
   },
   {
     segment: "transactions",
@@ -67,7 +68,7 @@ const demoTheme = createTheme({
   },
 });
 
-function DemoPageContent({ pathname }) {
+function PageContent({ pathname }) {
   return (
     <Box
       spacing={2}
@@ -101,7 +102,7 @@ function DemoPageContent({ pathname }) {
   );
 }
 
-DemoPageContent.propTypes = {
+PageContent.propTypes = {
   pathname: PropTypes.string.isRequired,
 };
 
@@ -137,7 +138,7 @@ function DashboardLayoutBasic(props) {
       theme={demoTheme}
     >
       <DashboardLayout>
-        <DemoPageContent pathname={pathname} />
+        <PageContent pathname={pathname} />
       </DashboardLayout>
     </AppProvider>
   );
