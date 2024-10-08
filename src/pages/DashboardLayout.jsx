@@ -1,29 +1,31 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import { createTheme } from "@mui/material/styles";
+import { Box } from "@mui/system";
+import HelpIcon from "@mui/icons-material/Help";
 import Home from "@mui/icons-material/Home";
-import FolderShared from "@mui/icons-material/FolderShared";
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 import { AppProvider } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
-import HelpIcon from "@mui/icons-material/Help";
-import { Box } from "@mui/system";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const NAVIGATION = [
   {
-    segment: "Productos",
+    segment: "",
     title: "Productos",
     icon: <Home />,
   },
   {
-    segment: "Mis Compras",
-    title: "Mis Compras",
-    icon: <FolderShared />,
+    segment: "cart",
+    title: "Carrito",
+    icon: <ShoppingCartIcon />,
   },
   {
-    segment: "Ayuda",
-    title: "Ayuda",
-    icon: <HelpIcon />,
+    segment: "transactions",
+    title: "Compras",
+    icon: <ReceiptIcon />,
   },
   {
     kind: "divider",
@@ -33,9 +35,19 @@ const NAVIGATION = [
     title: "Perfil",
   },
   {
-    segment: "MiPerfil",
+    segment: "profile",
     title: "Mi Perfil",
     icon: <AccountCircleIcon />,
+  },
+  {
+    segment: "posts",
+    title: "Publicaciones",
+    icon: <AdminPanelSettingsIcon />,
+  },
+  {
+    segment: "help",
+    title: "Ayuda",
+    icon: <HelpIcon />,
   },
 ];
 
@@ -66,15 +78,25 @@ function DemoPageContent({ pathname }) {
         mt: { xs: 8, md: -4 },
       }}
     >
-      {/* {pathname === "/MiPerfil" ? (
-        <MiPerfil />
-      ) : pathname === "/proyectos" ? (
-        <Proyectos />
-      ) : pathname === "/Ayuda" ? (
-        <Ayuda />
+      {pathname === "/cart" ? (
+        ""
+        // <Carrito />
+      ) : pathname === "/transactions" ? (
+        ""
+        // <Compras />
+      ) : pathname === "/profile" ? (
+        ""
+        // <MiPerfil />
+      ) : pathname === "/posts" ? (
+        ""
+        // <Publicaciones />
+      ) : pathname === "/help" ? (
+        ""
+        // <Ayuda />
       ) : (
-        <MainGrid />
-      )} */}
+        ""
+        // <Productos />
+      )}
     </Box>
   );
 }
@@ -107,8 +129,6 @@ function DashboardLayoutBasic(props) {
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <img src="/assets/PayBuddyHomeIcon.png" alt="PayBuddy logo" />
             </Box> */}
-  
-           
           </Box>
         ),
         title: "BlackNuster",
@@ -121,8 +141,6 @@ function DashboardLayoutBasic(props) {
       </DashboardLayout>
     </AppProvider>
   );
-  
-
 }
 
 DashboardLayoutBasic.propTypes = {};
