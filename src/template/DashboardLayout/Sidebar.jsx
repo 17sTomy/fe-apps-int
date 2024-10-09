@@ -8,6 +8,7 @@ import {
   faFolder,
   faHouse,
   faReceipt,
+  faRightToBracket,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import Badge from '@mui/material/Badge';
@@ -62,38 +63,51 @@ export const Sidebar = ({ menuOpen }) => {
     <div
       className={`side-bar ${menuOpen ? 'open' : ''}`}
       style={{ background: theme.primary, color: theme.secondary }}>
-      {routes.map((route, index) => (
-        <div className="route" key={index} onClick={() => navigate(route.path)}>
-          {route.dividerLabel ? (
-            <div className="divider">
-              <p>{route.dividerLabel}</p>
+      <div className="top-sidebar">
+        {routes.map((route, index) => (
+          <div className="route" key={index} onClick={() => navigate(route.path)}>
+            {route.dividerLabel ? (
+              <div className="divider">
+                <p>{route.dividerLabel}</p>
+              </div>
+            ) : (
+              <></>
+            )}
+            <div
+              className="item"
+              style={{
+                background: route.path === window.location.pathname ? theme.accent : theme.primary,
+                color:
+                  route.path === window.location.pathname
+                    ? theme.name === 'dark'
+                      ? theme.secondary
+                      : theme.primary
+                    : theme.secondary,
+                borderRadius: route.path === window.location.pathname ? 16 : 0,
+              }}>
+              <div className="icon">
+                {route.customIcon ? (
+                  route.customIcon
+                ) : (
+                  <FontAwesomeIcon icon={route.icon} size="xl" />
+                )}
+              </div>
+              <p>{route.label}</p>
             </div>
-          ) : (
-            <></>
-          )}
-          <div
-            className="item"
-            style={{
-              background: route.path === window.location.pathname ? theme.accent : theme.primary,
-              color:
-                route.path === window.location.pathname
-                  ? theme.name === 'dark'
-                    ? theme.secondary
-                    : theme.primary
-                  : theme.secondary,
-              borderRadius: route.path === window.location.pathname ? 16 : 0,
-            }}>
+          </div>
+        ))}
+      </div>
+      <div className="bottom-sidebar">
+        <div className="route">
+          <div className="divider"></div>
+          <div className="item">
             <div className="icon">
-              {route.customIcon ? (
-                route.customIcon
-              ) : (
-                <FontAwesomeIcon icon={route.icon} size="xl" />
-              )}
+              <FontAwesomeIcon icon={faRightToBracket} size="xl" />
             </div>
-            <p>{route.label}</p>
+            <p>Iniciar sesión</p>
           </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 };
