@@ -1,14 +1,14 @@
-import App from '../App.jsx';
 import { LoginPage } from '../pages/LoginPage.jsx';
 import { SignupPage } from '../pages/SignupPage.jsx';
 import { AuthRoute } from './AuthRoute.jsx';
 import { ProfilePage } from '../pages/profile/ProfilePage';
 import { ProductsPage } from '../pages/products/ProductsPage';
+import { Navigate } from 'react-router-dom';
 
 export default [
   {
     path: '/',
-    element: <DashboardLayoutBasic Children={<ProductsPage />} />,
+    element: <Navigate to="/productos"></Navigate>,
   },
   {
     path: '/login',
