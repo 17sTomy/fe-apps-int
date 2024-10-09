@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import DashboardLayoutBasic from './pages/DashboardLayout.jsx';
+import { DashboardLayout } from './template/DashboardLayout/DashboardLayout';
 
 function App() {
   const count = useSelector((state) => state.counter.value);
@@ -7,7 +8,7 @@ function App() {
 
   return (
     <>
-      <DashboardLayoutBasic />
+      <DashboardLayout>Hola Mundo</DashboardLayout>
     </>
   );
 }
