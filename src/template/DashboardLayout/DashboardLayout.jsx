@@ -55,6 +55,18 @@ export const DashboardLayout = ({ children }) => {
     document.body.style.color = theme.secondary;
   }, [theme]);
 
+  const contentStyles =
+    window.innerWidth <= 768
+      ? {
+          position: 'initial',
+          left: 'initial',
+          marginTop: 60,
+        }
+      : {
+          position: 'absolute',
+          left: menuOpen ? '250px' : '0px',
+        };
+
   return (
     <div className="dashboard-layout">
       <div className="top-bar" style={{ background: theme.primary, color: theme.secondary }}>
@@ -107,13 +119,7 @@ export const DashboardLayout = ({ children }) => {
         ))}
       </div>
 
-      <div
-        className="content"
-        style={{
-          position: 'absolute',
-          top: '70px',
-          left: menuOpen ? '250px' : '0px',
-        }}>
+      <div className="content" style={contentStyles}>
         {children}
       </div>
     </div>
