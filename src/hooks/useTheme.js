@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import { lightTheme, darkTheme } from '../theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from '../store/slice/themeSlice';
+import { createTheme } from '@mui/material/styles';
 
 export const useTheme = () => {
   const themeStore = useSelector((state) => state.theme);
@@ -12,8 +12,21 @@ export const useTheme = () => {
     else dispatch(setTheme(darkTheme));
   };
 
+  const materialTheme = createTheme({
+    palette: {
+      mode: themeStore.theme.name,
+      primary: {
+        main: '#0081c6',
+      },
+      secondary: {
+        main: '#f50057',
+      },
+    },
+  });
+
   return {
     toggleTheme,
     theme: themeStore.theme,
+    materialTheme,
   };
 };
