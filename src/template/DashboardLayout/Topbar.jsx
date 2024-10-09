@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faMoon, faSun, faX } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBarsStaggered, faMoon, faSun, faX } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../hooks/useTheme';
 import './dashboard.styles.scss';
 
@@ -15,7 +15,7 @@ export const Topbar = ({ menuOpen, setMenuOpen }) => {
     <div className="top-bar" style={{ background: theme.primary, color: theme.secondary }}>
       <div className="left-container">
         <div className="menu-btn">
-          <FontAwesomeIcon icon={menuOpen ? faX : faBars} size="xl" onClick={toggle} />
+          <FontAwesomeIcon icon={menuOpen ? faBarsStaggered : faBars} size="xl" onClick={toggle} />
         </div>
         <p style={{ color: theme.accent }}>BlackNuster</p>
       </div>
