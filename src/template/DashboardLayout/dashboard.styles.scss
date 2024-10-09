@@ -50,6 +50,12 @@
     &.open {
       width: 250px;
       transform: translateX(0%);
+
+      @media (width < 768px) {
+        background: #fff;
+        width: 100vw;
+        z-index: 1000;
+      }
     }
 
     .route {
