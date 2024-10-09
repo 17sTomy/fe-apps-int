@@ -5,6 +5,8 @@ import { ProductsPage } from '../pages/ProductsPage/ProductsPage';
 import { Navigate } from 'react-router-dom';
 import { OptionalAuthRoute } from './OptionalAuthRoute';
 import { CartPage } from '../pages/CartPage/CartPage';
+import { PublicationsPage } from '../pages/PublicationsPage/ProfilePage';
+import { TransactionsPage } from '../pages/TransactionsPage/TransactionsPage';
 
 export default [
   {
@@ -40,6 +42,22 @@ export default [
     element: (
       <OptionalAuthRoute>
         <CartPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/publicaciones',
+    element: (
+      <OptionalAuthRoute>
+        <PublicationsPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/compras',
+    element: (
+      <OptionalAuthRoute>
+        <TransactionsPage />
       </OptionalAuthRoute>
     ),
   },
