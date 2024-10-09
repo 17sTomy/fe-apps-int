@@ -7,6 +7,7 @@ import {
   faCartShopping,
   faFolder,
   faHouse,
+  faQuestionCircle,
   faReceipt,
   faRightToBracket,
   faUser,
@@ -22,8 +23,8 @@ export const Sidebar = React.memo(({ menuOpen }) => {
   const accountStore = useSelector((state) => state.account);
   const [cartItemQty, setCartItemQty] = useState(0);
 
-  const routes = useMemo(
-    () => [
+  const routes = useMemo(() => {
+    const baseRoutes = [
       {
         path: '/productos',
         label: 'Productos',
@@ -50,10 +51,17 @@ export const Sidebar = React.memo(({ menuOpen }) => {
         label: 'Mi Perfil',
         icon: faUser,
       },
-      { path: '/publicaciones', label: 'Publicaciones', icon: faFolder },
-    ],
-    [cartItemQty]
-  );
+      { path: '/publicaciones', label: 'Publicaciones', icon: faFolder, requiresAdmin: true },
+    ];
+
+    return baseRoutes.filter((route) => {
+      if (!accountStore.accountInfo?.isAdmin) {
+        return !route.requiresAdmin;
+      } else {
+        return route;
+      }
+    });
+  }, [cartItemQty, accountStore.accountInfo?.isAdmin]);
 
   useEffect(() => {
     setCartItemQty(accountStore.cart?.cartItems?.length);
