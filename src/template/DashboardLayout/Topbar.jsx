@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faBarsStaggered, faMoon, faSun, faX } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBarsStaggered, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../hooks/useTheme';
 import './dashboard.styles.scss';
 
