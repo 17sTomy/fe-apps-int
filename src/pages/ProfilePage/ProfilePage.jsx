@@ -1,8 +1,9 @@
-export default function ProfilePage () {
-  
+import { DashboardLayout } from '../../template/DashboardLayout/DashboardLayout';
+
+export const ProfilePage = () => {
   return (
-    <div style={{ marginTop: '50px' }}>
-      <h1>Profile</h1>
-    </div>
+    <DashboardLayout>
+      <h1>Mi perfil</h1>
+    </DashboardLayout>
   );
 };

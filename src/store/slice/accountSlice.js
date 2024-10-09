@@ -2,13 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   authenticated: false,
-  accountInfo: {
-    id: 0,
-    email: '',
-    firstname: '',
-    lastname: '',
-    kycCompleted: false,
-  },
+  accountInfo: null,
+  cart: {},
 };
 
 export const accountSlice = createSlice({
@@ -17,11 +12,44 @@ export const accountSlice = createSlice({
   reducers: {
     setAccount: (state, action) => {
       state.authenticated = true;
-      state.accountInfo = action.payload;
+
+      try {
+        const {
+          id,
+          email,
+          firstname,
+          lastname,
+          streetNumber,
+          streetName,
+          complementaryAddress,
+          kycStatus,
+          isAdmin,
+        } = action.payload.accountInfo;
+
+        // En lugar de crear una instancia de Customer, simplemente usa los datos planos
+        state.accountInfo = {
+          id,
+          email,
+          firstname,
+          lastname,
+          streetNumber,
+          streetName,
+          complementaryAddress,
+          kycStatus,
+          isAdmin,
+        };
+      } catch (e) {
+        console.error(e);
+        state.accountInfo = action.payload.accountInfo;
+      }
+
+      state.cart = action.payload.cart;
     },
+
     resetAccount: (state) => {
       state.authenticated = false;
       state.accountInfo = initialState.accountInfo;
+      state.cart = initialState.cart;
     },
   },
 });

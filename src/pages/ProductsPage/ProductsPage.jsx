@@ -1,7 +1,9 @@
-export default function ProductsPage () {
+import { DashboardLayout } from '../../template/DashboardLayout/DashboardLayout';
+
+export const ProductsPage = () => {
   return (
-    <div style={{ marginTop: '50px' }}>
-      <h1>Products</h1>
-    </div>
+    <DashboardLayout>
+      <h1>Nuestros productos</h1>
+    </DashboardLayout>
   );
 };

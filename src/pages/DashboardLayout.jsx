@@ -7,11 +7,10 @@ import HelpIcon from '@mui/icons-material/Help';
 import Home from '@mui/icons-material/Home';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NAVIGATION = [
   {
@@ -100,7 +99,7 @@ PageContent.propTypes = {
 function DashboardLayoutBasic({ Children }) {
   const [pathname, setPathname] = React.useState('/');
   console.log(Children);
-  
+
   const router = React.useMemo(() => {
     return {
       pathname,
