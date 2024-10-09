@@ -17,6 +17,8 @@
     gap: 24px;
     justify-content: space-between;
 
+    transition: background 0.3s ease;
+
     .left-container {
       display: flex;
       flex-flow: row nowrap;
@@ -55,7 +57,7 @@
     flex-flow: column nowrap;
     justify-content: space-between;
 
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 
     &.open {
       width: 250px;

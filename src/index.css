@@ -5,3 +5,7 @@
 
   -webkit-tap-highlight-color: transparent;
 }
+
+body {
+  transition: background 0.3s ease;
+}
