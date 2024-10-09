@@ -42,7 +42,7 @@ export const LoginPage = () => {
           severity="error"
           variant="filled"
           sx={{ width: '100%' }}>
-          Login failed! Please ensure the email and password are valid.
+          ¡Ups! Parece que algún dato es incorrecto.
         </Alert>
       </Snackbar>
       <CssBaseline />
@@ -57,7 +57,7 @@ export const LoginPage = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Ingresar
         </Typography>
         <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -65,14 +65,14 @@ export const LoginPage = () => {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Email"
             name="email"
             autoComplete="email"
             autoFocus
             error={authError}
           />
           <FormControl margin="normal" required fullWidth variant="outlined" error={authError}>
-            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
             <OutlinedInput
               id="password"
               name="password"
@@ -88,21 +88,21 @@ export const LoginPage = () => {
                   </IconButton>
                 </InputAdornment>
               }
-              label="Password"
+              label="Contraseña"
             />
           </FormControl>
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Sign In
+            Ingresar
           </Button>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
-                Forgot password?
+                Te olvidaste la contraseña?
               </Link>
             </Grid>
             <Grid item>
               <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
+                {'No tenés cuenta? Registrate'}
               </Link>
             </Grid>
           </Grid>

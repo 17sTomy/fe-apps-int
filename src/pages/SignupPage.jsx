@@ -42,7 +42,8 @@ export const SignupPage = () => {
           severity="error"
           variant="filled"
           sx={{ width: '100%' }}>
-          Sign up failed! Please ensure the email and password are valid.
+          ¡Ups! Parece que hubo un problema. Asegurate de que el correo electrónico y la contraseña
+          sean válidos.
         </Alert>
       </Snackbar>
       <CssBaseline />
@@ -57,7 +58,7 @@ export const SignupPage = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Crear cuenta
         </Typography>
         <Box component="form" onSubmit={handleSignup} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -65,14 +66,14 @@ export const SignupPage = () => {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Email"
             name="email"
             autoComplete="email"
             autoFocus
             error={authError}
           />
           <FormControl margin="normal" required fullWidth variant="outlined" error={authError}>
-            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
             <OutlinedInput
               id="password"
               name="password"
@@ -88,11 +89,11 @@ export const SignupPage = () => {
                   </IconButton>
                 </InputAdornment>
               }
-              label="Password"
+              label="Contraseña"
             />
           </FormControl>
           <FormControl margin="normal" required fullWidth variant="outlined" error={authError}>
-            <InputLabel htmlFor="outlined-adornment-password">Repeat password</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-password">Confirmá tu contraseña</InputLabel>
             <OutlinedInput
               id="password-repeat"
               name="password-repeat"
@@ -108,16 +109,16 @@ export const SignupPage = () => {
                   </IconButton>
                 </InputAdornment>
               }
-              label="Repeat password"
+              label="Confirmá tu contraseña"
             />
           </FormControl>
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Sign Up
+            Crear cuenta
           </Button>
           <Grid container>
             <Grid item>
               <Link href="/login" variant="body2">
-                {'Already have an account? Sign In'}
+                {'Ya tenés cuenta? Ingresá'}
               </Link>
             </Grid>
           </Grid>
