@@ -1,5 +1,7 @@
-import DashboardLayoutBasic from '../DashboardLayout';
-
-export const ProductsPage = () => {
-  return <DashboardLayoutBasic>Hola Mundo!</DashboardLayoutBasic>;
+export default function ProductsPage () {
+  return (
+    <div style={{ marginTop: '50px' }}>
+      <h1>Products</h1>
+    </div>
+  );
 };

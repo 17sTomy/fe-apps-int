@@ -2,17 +2,15 @@ import App from '../App.jsx';
 import { LoginPage } from '../pages/LoginPage.jsx';
 import { SignupPage } from '../pages/SignupPage.jsx';
 import { AuthRoute } from './AuthRoute.jsx';
-import { ProductsPage } from '../pages/ProductsPage/ProductsPage';
-import { ProfilePage } from '../pages/ProfilePage/ProfilePage';
+import DashboardLayoutBasic from '../pages/DashboardLayout.jsx';
+import ProfilePage from '../pages/ProfilePage/ProfilePage';
+import ProductsPage from '../pages/ProductsPage/ProductsPage';
+import CartPage from '../pages/CartPage/CartPage.jsx';
 
 export default [
   {
     path: '/',
-    element: (
-      <AuthRoute>
-        <App />
-      </AuthRoute>
-    ),
+    element: <DashboardLayoutBasic Children={<ProductsPage />} />,
   },
   {
     path: '/login',
@@ -23,11 +21,11 @@ export default [
     element: <SignupPage />,
   },
   {
-    path: '/products',
-    element: <ProductsPage />,
+    path: '/profile',
+    element: <DashboardLayoutBasic Children={<ProfilePage />} />,
   },
   {
-    path: '/profile',
-    element: <ProfilePage />,
+    path: '/cart',
+    element: <DashboardLayoutBasic Children={<CartPage />} />,
   },
 ];

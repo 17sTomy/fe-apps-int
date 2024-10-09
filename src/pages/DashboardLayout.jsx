@@ -69,8 +69,14 @@ const demoTheme = createTheme({
   },
 });
 
-function PageContent({ pathname }) {
+function PageContent({ pathname, Children }) {
   const navigate = useNavigate();
+  console.log(pathname);
+  console.log(Children);
+
+  React.useEffect(() => {
+    navigate(pathname);
+  }, [pathname, navigate]);
 
   return (
     <Box
@@ -81,36 +87,20 @@ function PageContent({ pathname }) {
         pb: 10,
         mt: { xs: 8, md: -4 },
       }}>
-      {
-        pathname === '/cart'
-          ? navigate('/cart')
-          : // <Carrito />
-            pathname === '/transactions'
-            ? ''
-            : // <Compras />
-              pathname === '/profile'
-              ? navigate('/profile')
-              : // <MiPerfil />
-                pathname === '/posts'
-                ? ''
-                : // <Publicaciones />
-                  pathname === '/help'
-                  ? ''
-                  : // <Ayuda />
-                    ''
-        // <Productos />
-      }
+      {Children}
     </Box>
   );
 }
 
 PageContent.propTypes = {
   pathname: PropTypes.string.isRequired,
+  Children: PropTypes.node.isRequired,
 };
 
-function DashboardLayoutBasic({ children }) {
-  const [pathname, setPathname] = React.useState('/dashboard');
-
+function DashboardLayoutBasic({ Children }) {
+  const [pathname, setPathname] = React.useState('/');
+  console.log(Children);
+  
   const router = React.useMemo(() => {
     return {
       pathname,
@@ -145,12 +135,14 @@ function DashboardLayoutBasic({ children }) {
       router={router}
       theme={demoTheme}>
       <DashboardLayout>
-        <PageContent pathname={pathname} />
+        <PageContent pathname={pathname} Children={Children} />
       </DashboardLayout>
     </AppProvider>
   );
 }
 
-DashboardLayoutBasic.propTypes = {};
+// DashboardLayoutBasic.propTypes = {
+//   Children: PropTypes.node.isRequired,
+// };
 
 export default DashboardLayoutBasic;

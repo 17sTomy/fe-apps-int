@@ -1,5 +1,8 @@
-import DashboardLayoutBasic from '../DashboardLayout';
-
-export const ProfilePage = () => {
-  return <DashboardLayoutBasic>Hola Mundo Profile!</DashboardLayoutBasic>;
+export default function ProfilePage () {
+  
+  return (
+    <div style={{ marginTop: '50px' }}>
+      <h1>Profile</h1>
+    </div>
+  );
 };
