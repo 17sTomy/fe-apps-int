@@ -1,62 +1,22 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import './dashboard.styles.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faX, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
-import { Sidebar } from './Sidebar';
+import { Sidebar, Topbar, Content } from './';
+import './dashboard.styles.scss';
 
 export const DashboardLayout = React.memo(({ children }) => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(true);
-
-  const toggle = useCallback(() => {
-    setMenuOpen((prev) => !prev);
-  }, []);
 
   useEffect(() => {
     document.body.style.background = theme.primary;
     document.body.style.color = theme.secondary;
   }, [theme]);
 
-  const contentStyles = useMemo(
-    () =>
-      window.innerWidth <= 768
-        ? {
-            position: 'initial',
-            left: 'initial',
-            marginTop: 60,
-          }
-        : {
-            position: 'absolute',
-            left: menuOpen ? '250px' : '0px',
-          },
-    [menuOpen]
-  );
-
   return (
     <div className="dashboard-layout">
-      <div className="top-bar" style={{ background: theme.primary, color: theme.secondary }}>
-        <div className="left-container">
-          <div className="menu-btn">
-            <FontAwesomeIcon icon={menuOpen ? faX : faBars} size="xl" onClick={toggle} />
-          </div>
-          <p style={{ color: theme.accent }}>BlackNuster</p>
-        </div>
-        <div className="right-container" style={{ cursor: 'pointer' }}>
-          <FontAwesomeIcon
-            icon={theme.name === 'dark' ? faMoon : faSun}
-            size="xl"
-            color={theme.accent}
-            onClick={toggleTheme}
-          />
-        </div>
-      </div>
-
+      <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <Sidebar menuOpen={menuOpen} />
-
-      <div className="content" style={contentStyles}>
-        {children}
-      </div>
+      <Content menuOpen={menuOpen} children={children} />
     </div>
   );
 });

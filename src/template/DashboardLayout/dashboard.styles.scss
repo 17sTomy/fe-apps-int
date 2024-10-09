@@ -88,8 +88,14 @@
         align-items: center;
         transition: all 0.3s ease;
 
-        &:hover {
-          //transform: translateX(3%);
+        @keyframes cool-sidebar-item {
+          0% {
+            background: rgba(255, 255, 255, 0);
+          }
+        }
+
+        &.active {
+          animation: cool-sidebar-item 0.3s ease-in-out forwards;
         }
 
         .icon {

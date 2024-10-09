@@ -7,7 +7,6 @@ import {
   faCartShopping,
   faFolder,
   faHouse,
-  faQuestionCircle,
   faReceipt,
   faRightToBracket,
   faUser,
@@ -88,7 +87,7 @@ export const Sidebar = React.memo(({ menuOpen }) => {
               </div>
             )}
             <div
-              className="item"
+              className={`item ${route.path === window.location.pathname && 'active'}`}
               style={{
                 background: route.path === window.location.pathname ? theme.accent : theme.primary,
                 color:
