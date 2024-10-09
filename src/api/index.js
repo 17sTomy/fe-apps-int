@@ -1,6 +1,5 @@
 import axios from 'axios';
-import store from '../store/store.js';
-import { destroyAuthentication } from '../helpers/authenticationHelper.js';
+import { logout } from '../helpers/authenticationHelper.js';
 
 const BASE_URL = 'http://localhost:8080';
 
@@ -27,7 +26,7 @@ AuthorizedService.interceptors.response.use(
   },
   (error) => {
     if ([401, 403].includes(error?.response?.status)) {
-      store.dispatch(destroyAuthentication());
+      logout();
       window.location.replace('/login?error=true');
     }
   }

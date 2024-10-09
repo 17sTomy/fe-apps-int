@@ -14,6 +14,7 @@ import {
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
+import { logout } from '../../helpers/authenticationHelper';
 
 export const Sidebar = ({ menuOpen }) => {
   const navigate = useNavigate();
@@ -59,6 +60,14 @@ export const Sidebar = ({ menuOpen }) => {
     setCartItemQty(accountStore.cart?.cartItems?.length);
   }, [accountStore.cart]);
 
+  const handleSessionAction = () => {
+    if (accountStore.authenticated) {
+      logout();
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
     <div
       className={`side-bar ${menuOpen ? 'open' : ''}`}
@@ -100,11 +109,11 @@ export const Sidebar = ({ menuOpen }) => {
       <div className="bottom-sidebar">
         <div className="route">
           <div className="divider"></div>
-          <div className="item">
+          <div className="item" onClick={handleSessionAction}>
             <div className="icon">
               <FontAwesomeIcon icon={faRightToBracket} size="xl" />
             </div>
-            <p>Iniciar sesión</p>
+            <p>{accountStore.authenticated ? 'Cerrar sesión' : 'Iniciar sesión'}</p>
           </div>
         </div>
       </div>

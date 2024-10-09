@@ -1,14 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { getAccountInfo } from '../services/authService';
-import { setAccount } from '../store/slice/accountSlice';
-import { destroyAuthentication } from '../helpers/authenticationHelper';
+import { useSelector } from 'react-redux';
+import { logout } from '../helpers/authenticationHelper';
 import { useEffect, useState } from 'react';
 import { LoadingScreen } from '../components/common/LoadingScreen';
 import useAuth from '../hooks/useAuth';
 
 export const OptionalAuthRoute = ({ children }) => {
   const accountStore = useSelector((state) => state.account);
-  const dispatch = useDispatch();
   const { initSession } = useAuth();
 
   const [intentInProgress, setIntentInProgress] = useState(true);
@@ -19,7 +16,7 @@ export const OptionalAuthRoute = ({ children }) => {
       await initSession();
     } catch (e) {
       console.error(e);
-      dispatch(destroyAuthentication());
+      logout();
     }
     setIntentInProgress(false);
   };
