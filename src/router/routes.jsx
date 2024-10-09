@@ -8,11 +8,7 @@ import { ProductsPage } from '../pages/products/ProductsPage';
 export default [
   {
     path: '/',
-    element: (
-      <AuthRoute>
-        <App />
-      </AuthRoute>
-    ),
+    element: <DashboardLayoutBasic Children={<ProductsPage />} />,
   },
   {
     path: '/login',
