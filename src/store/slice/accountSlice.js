@@ -9,6 +9,7 @@ const initialState = {
     lastname: '',
     kycCompleted: false,
   },
+  cart: {},
 };
 
 export const accountSlice = createSlice({
@@ -17,11 +18,13 @@ export const accountSlice = createSlice({
   reducers: {
     setAccount: (state, action) => {
       state.authenticated = true;
-      state.accountInfo = action.payload;
+      state.accountInfo = action.payload.accountInfo;
+      state.cart = action.payload.cart;
     },
     resetAccount: (state) => {
       state.authenticated = false;
       state.accountInfo = initialState.accountInfo;
+      state.cart = initialState.cart;
     },
   },
 });

@@ -3,6 +3,7 @@ import { setAccount } from '../store/slice/accountSlice.js';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { fetchCart } from '../services/cartService';
 
 export default function useAuth() {
   const dispatch = useDispatch();
@@ -12,6 +13,12 @@ export default function useAuth() {
   const [showSnackbar, setShowSnackbar] = useState(false);
 
   const handleCloseSnackbar = () => setShowSnackbar(false);
+
+  const initSession = async () => {
+    const infoResponse = await getAccountInfo();
+    const cartResponse = await fetchCart();
+    dispatch(setAccount({ accountInfo: infoResponse, cart: cartResponse }));
+  };
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -26,9 +33,7 @@ export default function useAuth() {
       };
       const loginResponse = await login(data);
       localStorage.setItem('token', loginResponse.token);
-
-      const infoResponse = await getAccountInfo();
-      dispatch(setAccount(infoResponse));
+      await initSession();
       navigate('/');
     } catch (e) {
       console.error(e);
@@ -70,5 +75,6 @@ export default function useAuth() {
     handleLogin,
     handleSignup,
     authError,
+    initSession,
   };
 }
