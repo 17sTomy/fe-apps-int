@@ -4,6 +4,7 @@ import { ProfilePage } from '../pages/ProfilePage/ProfilePage';
 import { ProductsPage } from '../pages/ProductsPage/ProductsPage';
 import { Navigate } from 'react-router-dom';
 import { OptionalAuthRoute } from './OptionalAuthRoute';
+import { CartPage } from '../pages/CartPage/CartPage';
 
 export default [
   {
@@ -31,6 +32,14 @@ export default [
     element: (
       <OptionalAuthRoute>
         <ProductsPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/carrito',
+    element: (
+      <OptionalAuthRoute>
+        <CartPage />
       </OptionalAuthRoute>
     ),
   },

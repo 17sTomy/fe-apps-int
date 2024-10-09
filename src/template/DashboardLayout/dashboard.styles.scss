@@ -86,6 +86,11 @@
         padding: 12px;
         gap: 12px;
         align-items: center;
+        transition: all 0.3s ease;
+
+        &:hover {
+          //transform: translateX(3%);
+        }
 
         .icon {
           width: 30px;

@@ -1,7 +1,9 @@
-export default function CartPage() {
+import { DashboardLayout } from '../../template/DashboardLayout/DashboardLayout';
+
+export const CartPage = () => {
   return (
-    <div style={{ marginTop: '50px' }}>
-      <h1>Cart</h1>
-    </div>
+    <DashboardLayout>
+      <h1>Carrito</h1>
+    </DashboardLayout>
   );
-}
+};
