@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import './dashboard.styles.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
@@ -16,16 +16,14 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
 import { logout } from '../../helpers/authenticationHelper';
 
-export const Sidebar = ({ menuOpen }) => {
+export const Sidebar = React.memo(({ menuOpen }) => {
   const navigate = useNavigate();
   const { theme } = useTheme();
   const accountStore = useSelector((state) => state.account);
-
-  const [routes, setRoutes] = useState([]);
   const [cartItemQty, setCartItemQty] = useState(0);
 
-  useEffect(() => {
-    setRoutes([
+  const routes = useMemo(
+    () => [
       {
         path: '/productos',
         label: 'Productos',
@@ -53,8 +51,9 @@ export const Sidebar = ({ menuOpen }) => {
         icon: faUser,
       },
       { path: '/publicaciones', label: 'Publicaciones', icon: faFolder },
-    ]);
-  }, [cartItemQty]);
+    ],
+    [cartItemQty]
+  );
 
   useEffect(() => {
     setCartItemQty(accountStore.cart?.cartItems?.length);
@@ -75,12 +74,10 @@ export const Sidebar = ({ menuOpen }) => {
       <div className="top-sidebar">
         {routes.map((route, index) => (
           <div className="route" key={index} onClick={() => navigate(route.path)}>
-            {route.dividerLabel ? (
+            {route.dividerLabel && (
               <div className="divider">
                 <p>{route.dividerLabel}</p>
               </div>
-            ) : (
-              <></>
             )}
             <div
               className="item"
@@ -119,4 +116,4 @@ export const Sidebar = ({ menuOpen }) => {
       </div>
     </div>
   );
-};
+});

@@ -1,35 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import './dashboard.styles.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faX, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../hooks/useTheme';
 import { Sidebar } from './Sidebar';
 
-export const DashboardLayout = ({ children }) => {
+export const DashboardLayout = React.memo(({ children }) => {
   const { theme, toggleTheme } = useTheme();
-
   const [menuOpen, setMenuOpen] = useState(true);
 
-  const toggle = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const toggle = useCallback(() => {
+    setMenuOpen((prev) => !prev);
+  }, []);
 
   useEffect(() => {
     document.body.style.background = theme.primary;
     document.body.style.color = theme.secondary;
   }, [theme]);
 
-  const contentStyles =
-    window.innerWidth <= 768
-      ? {
-          position: 'initial',
-          left: 'initial',
-          marginTop: 60,
-        }
-      : {
-          position: 'absolute',
-          left: menuOpen ? '250px' : '0px',
-        };
+  const contentStyles = useMemo(
+    () =>
+      window.innerWidth <= 768
+        ? {
+            position: 'initial',
+            left: 'initial',
+            marginTop: 60,
+          }
+        : {
+            position: 'absolute',
+            left: menuOpen ? '250px' : '0px',
+          },
+    [menuOpen]
+  );
 
   return (
     <div className="dashboard-layout">
@@ -57,4 +59,4 @@ export const DashboardLayout = ({ children }) => {
       </div>
     </div>
   );
-};
+});
