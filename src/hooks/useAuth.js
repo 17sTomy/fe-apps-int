@@ -37,7 +37,7 @@ export default function useAuth() {
       const loginResponse = await login(data);
       localStorage.setItem('token', loginResponse.token);
       await initSession();
-      navigate('/');
+      navigate('/kyc');
     } catch (e) {
       console.error(e);
       setAuthError(true);
