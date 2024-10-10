@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { fetchCart } from '../services/cartService';
+import { setTheme } from '../store/slice/themeSlice';
+import { darkTheme, lightTheme } from '../theme';
 
 export default function useAuth() {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ export default function useAuth() {
     const infoResponse = await getAccountInfo();
     const cartResponse = await fetchCart();
     dispatch(setAccount({ accountInfo: infoResponse, cart: cartResponse }));
+    dispatch(setTheme(infoResponse.theme === 'DARK' ? darkTheme : lightTheme));
   };
 
   const handleLogin = async (event) => {

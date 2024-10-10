@@ -24,6 +24,7 @@ export const accountSlice = createSlice({
           complementaryAddress,
           kycStatus,
           isAdmin,
+          theme,
         } = action.payload.accountInfo;
 
         // En lugar de crear una instancia de Customer, simplemente usa los datos planos
@@ -37,6 +38,7 @@ export const accountSlice = createSlice({
           complementaryAddress,
           kycStatus,
           isAdmin,
+          theme,
         };
       } catch (e) {
         console.error(e);
