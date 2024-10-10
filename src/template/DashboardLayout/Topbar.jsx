@@ -1,11 +1,13 @@
 import React, { useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faBarsStaggered, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBarsStaggered, faX, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../hooks/useTheme';
 import './dashboard.styles.scss';
+import { useDevice } from '../../hooks/useDevice';
 
 export const Topbar = ({ menuOpen, setMenuOpen }) => {
   const { theme, toggleTheme } = useTheme();
+  const { isMobile } = useDevice();
 
   const toggle = useCallback(() => {
     setMenuOpen((prev) => !prev);
@@ -15,7 +17,11 @@ export const Topbar = ({ menuOpen, setMenuOpen }) => {
     <div className="top-bar" style={{ background: theme.primary, color: theme.secondary }}>
       <div className="left-container">
         <div className="menu-btn">
-          <FontAwesomeIcon icon={menuOpen ? faBarsStaggered : faBars} size="xl" onClick={toggle} />
+          <FontAwesomeIcon
+            icon={menuOpen ? (isMobile ? faX : faBarsStaggered) : faBars}
+            size="xl"
+            onClick={toggle}
+          />
         </div>
         <p style={{ color: theme.accent }}>BlackNuster</p>
       </div>
