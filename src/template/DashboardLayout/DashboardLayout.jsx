@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import { Sidebar, Topbar, Content } from './';
 import './dashboard.styles.scss';
+import { useDevice } from '../../hooks/useDevice';
 
 export const DashboardLayout = React.memo(({ children }) => {
   const { theme } = useTheme();
-  const [menuOpen, setMenuOpen] = useState(true);
+  const { isMobile } = useDevice();
+  const [menuOpen, setMenuOpen] = useState(!isMobile);
 
   useEffect(() => {
     document.body.style.background = theme.primary;
@@ -15,7 +17,7 @@ export const DashboardLayout = React.memo(({ children }) => {
   return (
     <div className="dashboard-layout">
       <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <Sidebar menuOpen={menuOpen} />
+      <Sidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <Content menuOpen={menuOpen} children={children} />
     </div>
   );

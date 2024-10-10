@@ -15,10 +15,12 @@ import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
 import { logout } from '../../helpers/authenticationHelper';
+import { useDevice } from '../../hooks/useDevice';
 
-export const Sidebar = React.memo(({ menuOpen }) => {
+export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
   const navigate = useNavigate();
   const { theme } = useTheme();
+  const { isMobile } = useDevice();
   const accountStore = useSelector((state) => state.account);
   const [cartItemQty, setCartItemQty] = useState(0);
 
@@ -74,13 +76,20 @@ export const Sidebar = React.memo(({ menuOpen }) => {
     }
   };
 
+  const handleNavigation = (route) => {
+    if (isMobile) {
+      setMenuOpen(false);
+    }
+    navigate(route);
+  };
+
   return (
     <div
       className={`side-bar ${menuOpen ? 'open' : ''}`}
       style={{ background: theme.primary, color: theme.secondary }}>
       <div className="top-sidebar">
         {routes.map((route, index) => (
-          <div className="route" key={index} onClick={() => navigate(route.path)}>
+          <div className="route" key={index} onClick={() => handleNavigation(route.path)}>
             {route.dividerLabel && (
               <div className="divider">
                 <p>{route.dividerLabel}</p>
