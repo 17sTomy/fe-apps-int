@@ -1,0 +1,44 @@
+.stepper-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  height: 100vh;
+
+  .stepper {
+    width: 100%;
+    padding: 24px;
+  }
+
+  .stepper-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+
+    .actions {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      width: 100%;
+
+      .button {
+        width: 300px;
+      }
+    }
+  }
+}
+
+.kyc-form {
+  margin-top: 4px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding-top: 16px;
+}

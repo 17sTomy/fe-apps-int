@@ -7,6 +7,7 @@ import { OptionalAuthRoute } from './OptionalAuthRoute';
 import { CartPage } from '../pages/CartPage/CartPage';
 import { PublicationsPage } from '../pages/PublicationsPage/ProfilePage';
 import { TransactionsPage } from '../pages/TransactionsPage/TransactionsPage';
+import { KycPage } from '../pages/KycPage/KycPage';
 
 export default [
   {
@@ -58,6 +59,14 @@ export default [
     element: (
       <OptionalAuthRoute>
         <TransactionsPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/kyc',
+    element: (
+      <OptionalAuthRoute>
+        <KycPage />
       </OptionalAuthRoute>
     ),
   },
