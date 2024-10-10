@@ -10,7 +10,7 @@ import { compareTwoDates, formatDateToYYYYMMDD } from '../../../helpers';
 import dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
 
-const date16YearsAgo = dayjs().subtract(16, 'year');
+const date18YearsAgo = dayjs().subtract(18, 'year');
 
 export const KycBasic = ({ setDisableNext, setEmitData }) => {
   const { isMobile } = useDevice();
@@ -24,10 +24,6 @@ export const KycBasic = ({ setDisableNext, setEmitData }) => {
   const [firstNameError, setFirstNameError] = useState('');
   const [lastNameError, setLastNameError] = useState('');
   const [dateError, setDateError] = useState('');
-
-  const handleSignup = async () => {
-    console.warn('Kyc Basic submit!');
-  };
 
   const handleInputChange = (newValue, setValue, setError = null) => {
     setValue(newValue);
@@ -50,8 +46,8 @@ export const KycBasic = ({ setDisableNext, setEmitData }) => {
       return;
     }
     setFormatedDate(formatDateToYYYYMMDD(parsedDate));
-    if (compareTwoDates(parsedDate, date16YearsAgo.toDate()) === 1) {
-      setDateError('Tenés que tener al menos 16 años');
+    if (compareTwoDates(parsedDate, date18YearsAgo.toDate()) === 1) {
+      setDateError('Tenés que tener al menos 18 años');
     } else if (parsedDate.getFullYear() > 1900) {
       setDateError('');
     }
@@ -78,7 +74,7 @@ export const KycBasic = ({ setDisableNext, setEmitData }) => {
     <Box>
       <Typography variant={isMobile ? 'h6' : 'h4'}>Información básica</Typography>
 
-      <Box component="form" onSubmit={handleSignup} noValidate className="kyc-form">
+      <Box component="form" noValidate className="kyc-form">
         <TextField
           sx={{ width: 300, margin: 0 }}
           margin="normal"
@@ -123,7 +119,7 @@ export const KycBasic = ({ setDisableNext, setEmitData }) => {
             onChange={(newValue) => {
               handleDateChange(newValue);
             }}
-            maxDate={date16YearsAgo}
+            maxDate={date18YearsAgo}
             slotProps={{
               textField: {
                 helperText: dateError,

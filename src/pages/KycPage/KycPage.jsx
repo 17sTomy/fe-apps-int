@@ -9,12 +9,14 @@ import { useTheme } from '../../hooks/useTheme';
 import { KycBasic } from './steps/KycBasic';
 import { useDevice } from '../../hooks/useDevice';
 import { LoadingButton } from '@mui/lab';
-import { updateBasicKyc } from '../../services/customerService';
+import { updateBasicKyc, updateResidentialKyc } from '../../services/customerService';
+import { KycResidential } from './steps/KycResidential';
+import { KycComplete } from './steps/KycComplete';
 
 const steps = [
   { name: 'Información básica', component: KycBasic },
-  { name: 'Información de envío' },
-  { name: 'Confirmación' },
+  { name: 'Información de envío', component: KycResidential },
+  { name: 'Finalizar', component: KycComplete },
 ];
 
 export const KycPage = () => {
@@ -61,11 +63,15 @@ export const KycPage = () => {
         console.error(e);
         setIsLoading(false);
       }
+    } else if (activeStep === 1) {
+      try {
+        await executeStepTwoAction();
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      } catch (e) {
+        console.error(e);
+        setIsLoading(false);
+      }
     }
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   const renderStepComponent = (Component) => {
@@ -78,6 +84,12 @@ export const KycPage = () => {
   const executeStepOneAction = async () => {
     setIsLoading(true);
     await updateBasicKyc(emitData);
+    setIsLoading(false);
+  };
+
+  const executeStepTwoAction = async () => {
+    setIsLoading(true);
+    await updateResidentialKyc(emitData);
     setIsLoading(false);
   };
 
@@ -102,19 +114,21 @@ export const KycPage = () => {
         <Box className="stepper-content">
           <Box>{renderStepComponent(steps[activeStep]?.component)}</Box>
           <Box className="actions">
-            {isLoading ? (
-              <LoadingButton disabled loading variant="contained" className="button">
-                {activeStep === steps.length - 1 ? 'Finalizar' : 'Siguiente'}
-              </LoadingButton>
-            ) : (
-              <Button
-                disabled={disableNext}
-                variant="contained"
-                onClick={handleNext}
-                className="button">
-                {activeStep === steps.length - 1 ? 'Finalizar' : 'Siguiente'}
-              </Button>
-            )}
+            {isLoading
+              ? activeStep !== steps.length - 1 && (
+                  <LoadingButton disabled loading variant="contained" className="button">
+                    Siguiente
+                  </LoadingButton>
+                )
+              : activeStep !== steps.length - 1 && (
+                  <Button
+                    disabled={disableNext}
+                    variant="contained"
+                    onClick={handleNext}
+                    className="button">
+                    Siguiente
+                  </Button>
+                )}
           </Box>
         </Box>
       </Box>
