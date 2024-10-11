@@ -24,20 +24,25 @@ export const ByCategoryProductsSection = () => {
           }}
         >
           <ComboBox setCategory={setCategory} />
-          <Box
-            sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 2,
-              justifyContent: 'center'
-            }}
-          >
-            {products.map((product) => (
-              <Box key={product.id}>
-                <ProductCard product={product} />
-              </Box>
-            ))}
-          </Box>
+          
+          {products.length === 0 ? (
+            <h2>Elija una categoría</h2>
+          ) : (
+            <Box
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: 2,
+                justifyContent: 'center'
+              }}
+            >
+              {products.map((product) => (
+                <Box key={product.id}>
+                  <ProductCard product={product} />
+                </Box>
+              ))}
+            </Box>
+          )}
         </Box>
       )}
     </>
