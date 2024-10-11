@@ -8,8 +8,6 @@ export const ProductsPage = () => {
 
   return (
     <DashboardLayout>
-      <h1>Nuestros productos</h1>
-
       {loading && <p>Loading...</p>}
       {error && <p>Error fetching products: {error.message}</p>}
 
