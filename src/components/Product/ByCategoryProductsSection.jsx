@@ -4,6 +4,7 @@ import ProductCard from './ProductCard';
 import ComboBox from '../ComboBox/ComboBox';
 import { Box } from '@mui/material'; 
 import { getProductsByCategory } from '../../services/productsService';
+import Loader from '../common/Loader/Loader';
 
 export const ByCategoryProductsSection = () => {
   const [category, setCategory] = useState(null);
@@ -11,7 +12,7 @@ export const ByCategoryProductsSection = () => {
 
   return (
     <>
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
       {error && <p>Error fetching products: {error.message}</p>}
 
       {!loading && !error && (
