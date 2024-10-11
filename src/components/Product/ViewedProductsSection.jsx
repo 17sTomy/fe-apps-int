@@ -1,9 +1,10 @@
 import useProducts from '../../hooks/useProducts';
 import ProductCard from './ProductCard';
 import { Box } from '@mui/material'; 
+import { getViewedProducts } from '../../services/productsService';
 
 export const ViewedProductsSection = () => {
-  const { products, loading, error } = useProducts();
+  const { products, loading, error } = useProducts(getViewedProducts);
  
   return (
     <>

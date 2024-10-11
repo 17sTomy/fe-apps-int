@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getAllProducts } from '../services/productsService';
 
-const useProducts = () => {
+const useProducts = (fetchFunction, param = "") => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -9,7 +8,7 @@ const useProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const data = await getAllProducts();
+        const data = await fetchFunction(param);
         setProducts(data);
       } catch (err) {
         setError(err);
@@ -19,8 +18,9 @@ const useProducts = () => {
     };
 
     fetchProducts();
-  }, []);
-
+  }, [param]);
+  console.log(products);
+  
   return { products, loading, error };
 };
 
