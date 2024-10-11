@@ -5,7 +5,7 @@ import { ProductsPage } from '../pages/ProductsPage/ProductsPage';
 import { Navigate } from 'react-router-dom';
 import { OptionalAuthRoute } from './OptionalAuthRoute';
 import { CartPage } from '../pages/CartPage/CartPage';
-import { PublicationsPage } from '../pages/PublicationsPage/ProfilePage';
+import { PublicationsPage } from '../pages/PublicationsPage/PublicationsPage';
 import { TransactionsPage } from '../pages/TransactionsPage/TransactionsPage';
 import { KycPage } from '../pages/KycPage/KycPage';
 

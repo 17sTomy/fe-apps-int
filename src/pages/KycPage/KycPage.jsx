@@ -43,7 +43,7 @@ export const KycPage = () => {
   const initActiveStep = () => {
     if (accountStore.accountInfo.kycStatus === 'BASIC_KYC') return 0;
     else if (accountStore.accountInfo.kycStatus === 'RESIDENTIAL_KYC') return 1;
-    else if (accountStore.accountInfo.kycStatus === 'COMPLETED_KYC') return 2;
+    return 2;
   };
 
   const [activeStep, setActiveStep] = React.useState(initActiveStep());
