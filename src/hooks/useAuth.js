@@ -21,6 +21,7 @@ export default function useAuth() {
     const cartResponse = await fetchCart();
     dispatch(setAccount({ accountInfo: infoResponse, cart: cartResponse }));
     dispatch(setTheme(infoResponse.theme === 'DARK' ? darkTheme : lightTheme));
+    return { accountInfo: infoResponse, cart: cartResponse }
   };
 
   const handleLogin = async (event) => {
@@ -36,8 +37,11 @@ export default function useAuth() {
       };
       const loginResponse = await login(data);
       localStorage.setItem('token', loginResponse.token);
-      await initSession();
-      navigate('/kyc');
+      const accountData = await initSession();
+      if (accountData.accountInfo.kycStatus !== 'COMPLETED_KYC') {
+        return navigate('/kyc');
+      }
+      return navigate('/productos');
     } catch (e) {
       console.error(e);
       setAuthError(true);
