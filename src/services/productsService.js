@@ -19,6 +19,5 @@ export const getProductsByCategory = async (category) => {
 
 export const getViewedProducts = async () => {
   const response = await AuthorizedService.get(`${BASE_URL}/recently-viewed`);
-  console.log(response, 'aaa');
   return response.data;
 };
