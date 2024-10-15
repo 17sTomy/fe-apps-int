@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { logout } from '../helpers/authenticationHelper.js';
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 const getToken = () => {
   return localStorage.getItem('token');
