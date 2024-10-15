@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card, CardMedia, CardActionArea, CardContent, Typography, Button, Box } from '@mui/material';
 import { styled } from '@mui/system';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import IconButton from '@mui/material/IconButton';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: 'relative',
@@ -64,9 +66,21 @@ export default function ProductCard({ product }) {
             ${product.price}
           </Typography>
         </CardContent>
-        <StyledButton size="small">
-          Add to Cart
-        </StyledButton>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',        
+          }}
+        >
+          <StyledButton size="small">
+            Add to Cart
+          </StyledButton>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon sx={{ color: 'white' }} />
+          </IconButton>
+        </Box>
       </Details>
     </StyledCard>
   );
