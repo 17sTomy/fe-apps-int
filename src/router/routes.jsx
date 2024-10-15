@@ -8,6 +8,7 @@ import { CartPage } from '../pages/CartPage/CartPage';
 import { PublicationsPage } from '../pages/PublicationsPage/PublicationsPage';
 import { TransactionsPage } from '../pages/TransactionsPage/TransactionsPage';
 import { KycPage } from '../pages/KycPage/KycPage';
+import { OneProductPage } from '../pages/ProductsPage/OneProductPage.jsx';
 
 export default [
   {
@@ -35,6 +36,14 @@ export default [
     element: (
       <OptionalAuthRoute>
         <ProductsPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/productos/:id',  
+    element: (
+      <OptionalAuthRoute>
+        <OneProductPage />
       </OptionalAuthRoute>
     ),
   },
