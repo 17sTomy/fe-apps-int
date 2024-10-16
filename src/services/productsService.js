@@ -7,6 +7,11 @@ export const getAllProducts = async () => {
   return response.data;
 };
 
+export const getProduct = async (id) => {
+  const response = await UnauthorizedService.get(`${BASE_URL}/${id}`);
+  return response.data;
+};
+
 export const getFeaturedProducts = async () => {
   const response = await UnauthorizedService.get(`${BASE_URL}/featured`);
   return response.data;
