@@ -26,3 +26,7 @@ export const getViewedProducts = async () => {
   const response = await AuthorizedService.get(`${BASE_URL}/recently-viewed`);
   return response.data;
 };
+
+export const viewProduct = async (id) => {
+  await AuthorizedService.post(`${BASE_URL}/${id}/view`);
+};
