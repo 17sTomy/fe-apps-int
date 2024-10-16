@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useProducts from '../../hooks/useProducts';
 import Loader from '../common/Loader/Loader';
-import { getProduct } from '../../services/productsService';
+import { getProduct, viewProduct } from '../../services/productsService';
 import { useTheme } from '../../hooks/useTheme';
 import { Box, IconButton, Typography, Button } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -9,9 +10,15 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 export const OneProductSection = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const { products, loading, error } = useProducts(getProduct, id);
   const { theme } = useTheme();
+  const { products, loading, error } = useProducts(getProduct, id);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (id) {
+      viewProduct(id);
+    }
+  }, [id]);
   
   return ( 
     <>
