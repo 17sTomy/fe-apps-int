@@ -1,17 +1,17 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import useProducts from '../../hooks/useProducts';
 import Loader from '../common/Loader/Loader';
 import { getProduct } from '../../services/productsService';
+import { useTheme } from '../../hooks/useTheme';
 import { Box, IconButton, Typography, Button } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useTheme } from '../../hooks/useTheme';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 export const OneProductSection = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { products, loading, error } = useProducts(getProduct, id);
   const { theme } = useTheme();
-  console.log(theme);
-  
   
   return ( 
     <>
@@ -30,6 +30,13 @@ export const OneProductSection = () => {
             margin: 'auto',
           }}
         >
+          <Button
+            startIcon={<ArrowBackIosNewIcon />}
+            onClick={() => navigate(-1)}
+            sx={{ alignSelf: 'flex-start', marginTop: '-20px' }}
+          >
+            Volver
+          </Button>
           <Box
             component="img"
             src={products.imageUrl} 
