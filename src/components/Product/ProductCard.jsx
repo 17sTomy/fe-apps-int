@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardMedia, CardActionArea, CardContent, Typography, Button, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -44,44 +44,46 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 export default function ProductCard({ product }) {
   return (
-    <StyledCard>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="335"
-          image={product.imageUrl}
-          alt={product.name}
-          sx={{ transition: 'filter 0.3s ease, transform 0.3s ease' }}
-        />
-      </CardActionArea>
-      <Details className="details">
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {product.name}
-          </Typography>
-          <Typography variant="body2" color="white">
-            {product.description}
-          </Typography>
-          <Typography variant="h6" sx={{ color: 'white', marginTop: 'auto' }}>
-            ${product.price}
-          </Typography>
-        </CardContent>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            width: '100%',        
-          }}
-        >
-          <StyledButton size="small">
-            Add to Cart
-          </StyledButton>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon sx={{ color: 'white' }} />
-          </IconButton>
-        </Box>
-      </Details>
-    </StyledCard>
+    <Link to={`/productos/${product.id}`}>
+      <StyledCard>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="335"
+            image={product.imageUrl}
+            alt={product.name}
+            sx={{ transition: 'filter 0.3s ease, transform 0.3s ease' }}
+          />
+        </CardActionArea>
+        <Details className="details">
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {product.name}
+            </Typography>
+            <Typography variant="body2" color="white">
+              {product.description}
+            </Typography>
+            <Typography variant="h6" sx={{ color: 'white', marginTop: 'auto' }}>
+              ${product.price}
+            </Typography>
+          </CardContent>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: '100%',        
+            }}
+          >
+            <StyledButton size="small">
+              Add to Cart
+            </StyledButton>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon sx={{ color: 'white' }} />
+            </IconButton>
+          </Box>
+        </Details>
+      </StyledCard>
+    </Link>
   );
 }
