@@ -44,8 +44,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 export default function ProductCard({ product }) {
   return (
-    <Link to={`/productos/${product.id}`}>
-      <StyledCard>
+    <StyledCard>
+      <Link to={`/productos/${product.id}`}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -55,35 +55,35 @@ export default function ProductCard({ product }) {
             sx={{ transition: 'filter 0.3s ease, transform 0.3s ease' }}
           />
         </CardActionArea>
-        <Details className="details">
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {product.name}
-            </Typography>
-            <Typography variant="body2" color="white">
-              {product.description}
-            </Typography>
-            <Typography variant="h6" sx={{ color: 'white', marginTop: 'auto' }}>
-              ${product.price}
-            </Typography>
-          </CardContent>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              width: '100%',        
-            }}
-          >
-            <StyledButton size="small">
-              Add to Cart
-            </StyledButton>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon sx={{ color: 'white' }} />
-            </IconButton>
-          </Box>
-        </Details>
-      </StyledCard>
-    </Link>
+      </Link>
+      <Details className="details">
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {product.name}
+          </Typography>
+          <Typography variant="body2" color="white">
+            {product.description}
+          </Typography>
+          <Typography variant="h6" sx={{ color: 'white', marginTop: 'auto' }}>
+            ${product.price}
+          </Typography>
+        </CardContent>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',        
+          }}
+        >
+          <StyledButton size="small">
+            Add to Cart
+          </StyledButton>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon sx={{ color: 'white' }} />
+          </IconButton>
+        </Box>
+      </Details>
+    </StyledCard>
   );
 }
