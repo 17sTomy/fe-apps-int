@@ -1,5 +1,5 @@
-import { LoginPage } from '../pages/LoginPage.jsx';
-import { SignupPage } from '../pages/SignupPage.jsx';
+import { LoginPage } from '../pages/Auth/LoginPage.jsx';
+import { SignupPage } from '../pages/Auth/SignupPage.jsx';
 import { ProfilePage } from '../pages/ProfilePage/ProfilePage';
 import { ProductsPage } from '../pages/ProductsPage/ProductsPage';
 import { Navigate } from 'react-router-dom';
@@ -40,7 +40,7 @@ export default [
     ),
   },
   {
-    path: '/productos/:id',  
+    path: '/productos/:id',
     element: (
       <OptionalAuthRoute>
         <OneProductPage />

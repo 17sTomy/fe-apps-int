@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import useAuth from '../hooks/useAuth.js';
+import useAuth from '../../hooks/useAuth.js';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -23,7 +23,7 @@ import {
   ThemeProvider,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useTheme } from '../hooks/useTheme';
+import { useTheme } from '../../hooks/useTheme';
 
 export const LoginPage = () => {
   const { handleLogin, showSnackbar, handleCloseSnackbar, authError } = useAuth();
