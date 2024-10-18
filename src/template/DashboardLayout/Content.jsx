@@ -14,7 +14,7 @@ export const Content = ({ menuOpen, children }) => {
         : {
             position: 'absolute',
             left: menuOpen ? '250px' : '0px',
-            width: menuOpen ? 'calc(100vw - 250px)' : '100%',
+            width: menuOpen ? 'calc(98vw - 250px)' : '100%',
           },
     [menuOpen]
   );
