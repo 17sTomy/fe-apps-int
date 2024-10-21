@@ -1,14 +1,38 @@
 import React, { useState } from 'react';
+import { createProduct, deleteProduct } from '../../services/customerService';
 
 export const AdminPage = () => {
   const [productName, setProductName] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [productPrice, setProductPrice] = useState(0);
   const [productStock, setProductStock] = useState(0);
+  const [productIdToDelete, setProductIdToDelete] = useState('');
   
-  const handleCreateProduct = () => {
-    // FALTA AL LOGICA PARA LLAMAR AL ENDPOINT DE CREAR PRODUCTO
-    console.log('Producto creado:', { productName, productDescription, productPrice, productStock });
+  const handleCreateProduct = async () => {
+    try {
+      const newProduct = {
+        name: productName,
+        description: productDescription,
+        price: productPrice,
+        stock: productStock,
+        // AGREGAR OTROS CAMPOS NECESARIOS
+      };
+      await createProduct(newProduct);
+      alert('Producto creado con éxito');
+    } catch (error) {
+      console.error('Error creando producto:', error);
+      alert('Error al crear el producto');
+    }
+  };
+
+  const handleDeleteProduct = async () => {
+    try {
+      await deleteProduct(productIdToDelete);
+      alert('Producto eliminado con éxito');
+    } catch (error) {
+      console.error('Error eliminando producto:', error);
+      alert('Error al eliminar el producto');
+    }
   };
 
   return (
@@ -44,7 +68,13 @@ export const AdminPage = () => {
       </div>
       <div>
         <h2>Eliminar Producto</h2>
-        {/* FALTA LA LÓGICA PARA ELIMINAR PRODUCTOS */}
+        <input
+          type="text"
+          placeholder="ID del producto"
+          value={productIdToDelete}
+          onChange={(e) => setProductIdToDelete(e.target.value)}
+        />
+        <button onClick={handleDeleteProduct}>Eliminar Producto</button>
       </div>
     </div>
   );
