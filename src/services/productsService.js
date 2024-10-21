@@ -49,3 +49,7 @@ export const deleteProduct = async (productId) => {
     throw error;
   }
 };
+
+export const updateProduct = async (id, productDetails) => {
+  return axios.put(`${API_BASE_URL}/products/${id}`, productDetails);
+};
