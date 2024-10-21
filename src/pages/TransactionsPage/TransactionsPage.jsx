@@ -11,7 +11,14 @@ export const TransactionsPage = () => {
 
   return (
     <DashboardLayout>
-      <h1>Mis compras</h1>
+      <h1>Mis compras - Historial de Transacciones</h1>
+      <ul>
+        {transactions.map(transaction => (
+          <li key={transaction.id}>
+            {`ID: ${transaction.id} - Monto: $${transaction.amount} - Fecha: ${transaction.date}`}
+          </li>
+        ))}
+      </ul>
     </DashboardLayout>
   );
 };
