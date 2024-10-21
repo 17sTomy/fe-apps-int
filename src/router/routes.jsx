@@ -9,6 +9,8 @@ import { PublicationsPage } from '../pages/PublicationsPage/PublicationsPage';
 import { TransactionsPage } from '../pages/TransactionsPage/TransactionsPage';
 import { KycPage } from '../pages/KycPage/KycPage';
 import { OneProductPage } from '../pages/ProductsPage/OneProductPage.jsx';
+import { AdminPage } from '../pages/AdminPage/AdminPage';
+import { EditProfilePage } from '../pages/ProfilePage/EditProfilePage.jsx';
 
 export default [
   {
@@ -76,6 +78,22 @@ export default [
     element: (
       <OptionalAuthRoute>
         <KycPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: "/admin",
+    element: (
+      <OptionalAuthRoute>
+        <AdminPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: "/profileEdition",
+    element: (
+      <OptionalAuthRoute>
+        <EditProfilePage />
       </OptionalAuthRoute>
     ),
   },
