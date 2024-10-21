@@ -30,3 +30,22 @@ export const getViewedProducts = async () => {
 export const viewProduct = async (id) => {
   await AuthorizedService.post(`${BASE_URL}/${id}/view`);
 };
+
+export const createProduct = async (productData) => {
+  try {
+    const response = await axios.post(API_URL, productData);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating product:", error);
+    throw error;
+  }
+};
+
+export const deleteProduct = async (productId) => {
+  try {
+    await axios.delete(`${API_URL}/${productId}`);
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    throw error;
+  }
+};
