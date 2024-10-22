@@ -35,14 +35,6 @@ const Details = styled(Box)(({ theme }) => ({
   color: 'white',
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  backgroundColor: 'rgba(255, 255, 255, 0.3)', 
-  color: 'white',
-  '&:hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.5)', 
-  },
-}));
-
 export default function ProductCard({ product }) {
   return (
     <StyledCard>
