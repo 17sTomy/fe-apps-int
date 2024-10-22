@@ -77,7 +77,7 @@ export default function ProductCard({ product }) {
             width: '100%',        
           }}
         >
-          <AddToCartButton />
+          <AddToCartButton productId={product.id} />
           <IconButton aria-label="add to favorites">
             <FavoriteIcon sx={{ color: 'white' }} />
           </IconButton>
