@@ -3,6 +3,7 @@ import { Card, CardMedia, CardActionArea, CardContent, Typography, Button, Box }
 import { styled } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
+import AddToCartButton from '../Cart/AddToCartButton';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: 'relative',
@@ -76,9 +77,7 @@ export default function ProductCard({ product }) {
             width: '100%',        
           }}
         >
-          <StyledButton size="small">
-            Add to Cart
-          </StyledButton>
+          <AddToCartButton />
           <IconButton aria-label="add to favorites">
             <FavoriteIcon sx={{ color: 'white' }} />
           </IconButton>
