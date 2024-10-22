@@ -65,7 +65,7 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
   }, [cartItemQty, accountStore.accountInfo?.isAdmin]);
 
   useEffect(() => {
-    setCartItemQty(accountStore.cart?.cartItems?.length);
+    setCartItemQty(accountStore.cart?.quantity);
   }, [accountStore.cart]);
 
   const handleSessionAction = () => {
