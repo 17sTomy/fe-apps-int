@@ -3,7 +3,7 @@ import { Card, CardMedia, CardActionArea, CardContent, Typography, Button, Box }
 import { styled } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
-import AddToCartButton from '../Cart/AddToCartButton';
+import CartButton from '../Cart/CartButton';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: 'relative',
@@ -33,6 +33,14 @@ const Details = styled(Box)(({ theme }) => ({
   transform: 'translateY(100%)',
   transition: 'transform 0.3s ease',
   color: 'white',
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  backgroundColor: 'rgba(255, 255, 255, 0.3)', 
+  color: 'white',
+  '&:hover': {
+    backgroundColor: 'rgba(255, 255, 255, 0.5)', 
+  },
 }));
 
 export default function ProductCard({ product }) {
@@ -69,7 +77,7 @@ export default function ProductCard({ product }) {
             width: '100%',        
           }}
         >
-          <AddToCartButton productId={product.id} />
+          <CartButton productId={product.id} />
           <IconButton aria-label="add to favorites">
             <FavoriteIcon sx={{ color: 'white' }} />
           </IconButton>
