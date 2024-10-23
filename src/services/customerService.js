@@ -46,3 +46,8 @@ export const editCustomerInfo = async (profileData) => {
   });
   return response.data;
 };
+
+export const getRegisteredUsers = async () => {
+  const response = await AuthorizedService.get(`${BASE_URL}/registered`);
+  return response.data;
+};
