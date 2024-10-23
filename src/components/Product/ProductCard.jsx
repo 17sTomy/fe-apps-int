@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, CardMedia, CardActionArea, CardContent, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
@@ -37,8 +36,6 @@ const Details = styled(Box)(({ theme }) => ({
 }));
 
 export default function ProductCard({ product }) {
-  const cart = useSelector((state) => state.account).cart;
-  
   return (
     <StyledCard>
       <Link to={`/productos/${product.id}`}>
