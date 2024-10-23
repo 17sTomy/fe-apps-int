@@ -21,7 +21,7 @@ export default function useAuth() {
     const cartResponse = await fetchCart();
     dispatch(setAccount({ accountInfo: infoResponse, cart: cartResponse }));
     dispatch(setTheme(infoResponse.theme === 'DARK' ? darkTheme : lightTheme));
-    return { accountInfo: infoResponse, cart: cartResponse }
+    return { accountInfo: infoResponse, cart: cartResponse };
   };
 
   const handleLogin = async (event) => {

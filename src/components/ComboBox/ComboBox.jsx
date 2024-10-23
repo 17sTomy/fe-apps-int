@@ -3,10 +3,22 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 const options = [
-              'Suspenso', 'Terror', 'Ciencia Ficción', 'Romance',
-              'Thriller', 'Drama', 'Animación', 'Action', 'Épica', 'Comedia',
-              'Aventura', 'Musical', 'Fantasía', 'Crimen', 'Autos'
-            ].sort();
+  'Suspenso',
+  'Terror',
+  'Ciencia Ficción',
+  'Romance',
+  'Thriller',
+  'Drama',
+  'Animación',
+  'Action',
+  'Épica',
+  'Comedia',
+  'Aventura',
+  'Musical',
+  'Fantasía',
+  'Crimen',
+  'Autos',
+].sort();
 
 export default function ComboBox({ setCategory }) {
   return (
@@ -21,24 +33,25 @@ export default function ComboBox({ setCategory }) {
         width: '50%',
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
-            borderColor: 'rgb(0, 129, 198)', 
+            borderColor: 'rgb(0, 129, 198)',
           },
           '& .MuiInputBase-input::placeholder': {
-          color: 'white', 
-        },
+            color: 'white',
+          },
         },
         input: {
-          color: 'rgb(0, 129, 198)', 
+          color: 'rgb(0, 129, 198)',
         },
       }}
-      renderInput={(params) => 
-        <TextField 
-          {...params} 
-          label="Category" 
-          InputLabelProps={{ 
-            style: { color: 'rgb(0, 129, 198)' }, 
-          }} 
-      />}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Category"
+          InputLabelProps={{
+            style: { color: 'rgb(0, 129, 198)' },
+          }}
+        />
+      )}
     />
   );
 }

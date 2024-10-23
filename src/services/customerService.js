@@ -42,7 +42,7 @@ export const editCustomerInfo = async (profileData) => {
     streetName: profileData.streetName,
     streetNumber: profileData.streetNumber,
     complementaryAddress: profileData.complementaryAddress,
-    phoneNumber: profileData.phoneNumber
+    phoneNumber: profileData.phoneNumber,
   });
   return response.data;
 };

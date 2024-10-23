@@ -10,7 +10,7 @@ const TransactionHistory = () => {
         const data = await getTransactions();
         setTransactions(data);
       } catch (error) {
-        console.error("Error fetching transactions:", error);
+        console.error('Error fetching transactions:', error);
       }
     };
 

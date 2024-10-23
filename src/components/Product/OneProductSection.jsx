@@ -20,8 +20,8 @@ export const OneProductSection = () => {
       viewProduct(id);
     }
   }, [id]);
-  
-  return ( 
+
+  return (
     <>
       {loading && <Loader />}
       {error && <p>Error fetching products: {error.message}</p>}
@@ -47,7 +47,7 @@ export const OneProductSection = () => {
           </Button>
           <Box
             component="img"
-            src={products.imageUrl} 
+            src={products.imageUrl}
             alt={products.title}
             sx={{
               width: '100%',
@@ -75,9 +75,7 @@ export const OneProductSection = () => {
             <Typography variant="h5" component="p" color="primary">
               ${products.price}
             </Typography>
-            <Typography component="p">
-              Stock: {products.stock} Unidades
-            </Typography>
+            <Typography component="p">Stock: {products.stock} Unidades</Typography>
 
             <Box
               sx={{
@@ -89,7 +87,7 @@ export const OneProductSection = () => {
               }}
             >
               <CartButtonInPage productId={products.id} />
-              <IconButton sx={{ color: theme.name === 'dark' ? 'white' : 'black'}}>
+              <IconButton sx={{ color: theme.name === 'dark' ? 'white' : 'black' }}>
                 <FavoriteIcon />
               </IconButton>
             </Box>
@@ -99,4 +97,3 @@ export const OneProductSection = () => {
     </>
   );
 };
-

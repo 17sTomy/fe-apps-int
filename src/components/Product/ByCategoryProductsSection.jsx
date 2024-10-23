@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useProducts from '../../hooks/useProducts';
 import ProductCard from './ProductCard';
 import ComboBox from '../ComboBox/ComboBox';
-import { Box } from '@mui/material'; 
+import { Box } from '@mui/material';
 import { getProductsByCategory } from '../../services/productsService';
 import Loader from '../common/Loader/Loader';
 
@@ -19,13 +19,13 @@ export const ByCategoryProductsSection = () => {
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column', 
-            alignItems: 'center', 
+            flexDirection: 'column',
+            alignItems: 'center',
             gap: 2,
           }}
         >
           <ComboBox setCategory={setCategory} />
-          
+
           {products.length === 0 ? (
             <h2>Elija una categoría</h2>
           ) : (
@@ -34,7 +34,7 @@ export const ByCategoryProductsSection = () => {
                 display: 'flex',
                 flexWrap: 'wrap',
                 gap: 2,
-                justifyContent: 'center'
+                justifyContent: 'center',
               }}
             >
               {products.map((product) => (

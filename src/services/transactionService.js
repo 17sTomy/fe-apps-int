@@ -7,7 +7,7 @@ export const getTransactions = async () => {
     const response = await axios.get(API_URL);
     return response.data;
   } catch (error) {
-    console.error("Error fetching transactions:", error);
+    console.error('Error fetching transactions:', error);
     throw error;
   }
 };

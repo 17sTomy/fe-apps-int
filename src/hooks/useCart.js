@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCart } from '../store/slice/accountSlice';
-import { 
-  fetchCart, 
+import {
+  fetchCart,
   addToCart,
   removeOneFromCart,
   removeFromCart,
-  clearCart
+  clearCart,
 } from '../services/cartService';
 
 export const useCart = () => {
@@ -32,14 +32,14 @@ export const useCart = () => {
     setError(null);
     try {
       const data = {
-        productId, 
-        amount
+        productId,
+        amount,
       };
       const response = await addToCart(data);
       if (response.status === 200) {
         const cartResponse = await fetchCart();
-        dispatch(setCart({cart: cartResponse }));
-      };
+        dispatch(setCart({ cart: cartResponse }));
+      }
     } catch (error) {
       setError(error.message);
     }
@@ -51,8 +51,8 @@ export const useCart = () => {
       const response = await removeOneFromCart(productId);
       if (response.status === 200) {
         const cartResponse = await fetchCart();
-        dispatch(setCart({cart: cartResponse }));
-      };
+        dispatch(setCart({ cart: cartResponse }));
+      }
     } catch (error) {
       setError(error.message);
     }
@@ -64,8 +64,8 @@ export const useCart = () => {
       const response = await removeFromCart(productId);
       if (response.status === 200) {
         const cartResponse = await fetchCart();
-        dispatch(setCart({cart: cartResponse }));
-      };
+        dispatch(setCart({ cart: cartResponse }));
+      }
     } catch (error) {
       setError(error.message);
     }
@@ -77,8 +77,8 @@ export const useCart = () => {
       const response = await clearCart();
       if (response.status === 200) {
         const cartResponse = await fetchCart();
-        dispatch(setCart({cart: cartResponse }));
-      };
+        dispatch(setCart({ cart: cartResponse }));
+      }
     } catch (error) {
       setError(error.message);
     }

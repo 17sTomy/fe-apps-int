@@ -4,10 +4,10 @@ import { AllProductsSection } from '../../components/Product/AllProductsSection'
 import { FeaturedProductsSection } from '../../components/Product/FeaturedProductsSection';
 import { ByCategoryProductsSection } from '../../components/Product/ByCategoryProductsSection';
 import { ViewedProductsSection } from '../../components/Product/ViewedProductsSection';
-import NavigationButtons from '../../components/NavigationButtons'
+import NavigationButtons from '../../components/NavigationButtons';
 
 export const ProductsPage = () => {
-  const [selectedButton, setSelectedButton] = useState('todos'); 
+  const [selectedButton, setSelectedButton] = useState('todos');
 
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
