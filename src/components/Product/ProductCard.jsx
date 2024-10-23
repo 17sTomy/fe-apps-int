@@ -10,7 +10,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
   width: '200px',
   height: '335px',
   overflow: 'hidden',
-  transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
   '&:hover .details': {
     transform: 'translateY(0)',
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -66,10 +66,10 @@ export default function ProductCard({ product }) {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            width: '100%',        
+            width: '100%',
           }}
         >
-          <CartButton productId={product.id}  />
+          <CartButton productId={product.id} />
           <IconButton aria-label="add to favorites">
             <FavoriteIcon sx={{ color: 'white' }} />
           </IconButton>

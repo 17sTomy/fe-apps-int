@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useProducts = (fetchFunction, param = "") => {
+const useProducts = (fetchFunction, param = '') => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +20,7 @@ const useProducts = (fetchFunction, param = "") => {
     fetchProducts();
   }, [param]);
   console.log(products);
-  
+
   return { products, loading, error };
 };
 

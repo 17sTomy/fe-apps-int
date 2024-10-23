@@ -9,7 +9,7 @@ export const TransactionsPage = () => {
   if (!accountStore.authenticated) {
     return <RestrictedPage />;
   }
-  
+
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export const TransactionsPage = () => {
     <DashboardLayout>
       <h1>Mis compras - Historial de Transacciones</h1>
       <ul>
-        {transactions.map(transaction => (
+        {transactions.map((transaction) => (
           <li key={transaction.id}>
             {`ID: ${transaction.id} - Monto: $${transaction.amount} - Fecha: ${transaction.date}`}
           </li>

@@ -42,7 +42,7 @@ export default [
     ),
   },
   {
-    path: '/productos/:id',  
+    path: '/productos/:id',
     element: (
       <OptionalAuthRoute>
         <OneProductPage />
@@ -82,7 +82,7 @@ export default [
     ),
   },
   {
-    path: "/admin",
+    path: '/admin',
     element: (
       <OptionalAuthRoute>
         <AdminPage />
@@ -90,7 +90,7 @@ export default [
     ),
   },
   {
-    path: "/profileEdition",
+    path: '/profileEdition',
     element: (
       <OptionalAuthRoute>
         <EditProfilePage />

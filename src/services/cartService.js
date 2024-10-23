@@ -4,7 +4,7 @@ const BASE_URL = '/api/cart';
 
 export const fetchCart = async () => {
   const response = await AuthorizedService.get(`${BASE_URL}`);
-  console.log(response.data)
+  console.log(response.data);
   return response.data;
 };
 

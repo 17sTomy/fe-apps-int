@@ -1,6 +1,6 @@
 import useProducts from '../../hooks/useProducts';
 import ProductCard from './ProductCard';
-import { Box } from '@mui/material'; 
+import { Box } from '@mui/material';
 import { getAllProducts } from '../../services/productsService';
 import Loader from '../common/Loader/Loader';
 
@@ -17,12 +17,12 @@ export const AllProductsSection = () => {
           sx={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: 2, 
-            justifyContent: 'center'
+            gap: 2,
+            justifyContent: 'center',
           }}
         >
           {products.map((product) => (
-            <Box key={product.id} >
+            <Box key={product.id}>
               <ProductCard product={product} />
             </Box>
           ))}

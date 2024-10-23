@@ -1,13 +1,13 @@
 import useProducts from '../../hooks/useProducts';
 import ProductCard from './ProductCard';
-import { Box } from '@mui/material'; 
+import { Box } from '@mui/material';
 import { getFeaturedProducts } from '../../services/productsService';
 import Loader from '../common/Loader/Loader';
 
 export const FeaturedProductsSection = () => {
   const { products, loading, error } = useProducts(getFeaturedProducts);
 
-  return ( 
+  return (
     <>
       {loading && <Loader />}
       {error && <p>Error fetching products: {error.message}</p>}
@@ -17,12 +17,12 @@ export const FeaturedProductsSection = () => {
           sx={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: 2, 
-            justifyContent: 'center'
+            gap: 2,
+            justifyContent: 'center',
           }}
         >
           {products.map((product) => (
-            <Box key={product.id} >
+            <Box key={product.id}>
               <ProductCard product={product} />
             </Box>
           ))}

@@ -40,12 +40,14 @@ export const LoginPage = () => {
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           open={showSnackbar}
           onClose={handleCloseSnackbar}
-          autoHideDuration={5000}>
+          autoHideDuration={5000}
+        >
           <Alert
             onClose={handleCloseSnackbar}
             severity="error"
             variant="filled"
-            sx={{ width: '100%' }}>
+            sx={{ width: '100%' }}
+          >
             ¡Ups! Parece que algún dato es incorrecto.
           </Alert>
         </Snackbar>
@@ -56,7 +58,8 @@ export const LoginPage = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-          }}>
+          }}
+        >
           <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -87,7 +90,8 @@ export const LoginPage = () => {
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
-                      edge="end">
+                      edge="end"
+                    >
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>

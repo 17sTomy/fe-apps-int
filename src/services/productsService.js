@@ -36,7 +36,7 @@ export const createProduct = async (productData) => {
     const response = await axios.post(API_URL, productData);
     return response.data;
   } catch (error) {
-    console.error("Error creating product:", error);
+    console.error('Error creating product:', error);
     throw error;
   }
 };
@@ -45,7 +45,7 @@ export const deleteProduct = async (productId) => {
   try {
     await axios.delete(`${API_URL}/${productId}`);
   } catch (error) {
-    console.error("Error deleting product:", error);
+    console.error('Error deleting product:', error);
     throw error;
   }
 };

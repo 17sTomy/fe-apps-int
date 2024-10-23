@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
- 
+
 export default function BasicButtons({ selectedButton, handleButtonClick }) {
   return (
     <Stack spacing={2} direction="row" justifyContent="center" sx={{ marginBottom: 4 }}>

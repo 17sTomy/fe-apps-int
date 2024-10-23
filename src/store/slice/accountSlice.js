@@ -54,7 +54,9 @@ export const accountSlice = createSlice({
       state.cart = initialState.cart;
     },
 
-    setCart: (state, action) => {  state.cart = action.payload.cart}
+    setCart: (state, action) => {
+      state.cart = action.payload.cart;
+    },
   },
 });
 

@@ -85,7 +85,8 @@ function PageContent({ pathname, Children }) {
         mx: 3,
         pb: 10,
         mt: { xs: 8, md: -4 },
-      }}>
+      }}
+    >
       {Children}
     </Box>
   );
@@ -119,7 +120,8 @@ function DashboardLayoutBasic({ Children }) {
               justifyContent: 'space-between',
               alignItems: 'center',
               width: '100%',
-            }}>
+            }}
+          >
             {/* Logo del lado izquierdo */}
             {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <NotificationSection />
@@ -132,7 +134,8 @@ function DashboardLayoutBasic({ Children }) {
         title: 'BlackNuster',
       }}
       router={router}
-      theme={demoTheme}>
+      theme={demoTheme}
+    >
       <DashboardLayout>
         <PageContent pathname={pathname} Children={Children} />
       </DashboardLayout>

@@ -11,37 +11,41 @@ export default function CartButtonInPage({ productId }) {
 
   useEffect(() => {
     if (cart && cart.cartItems) {
-      const foundProduct = cart.cartItems.find(item => item.product.id === productId);
+      const foundProduct = cart.cartItems.find((item) => item.product.id === productId);
       setExistingProduct(foundProduct);
 
       if (foundProduct) {
-        setQuantity(foundProduct.quantity)
-      };
-    };
-  }, [cart, productId])
-  
+        setQuantity(foundProduct.quantity);
+      }
+    }
+  }, [cart, productId]);
+
   const handleAddToCart = async () => {
     addProductToCart(productId);
     getCart();
   };
-  
+
   const handleRemoveOneFromCart = () => {
     removeOneProductFromCart(productId);
   };
 
   return (
     <>
-      { existingProduct ? (
+      {existingProduct ? (
         <>
-          <Button size='large' variant="contained" onClick={handleRemoveOneFromCart}>-</Button>
-            <Typography variant="h5">{quantity}</Typography>
-          <Button size='large' variant="contained" onClick={handleAddToCart}>+</Button>
+          <Button size="large" variant="contained" onClick={handleRemoveOneFromCart}>
+            -
+          </Button>
+          <Typography variant="h5">{quantity}</Typography>
+          <Button size="large" variant="contained" onClick={handleAddToCart}>
+            +
+          </Button>
         </>
-      ) :
-        <Button fullWidth size='large' variant="contained" onClick={handleAddToCart}>
+      ) : (
+        <Button fullWidth size="large" variant="contained" onClick={handleAddToCart}>
           Add To Cart
         </Button>
-      }
+      )}
     </>
   );
 }

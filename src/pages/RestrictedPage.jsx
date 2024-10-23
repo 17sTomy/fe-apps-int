@@ -16,7 +16,8 @@ export const RestrictedPage = () => {
           width: '100%',
           height: 'calc(100vh - 70px)',
           gap: 24,
-        }}>
+        }}
+      >
         <h1>Iniciá sesión</h1>
         <p>Para poder acceder a esta sección, primero debés ingresar a tu cuenta.</p>
 
@@ -26,7 +27,8 @@ export const RestrictedPage = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={() => navigate('/login')}>
+            onClick={() => navigate('/login')}
+          >
             Iniciar sesión
           </Button>
 
@@ -35,7 +37,8 @@ export const RestrictedPage = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={() => navigate('/signup')}>
+            onClick={() => navigate('/signup')}
+          >
             Crear cuenta
           </Button>
         </div>
