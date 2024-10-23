@@ -1,0 +1,16 @@
+.management-page {
+  height: 100%;
+
+  h1 {
+    text-align: center;
+  }
+
+  .actions {
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+}

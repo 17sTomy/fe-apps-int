@@ -6,6 +6,7 @@ import { useTheme } from '../../hooks/useTheme';
 import {
   faCartShopping,
   faFolder,
+  faGear,
   faHouse,
   faReceipt,
   faRightToBracket,
@@ -53,6 +54,7 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
         icon: faUser,
       },
       { path: '/publicaciones', label: 'Publicaciones', icon: faFolder, requiresAdmin: true },
+      { path: '/gestionar', label: 'Gestionar sitio', icon: faGear, requiresAdmin: true },
     ];
 
     return baseRoutes.filter((route) => {
@@ -86,8 +88,7 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
   return (
     <div
       className={`side-bar ${menuOpen ? 'open' : ''}`}
-      style={{ background: theme.primary, color: theme.secondary }}
-    >
+      style={{ background: theme.primary, color: theme.secondary }}>
       <div className="top-sidebar">
         {routes.map((route, index) => (
           <div className="route" key={index} onClick={() => handleNavigation(route.path)}>
@@ -107,8 +108,7 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
                       : theme.primary
                     : theme.secondary,
                 borderRadius: route.path === window.location.pathname ? 16 : 0,
-              }}
-            >
+              }}>
               <div className="icon">
                 {route.customIcon ? (
                   route.customIcon
