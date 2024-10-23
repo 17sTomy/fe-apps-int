@@ -1,6 +1,7 @@
 import { DashboardLayout } from '../../template/DashboardLayout';
 import { useSelector } from 'react-redux';
 import { RestrictedPage } from '../RestrictedPage';
+import CartTable from '../../components/Cart/CartTable';
 
 export const CartPage = () => {
   const accountStore = useSelector((state) => state.account);
@@ -11,7 +12,7 @@ export const CartPage = () => {
 
   return (
     <DashboardLayout>
-      <h1>Mi carrito</h1>
+      <CartTable />
     </DashboardLayout>
   );
 };

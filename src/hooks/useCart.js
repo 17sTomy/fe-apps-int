@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { setCart } from '../store/slice/cartSlice';
-// import { setAccount } from '../store/slice/accountSlice';
 import { setCart } from '../store/slice/accountSlice';
 import { 
   fetchCart, 
   addToCart,
-  removeOneFromCart
+  removeOneFromCart,
+  removeFromCart,
+  clearCart
 } from '../services/cartService';
 
 export const useCart = () => {
@@ -58,10 +58,38 @@ export const useCart = () => {
     }
   };
 
+  const removeProductFromCart = async (productId) => {
+    setError(null);
+    try {
+      const response = await removeFromCart(productId);
+      if (response.status === 200) {
+        const cartResponse = await fetchCart();
+        dispatch(setCart({cart: cartResponse }));
+      };
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const clearAllFromCart = async (productId) => {
+    setError(null);
+    try {
+      const response = await clearCart();
+      if (response.status === 200) {
+        const cartResponse = await fetchCart();
+        dispatch(setCart({cart: cartResponse }));
+      };
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return {
     error,
     getCart,
     addProductToCart,
     removeOneProductFromCart,
+    removeProductFromCart,
+    clearAllFromCart,
   };
 };
