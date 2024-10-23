@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useSelector } from 'react-redux';
 import { useTheme } from '../../hooks/useTheme';
 import { useCart } from '../../hooks/useCart';
-import MovieIcon from '@mui/icons-material/Movie';
+import HdIcon from '@mui/icons-material/Hd';
 
 export default function CartTable() {
   const cart = useSelector((state) => state.account.cart);
@@ -23,7 +23,8 @@ export default function CartTable() {
           <h1 style={{ textAlign: 'center', marginTop: '20px' }}>No Hay Productos en el Carrito</h1>
           <div style={{ textAlign: 'center', marginTop: '20px' }}>
             <Button variant="contained" color="primary" component={Link} to="/productos" sx={{ margin: 'auto' }}>
-              Comprar Ahora <MovieIcon/>
+              Comprar Ahora
+              <HdIcon sx={{ marginLeft: '8px' }} />
             </Button>
           </div>
         </>
