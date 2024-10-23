@@ -16,6 +16,10 @@ export default function CartTable() {
     color: theme.name === 'dark' ? 'white' : 'black', 
   };
 
+  const totalAmount = cart?.cartItems?.reduce((acc, item) => {
+    return acc + (item.product.price * item.quantity); 
+  }, 0) || 0;
+
   return (
     <TableContainer>
       {cart?.cartItems?.length === 0 ? (
@@ -36,6 +40,7 @@ export default function CartTable() {
               <TableCell sx={tableCellStyles}>Nombre</TableCell>
               <TableCell sx={tableCellStyles}>Precio</TableCell>
               <TableCell sx={tableCellStyles}>Cantidad</TableCell>
+              <TableCell sx={tableCellStyles}>Precio Total</TableCell>
               <TableCell sx={tableCellStyles}>Acciones</TableCell>
             </TableRow>
           </TableHead>
@@ -52,6 +57,7 @@ export default function CartTable() {
                 <TableCell sx={tableCellStyles}>{item.product.name}</TableCell>
                 <TableCell sx={tableCellStyles}>${item.product.price.toFixed(2)}</TableCell>
                 <TableCell sx={tableCellStyles}>{item.quantity}</TableCell>
+                <TableCell sx={tableCellStyles}>${(item.quantity * item.product.price).toFixed(2)}</TableCell>
                 <TableCell>
                   <Button
                     size="small"
@@ -80,13 +86,27 @@ export default function CartTable() {
                 </TableCell>
               </TableRow>
             ))}
+
+            <TableRow>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TableCell sx={tableCellStyles}>
+                <strong>Total</strong> 
+              </TableCell>
+              <TableCell sx={tableCellStyles}>
+                <strong>${totalAmount.toFixed(2)}</strong>
+              </TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+
             <TableRow>
               <TableCell colSpan={4}>
                 <Button  variant="contained" color="primary" sx={{ width: '100%' }}>
                   Comprar
                 </Button>
               </TableCell>
-              <TableCell colSpan={1}>
+              <TableCell colSpan={2}>
                 <Button variant="contained" color="error" onClick={clearAllFromCart} sx={{ width: '100%' }}>
                   Eliminar todos
                 </Button>
