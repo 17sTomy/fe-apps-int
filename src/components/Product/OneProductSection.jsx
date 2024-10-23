@@ -7,6 +7,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { Box, IconButton, Typography, Button } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import CartButtonInPage from '../Cart/CartButtonInPage';
 
 export const OneProductSection = () => {
   const { id } = useParams();
@@ -87,9 +88,7 @@ export const OneProductSection = () => {
                 gap: 2,
               }}
             >
-              <Button variant="contained" size="large" fullWidth>
-                Add to Cart
-              </Button>
+              <CartButtonInPage productId={products.id} />
               <IconButton sx={{ color: theme.name === 'dark' ? 'white' : 'black'}}>
                 <FavoriteIcon />
               </IconButton>
