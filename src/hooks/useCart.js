@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCart } from '../store/slice/cartSlice';
+// import { setCart } from '../store/slice/cartSlice';
+// import { setAccount } from '../store/slice/accountSlice';
+import { setCart } from '../store/slice/accountSlice';
 import { 
   fetchCart, 
   addToCart,
@@ -35,8 +37,8 @@ export const useCart = () => {
       };
       const response = await addToCart(data);
       if (response.status === 200) {
-        const updatedCart = await fetchCart();
-        dispatch(setCart(updatedCart));
+        const cartResponse = await fetchCart();
+        dispatch(setCart({cart: cartResponse }));
       };
     } catch (error) {
       setError(error.message);
@@ -48,8 +50,8 @@ export const useCart = () => {
     try {
       const response = await removeOneFromCart(productId);
       if (response.status === 200) {
-        const updatedCart = await fetchCart();
-        dispatch(setCart(updatedCart));
+        const cartResponse = await fetchCart();
+        dispatch(setCart({cart: cartResponse }));
       };
     } catch (error) {
       setError(error.message);

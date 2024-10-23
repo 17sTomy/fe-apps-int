@@ -43,7 +43,7 @@ export default function CartButton({ productId }) {
       { existingProduct ? (
         <>
           <Button size='small' variant="contained" onClick={handleRemoveOneFromCart} sx={{ width: '25px', height: '25px', padding: 0, minWidth: '0'}}>-</Button>
-          <Typography variant="h6">{quantity}</Typography>
+            <Typography variant="h6">{quantity}</Typography>
           <Button size='small' variant="contained" onClick={handleAddToCart} sx={{ width: '25px', height: '25px', padding: 0, minWidth: '0'}}>+</Button>
         </>
       ) :

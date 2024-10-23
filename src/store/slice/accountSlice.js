@@ -53,10 +53,12 @@ export const accountSlice = createSlice({
       state.accountInfo = initialState.accountInfo;
       state.cart = initialState.cart;
     },
+
+    setCart: (state, action) => {  state.cart = action.payload.cart}
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setAccount, resetAccount } = accountSlice.actions;
+export const { setAccount, resetAccount, setCart } = accountSlice.actions;
 
 export default accountSlice.reducer;
