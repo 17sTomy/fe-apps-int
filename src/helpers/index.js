@@ -14,3 +14,7 @@ export function compareTwoDates(date1, date2) {
   }
   return 0;
 }
+
+export function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
