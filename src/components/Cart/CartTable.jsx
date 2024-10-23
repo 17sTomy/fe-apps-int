@@ -7,7 +7,7 @@ import { useCart } from '../../hooks/useCart';
 
 export default function CartTable() {
   const cart = useSelector((state) => state.account.cart);
-  const { getCart, addProductToCart, removeOneProductFromCart, removeProductFromCart, error } = useCart();
+  const { addProductToCart, removeOneProductFromCart, removeProductFromCart, clearAllFromCart } = useCart();
   const { theme } = useTheme();
 
   const tableCellStyles = {
@@ -67,6 +67,18 @@ export default function CartTable() {
               </TableCell>
             </TableRow>
           ))}
+          <TableRow>
+            <TableCell colSpan={4}>
+              <Button  variant="contained" color="primary" sx={{ width: '100%' }}>
+                Comprar
+              </Button>
+            </TableCell>
+            <TableCell colSpan={1}>
+              <Button variant="contained" color="error" onClick={clearAllFromCart} sx={{ width: '100%' }}>
+                Eliminar todos
+              </Button>
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>

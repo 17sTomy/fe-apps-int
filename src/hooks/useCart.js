@@ -71,11 +71,25 @@ export const useCart = () => {
     }
   };
 
+  const clearAllFromCart = async (productId) => {
+    setError(null);
+    try {
+      const response = await clearCart();
+      if (response.status === 200) {
+        const cartResponse = await fetchCart();
+        dispatch(setCart({cart: cartResponse }));
+      };
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return {
     error,
     getCart,
     addProductToCart,
     removeOneProductFromCart,
     removeProductFromCart,
+    clearAllFromCart,
   };
 };
