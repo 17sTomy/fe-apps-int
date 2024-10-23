@@ -1,8 +1,10 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Card, CardMedia, CardActionArea, CardContent, Typography, Button, Box } from '@mui/material';
+import { Card, CardMedia, CardActionArea, CardContent, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
+import CartButton from '../Cart/CartButton';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: 'relative',
@@ -34,15 +36,9 @@ const Details = styled(Box)(({ theme }) => ({
   color: 'white',
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  backgroundColor: 'rgba(255, 255, 255, 0.3)', 
-  color: 'white',
-  '&:hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.5)', 
-  },
-}));
-
 export default function ProductCard({ product }) {
+  const cart = useSelector((state) => state.account).cart;
+  
   return (
     <StyledCard>
       <Link to={`/productos/${product.id}`}>
@@ -76,9 +72,7 @@ export default function ProductCard({ product }) {
             width: '100%',        
           }}
         >
-          <StyledButton size="small">
-            Add to Cart
-          </StyledButton>
+          <CartButton productId={product.id}  />
           <IconButton aria-label="add to favorites">
             <FavoriteIcon sx={{ color: 'white' }} />
           </IconButton>
