@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Button, Typography } from '@mui/material';
 import { useCart } from '../../hooks/useCart';
 import { styled } from '@mui/system';
@@ -13,8 +13,9 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 export default function CartButton({ productId }) {
-  const { addProductToCart, error } = useCart();
-  const cart = useSelector((state) => state.account).cart;
+  const { addProductToCart, removeOneProductFromCart, error } = useCart();
+  const cartStore = useSelector((state) => state.account);
+  const cart = cartStore.cart;
   const [quantity, setQuantity] = useState(0);
   const [existingProduct, setExistingProduct] = useState(null);
 
@@ -29,16 +30,19 @@ export default function CartButton({ productId }) {
     };
   }, [cart, productId])
   
-  
   const handleAddToCart = () => {
-    addProductToCart(productId, quantity);
+    addProductToCart(productId);
+  };
+  
+  const handleRemoveOneFromCart = () => {
+    removeOneProductFromCart(productId);
   };
 
   return (
     <>
       { existingProduct ? (
         <>
-          <Button size='small' variant="contained" sx={{ width: '25px', height: '25px', padding: 0, minWidth: '0'}}>-</Button>
+          <Button size='small' variant="contained" onClick={handleRemoveOneFromCart} sx={{ width: '25px', height: '25px', padding: 0, minWidth: '0'}}>-</Button>
           <Typography variant="h6">{quantity}</Typography>
           <Button size='small' variant="contained" onClick={handleAddToCart} sx={{ width: '25px', height: '25px', padding: 0, minWidth: '0'}}>+</Button>
         </>

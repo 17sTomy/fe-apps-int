@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Card, CardMedia, CardActionArea, CardContent, Typography, Button, Box } from '@mui/material';
+import { Card, CardMedia, CardActionArea, CardContent, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
@@ -33,14 +33,6 @@ const Details = styled(Box)(({ theme }) => ({
   transform: 'translateY(100%)',
   transition: 'transform 0.3s ease',
   color: 'white',
-}));
-
-const StyledButton = styled(Button)(({ theme }) => ({
-  backgroundColor: 'rgba(255, 255, 255, 0.3)', 
-  color: 'white',
-  '&:hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.5)', 
-  },
 }));
 
 export default function ProductCard({ product }) {

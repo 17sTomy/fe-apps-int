@@ -9,7 +9,8 @@ export const fetchCart = async () => {
 };
 
 export const addToCart = async (data) => {
-  await AuthorizedService.post(`${BASE_URL}/add`, data);
+  const response = await AuthorizedService.post(`${BASE_URL}/add`, data);
+  return response;
 };
 
 export const removeFromCart = async (id) => {
@@ -17,7 +18,8 @@ export const removeFromCart = async (id) => {
 };
 
 export const removeOneFromCart = async (id) => {
-  await AuthorizedService.delete(`${BASE_URL}/reduce/${id}`);
+  const response = await AuthorizedService.delete(`${BASE_URL}/reduce/${id}`);
+  return response;
 };
 
 export const clearCart = async (id) => {
