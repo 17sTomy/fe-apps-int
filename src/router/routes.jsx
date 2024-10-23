@@ -11,6 +11,8 @@ import { KycPage } from '../pages/KycPage/KycPage';
 import { OneProductPage } from '../pages/ProductsPage/OneProductPage.jsx';
 import { AdminPage } from '../pages/AdminPage/AdminPage';
 import { EditProfilePage } from '../pages/ProfilePage/EditProfilePage.jsx';
+import { ManagementPage } from '../pages/ManagementPage/ManagementPage';
+import { UserManagementPage } from '../pages/ManagementPage/UserManagementPage';
 
 export default [
   {
@@ -94,6 +96,22 @@ export default [
     element: (
       <OptionalAuthRoute>
         <EditProfilePage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/gestionar',
+    element: (
+      <OptionalAuthRoute>
+        <ManagementPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/gestionar/usuarios',
+    element: (
+      <OptionalAuthRoute>
+        <UserManagementPage />
       </OptionalAuthRoute>
     ),
   },
