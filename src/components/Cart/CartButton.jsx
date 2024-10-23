@@ -13,9 +13,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 export default function CartButton({ productId }) {
-  const { addProductToCart, removeOneProductFromCart, error } = useCart();
-  const cartStore = useSelector((state) => state.account);
-  const cart = cartStore.cart;
+  const { getCart, addProductToCart, removeOneProductFromCart, error } = useCart();
+  const cart = useSelector((state) => state.account).cart;
   const [quantity, setQuantity] = useState(0);
   const [existingProduct, setExistingProduct] = useState(null);
 
@@ -30,8 +29,9 @@ export default function CartButton({ productId }) {
     };
   }, [cart, productId])
   
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     addProductToCart(productId);
+    getCart();
   };
   
   const handleRemoveOneFromCart = () => {
