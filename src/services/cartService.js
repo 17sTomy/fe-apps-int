@@ -14,7 +14,8 @@ export const addToCart = async (data) => {
 };
 
 export const removeFromCart = async (id) => {
-  await AuthorizedService.delete(`${BASE_URL}/remove/${id}`);
+  const response = await AuthorizedService.delete(`${BASE_URL}/remove/${id}`);
+  return response;
 };
 
 export const removeOneFromCart = async (id) => {
@@ -23,5 +24,6 @@ export const removeOneFromCart = async (id) => {
 };
 
 export const clearCart = async (id) => {
-  await AuthorizedService.delete(`${BASE_URL}/clear`);
+  const response = await AuthorizedService.delete(`${BASE_URL}/clear`);
+  return response;
 };
