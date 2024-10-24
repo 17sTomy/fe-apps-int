@@ -4,6 +4,8 @@ import { styled } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import CartButton from '../Cart/CartButton';
+import PropTypes from 'prop-types';
+import ModifyButton from './ModifyButton';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: 'relative',
@@ -35,7 +37,7 @@ const Details = styled(Box)(({ theme }) => ({
   color: 'white',
 }));
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, modifier = false }) {
   return (
     <StyledCard>
       <Link to={`/productos/${product.id}`}>
@@ -67,14 +69,24 @@ export default function ProductCard({ product }) {
             justifyContent: 'space-between',
             alignItems: 'center',
             width: '100%',
-          }}
-        >
-          <CartButton productId={product.id} />
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon sx={{ color: 'white' }} />
-          </IconButton>
+          }}>
+          {modifier ? (
+            <ModifyButton productId={product.id} />
+          ) : (
+            <>
+              <CartButton productId={product.id} />
+              <IconButton aria-label="add to favorites">
+                <FavoriteIcon sx={{ color: 'white' }} />
+              </IconButton>
+            </>
+          )}
         </Box>
       </Details>
     </StyledCard>
   );
 }
+
+ProductCard.propTypes = {
+  product: PropTypes.object.isRequired,
+  modifier: PropTypes.bool,
+};

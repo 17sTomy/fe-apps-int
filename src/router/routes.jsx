@@ -13,6 +13,7 @@ import { AdminPage } from '../pages/AdminPage/AdminPage';
 import { EditProfilePage } from '../pages/ProfilePage/EditProfilePage.jsx';
 import { ManagementPage } from '../pages/ManagementPage/ManagementPage';
 import { UserManagementPage } from '../pages/ManagementPage/UserManagementPage';
+import { ModifyProductPage } from '../pages/ProductsPage/ModifyProductPage';
 
 export default [
   {
@@ -112,6 +113,14 @@ export default [
     element: (
       <OptionalAuthRoute>
         <UserManagementPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/publicaciones/:id',
+    element: (
+      <OptionalAuthRoute>
+        <ModifyProductPage />
       </OptionalAuthRoute>
     ),
   },

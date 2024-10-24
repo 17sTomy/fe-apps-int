@@ -1,17 +1,108 @@
 import { DashboardLayout } from '../../template/DashboardLayout';
 import { useSelector } from 'react-redux';
 import { RestrictedPage } from '../RestrictedPage';
+import { AnimatedView } from '../../components/common/AnimatedElements/AnimatedView';
+import useProducts from '../../hooks/useProducts';
+import { getAllProducts } from '../../services/productsService';
+import { MaterialLoader } from '../../components/common/Loader/MaterialLoader';
+import { Box } from '@mui/material';
+import ProductCard from '../../components/Product/ProductCard';
+import TextField from '@mui/material/TextField';
+import * as React from 'react';
+import { useTheme } from '../../hooks/useTheme';
+import { useEffect, useState } from 'react';
+import './PublicationsPage.styles.scss';
+import { Navigate } from 'react-router-dom';
 
 export const PublicationsPage = () => {
   const accountStore = useSelector((state) => state.account);
 
   if (!accountStore.authenticated) {
     return <RestrictedPage />;
+  } else if (!accountStore.accountInfo.isAdmin) {
+    return <Navigate to="/productos" />;
   }
+
+  const { products, loading } = useProducts(getAllProducts);
+  const { theme } = useTheme();
+
+  const [filteredProducts, setFilteredProducts] = useState([...products]);
+  const [filterQuery, setFilterQuery] = useState('');
+
+  const applyFilterQuery = (query) => {
+    if (!query) {
+      setFilteredProducts([...products]);
+      return;
+    }
+
+    const filteredList = products.filter((product) => {
+      const filterByQuery = product.name.toLowerCase().includes(query.toLowerCase());
+      const filterByCreator = product.createdByEmail === accountStore.accountInfo.email;
+      return filterByQuery && filterByCreator;
+    });
+
+    setFilteredProducts(filteredList);
+  };
+
+  const handleInputChange = (e) => {
+    setFilterQuery(e.target.value);
+    applyFilterQuery(e.target.value);
+  };
+
+  useEffect(() => {
+    applyFilterQuery();
+  }, [products]);
 
   return (
     <DashboardLayout>
-      <h1>Mis publicaciones</h1>
+      <AnimatedView orientation="horizontal">
+        {loading ? (
+          <MaterialLoader />
+        ) : (
+          <div className="products-container">
+            <h1>Mis publicaciones</h1>
+            <TextField
+              id="outlined-basic"
+              label="Buscar por nombre"
+              variant="outlined"
+              value={filterQuery}
+              onChange={(e) => {
+                handleInputChange(e);
+              }}
+              sx={{
+                marginTop: 3,
+                width: 300,
+                '& .MuiOutlinedInput-root': {
+                  color: theme.secondary,
+                  // Class for the border around the input field
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.secondary,
+                  },
+                },
+                // Class for the label of the input field
+                '& .MuiInputLabel-outlined': {
+                  color: theme.secondary,
+                },
+              }}
+            />
+
+            <Box
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: 2,
+                justifyContent: 'center',
+                marginTop: 2,
+              }}>
+              {filteredProducts.map((product) => (
+                <Box key={product.id}>
+                  <ProductCard product={product} modifier />
+                </Box>
+              ))}
+            </Box>
+          </div>
+        )}
+      </AnimatedView>
     </DashboardLayout>
   );
 };
