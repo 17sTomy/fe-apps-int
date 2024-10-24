@@ -8,16 +8,13 @@ export const ImageModifier = ({ item }) => {
 
   return (
     <motion.img
-      whileHover={{
-        scale: 1.05,
-      }}
       transition={{ duration: 0.7 }}
       src={item.url}
       alt={item.url}
       style={{
         width: '100%',
-        maxHeight: '400px',
-        objectFit: 'cover',
+        height: '400px',
+        objectFit: 'contain',
         borderRadius: '10px',
         cursor: 'pointer',
       }}
