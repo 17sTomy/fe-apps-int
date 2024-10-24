@@ -31,7 +31,7 @@ export const ManagementPage = () => {
           <CustomBox
             animate
             onClick={() => {
-              navigate('/gestionar/usuarios');
+              navigate('/publicaciones');
             }}>
             Gestionar publicaciones
           </CustomBox>
