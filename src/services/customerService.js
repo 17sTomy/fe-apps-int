@@ -61,3 +61,8 @@ export const makeAdmin = async (id) => {
   const response = await AuthorizedService.put(`${BASE_URL}/convert-admin/${id}`);
   return response.data;
 };
+
+export const editCustomerInfoV2 = async (data) => {
+  const response = await AuthorizedService.put(`${BASE_URL}/profile`, data);
+  return response.data;
+};
