@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createProductV2 } from '../../services/productsService';
+import { addImage, createProductV2 } from '../../services/productsService';
 import { useTheme } from '../../hooks/useTheme';
 import { Box, Button } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
-import { Save } from '@mui/icons-material';
+import { Add, Delete, Save } from '@mui/icons-material';
+import { motion } from 'framer-motion';
 
 export const CreateProductSection = () => {
   const { theme } = useTheme();
   const navigate = useNavigate();
 
   const inputStyles = {
-    marginTop: 3,
-    width: 300,
+    width: '100%',
     '& .MuiOutlinedInput-root': {
       color: theme.secondary,
       '&:hover': {
@@ -39,15 +39,41 @@ export const CreateProductSection = () => {
   const [images, setImages] = useState([]);
 
   const handleSave = async () => {
-    await createProductV2({
-      name,
-      description,
-      stock,
-      price,
-      imageUrl: mainImage,
-    });
+    try {
+      const response = await createProductV2({
+        name,
+        description,
+        stock,
+        price,
+        imageUrl: mainImage,
+      });
+
+      if (images.length) {
+        for (const image of images) {
+          await addImage(response.id, image);
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    }
 
     navigate(-1);
+  };
+
+  const handleRemoveImage = (index) => {
+    const filteredImages = images.filter((img, i) => i !== index);
+    setImages(filteredImages);
+  };
+
+  const handleAddImage = () => {
+    setImages([...images, { url: '' }]);
+  };
+
+  const handleImageChange = (e, index) => {
+    const imgs = [...images];
+    const image = imgs[index];
+    image.url = e.target.value;
+    setImages(imgs);
   };
 
   return (
@@ -129,14 +155,66 @@ export const CreateProductSection = () => {
           sx={inputStyles}
         />
 
+        {images.map((image, index) => (
+          <motion.div
+            key={index}
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              width: '100%',
+            }}
+            initial={{
+              opacity: 0,
+              scale: 0,
+            }}
+            animate={{
+              opacity: 1,
+              scale: '100%',
+            }}>
+            <TextField
+              id="outlined-basic"
+              label="URL de imágen secundaria"
+              variant="outlined"
+              value={images[index].url}
+              onChange={(e) => {
+                handleImageChange(e, index);
+              }}
+              sx={inputStyles}
+            />
+            <motion.div
+              transition={{ duration: 0.3 }}
+              whileHover={{
+                rotate: 360,
+                scale: 1.1,
+              }}
+              style={{
+                cursor: 'pointer',
+                background: 'red',
+                width: 40,
+                height: 40,
+                display: 'grid',
+                placeItems: 'center',
+                borderRadius: '100%',
+              }}
+              onClick={() => handleRemoveImage(index)}>
+              <Delete fontSize="large" sx={{ color: '#fff' }} />
+            </motion.div>
+          </motion.div>
+        ))}
+
         <Box
           sx={{
             marginTop: 4,
-            display: 'grid',
-            placeItems: 'center',
-            width: '100%',
-            maxWidth: '300px',
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 4,
           }}>
+          <Button startIcon={<Save />} variant="contained" color="info" onClick={handleAddImage}>
+            Agregar imágen
+          </Button>
           <Button startIcon={<Save />} variant="contained" color="success" onClick={handleSave}>
             Crear
           </Button>

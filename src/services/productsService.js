@@ -71,3 +71,8 @@ export const getAllImages = async (id) => {
   const response = await AuthorizedService.get(`${BASE_URL}/${id}/images`);
   return response.data;
 };
+
+export const addImage = async (id, data) => {
+  const response = await AuthorizedService.post(`${BASE_URL}/post/${id}/images`, data);
+  return response.data;
+};
