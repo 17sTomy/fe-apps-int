@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useProducts from '../../hooks/useProducts';
 import Loader from '../common/Loader/Loader';
-import { getProduct } from '../../services/productsService';
+import { getAllImages, getProduct } from '../../services/productsService';
 import { useTheme } from '../../hooks/useTheme';
-import { Box, IconButton, Typography, Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import { Delete, Save } from '@mui/icons-material';
+import Carousel from 'react-material-ui-carousel';
+import { ImageModifier } from './ImageModifier';
 
 export const ModifyProductSection = () => {
   const { id } = useParams();
@@ -21,6 +23,9 @@ export const ModifyProductSection = () => {
     width: 300,
     '& .MuiOutlinedInput-root': {
       color: theme.secondary,
+      '&:hover': {
+        border: '0px solid transparent',
+      },
       // Class for the border around the input field
       '& .MuiOutlinedInput-notchedOutline': {
         borderColor: theme.secondary,
@@ -36,12 +41,22 @@ export const ModifyProductSection = () => {
   const [description, setDescription] = useState(products?.description ?? '');
   const [price, setPrice] = useState(products?.price ?? '');
   const [stock, setStock] = useState(products?.stock ?? '');
+  const [mainImage, setMainImage] = useState(products?.imageUrl ?? '');
+  const [images, setImages] = useState([]);
+
+  const fetchAllImages = async () => {
+    const images = await getAllImages(products.id);
+    setImages([{ url: products.imageUrl }, ...images]);
+  };
 
   useEffect(() => {
-    setName(products.name);
-    setDescription(products.description);
-    setPrice(products.price);
-    setStock(products.stock);
+    setName(products.name || '');
+    setDescription(products.description || '');
+    setPrice(products.price || '');
+    setStock(products.stock || '');
+    setMainImage(products.imageUrl || '');
+
+    if (products.id) fetchAllImages();
   }, [products]);
 
   return (
@@ -66,17 +81,21 @@ export const ModifyProductSection = () => {
             sx={{ alignSelf: 'flex-start', marginTop: '-20px' }}>
             Volver
           </Button>
-          <Box
-            component="img"
-            src={products.imageUrl}
-            alt={products.name}
+          <Carousel
+            autoPlay="false"
+            navButtonsAlwaysVisible
             sx={{
               width: '100%',
-              maxHeight: '400px',
+              height: '400px',
               objectFit: 'cover',
               borderRadius: '10px',
             }}
-          />
+            next={(next, active) => console.log(`we left ${active}, and are now at ${next}`)}
+            prev={(prev, active) => console.log(`we left ${active}, and are now at ${prev}`)}>
+            {images.map((item, i) => (
+              <ImageModifier key={i} item={item} />
+            ))}
+          </Carousel>
 
           <Box
             sx={{
@@ -123,6 +142,16 @@ export const ModifyProductSection = () => {
               value={stock}
               onChange={(e) => {
                 setStock(e.target.value);
+              }}
+              sx={inputStyles}
+            />
+            <TextField
+              id="outlined-basic"
+              label="URL Imágen de portada"
+              variant="outlined"
+              value={mainImage}
+              onChange={(e) => {
+                setMainImage(e.target.value);
               }}
               sx={inputStyles}
             />

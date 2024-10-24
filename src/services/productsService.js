@@ -53,3 +53,8 @@ export const deleteProduct = async (productId) => {
 export const updateProduct = async (id, productDetails) => {
   return axios.put(`${API_BASE_URL}/products/${id}`, productDetails);
 };
+
+export const getAllImages = async (id) => {
+  const response = await AuthorizedService.get(`${BASE_URL}/${id}/images`);
+  return response.data;
+};
