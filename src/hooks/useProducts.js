@@ -19,7 +19,6 @@ const useProducts = (fetchFunction, param = '') => {
 
     fetchProducts();
   }, [param]);
-  console.log(products);
 
   return { products, loading, error };
 };
