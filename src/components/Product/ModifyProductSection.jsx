@@ -2,7 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useProducts from '../../hooks/useProducts';
 import Loader from '../common/Loader/Loader';
-import { getAllImages, getProduct } from '../../services/productsService';
+import {
+  deleteProductV2,
+  getAllImages,
+  getProduct,
+  updateProductV2,
+} from '../../services/productsService';
 import { useTheme } from '../../hooks/useTheme';
 import { Box, Button } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -58,6 +63,23 @@ export const ModifyProductSection = () => {
 
     if (products.id) fetchAllImages();
   }, [products]);
+
+  const handleSave = async () => {
+    await updateProductV2(products.id, {
+      name,
+      description,
+      stock,
+      price,
+      imageUrl: mainImage,
+    });
+
+    location.reload();
+  };
+
+  const handleDelete = async () => {
+    await deleteProductV2(products.id);
+    navigate(-1);
+  };
 
   return (
     <>
@@ -165,11 +187,15 @@ export const ModifyProductSection = () => {
                 maxWidth: '300px',
                 gap: 2,
               }}>
-              <Button startIcon={<Save />} variant="contained" color="success">
-                Guardar
-              </Button>
-              <Button startIcon={<Delete />} variant="contained" color="error">
+              <Button
+                startIcon={<Delete />}
+                variant="contained"
+                color="error"
+                onClick={handleDelete}>
                 Eliminar
+              </Button>
+              <Button startIcon={<Save />} variant="contained" color="success" onClick={handleSave}>
+                Guardar
               </Button>
             </Box>
           </Box>

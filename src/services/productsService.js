@@ -50,6 +50,14 @@ export const deleteProduct = async (productId) => {
   }
 };
 
+export const deleteProductV2 = async (productId) => {
+  await AuthorizedService.delete(`${BASE_URL}/${productId}`);
+};
+
+export const updateProductV2 = async (productId, data) => {
+  await AuthorizedService.put(`${BASE_URL}/${productId}`, data);
+};
+
 export const updateProduct = async (id, productDetails) => {
   return axios.put(`${API_BASE_URL}/products/${id}`, productDetails);
 };
