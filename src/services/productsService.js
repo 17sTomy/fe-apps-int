@@ -41,6 +41,11 @@ export const createProduct = async (productData) => {
   }
 };
 
+export const createProductV2 = async (productData) => {
+  const response = await AuthorizedService.post(BASE_URL, productData);
+  return response.data;
+};
+
 export const deleteProduct = async (productId) => {
   try {
     await axios.delete(`${API_URL}/${productId}`);

@@ -14,6 +14,7 @@ import { EditProfilePage } from '../pages/ProfilePage/EditProfilePage.jsx';
 import { ManagementPage } from '../pages/ManagementPage/ManagementPage';
 import { UserManagementPage } from '../pages/ManagementPage/UserManagementPage';
 import { ModifyProductPage } from '../pages/ProductsPage/ModifyProductPage';
+import { CreateProductPage } from '../pages/ProductsPage/CreateProductPage';
 
 export default [
   {
@@ -121,6 +122,14 @@ export default [
     element: (
       <OptionalAuthRoute>
         <ModifyProductPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/crear',
+    element: (
+      <OptionalAuthRoute>
+        <CreateProductPage />
       </OptionalAuthRoute>
     ),
   },

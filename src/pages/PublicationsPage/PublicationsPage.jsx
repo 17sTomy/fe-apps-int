@@ -12,7 +12,9 @@ import * as React from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import { useEffect, useState } from 'react';
 import './PublicationsPage.styles.scss';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { Add } from '@mui/icons-material';
+import { motion } from 'framer-motion';
 
 export const PublicationsPage = () => {
   const accountStore = useSelector((state) => state.account);
@@ -22,6 +24,8 @@ export const PublicationsPage = () => {
   } else if (!accountStore.accountInfo.isAdmin) {
     return <Navigate to="/productos" />;
   }
+
+  const navigate = useNavigate();
 
   const { products, loading } = useProducts(getAllProducts);
   const { theme } = useTheme();
@@ -61,30 +65,57 @@ export const PublicationsPage = () => {
         ) : (
           <div className="products-container">
             <h1>Mis publicaciones</h1>
-            <TextField
-              id="outlined-basic"
-              label="Buscar por nombre"
-              variant="outlined"
-              value={filterQuery}
-              onChange={(e) => {
-                handleInputChange(e);
-              }}
-              sx={{
-                marginTop: 3,
-                width: 300,
-                '& .MuiOutlinedInput-root': {
-                  color: theme.secondary,
-                  // Class for the border around the input field
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: theme.secondary,
+            <div
+              style={{
+                marginTop: 16,
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 24,
+              }}>
+              <TextField
+                id="outlined-basic"
+                label="Buscar por nombre"
+                variant="outlined"
+                value={filterQuery}
+                onChange={(e) => {
+                  handleInputChange(e);
+                }}
+                sx={{
+                  width: 300,
+                  '& .MuiOutlinedInput-root': {
+                    color: theme.secondary,
+                    // Class for the border around the input field
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: theme.secondary,
+                    },
                   },
-                },
-                // Class for the label of the input field
-                '& .MuiInputLabel-outlined': {
-                  color: theme.secondary,
-                },
-              }}
-            />
+                  // Class for the label of the input field
+                  '& .MuiInputLabel-outlined': {
+                    color: theme.secondary,
+                  },
+                }}
+              />
+
+              <motion.div
+                whileHover={{
+                  rotate: 90,
+                  scale: 1.1,
+                }}
+                style={{
+                  cursor: 'pointer',
+                  background: 'green',
+                  width: 40,
+                  height: 40,
+                  display: 'grid',
+                  placeItems: 'center',
+                  borderRadius: '100%',
+                }}
+                onClick={() => navigate('/crear')}>
+                <Add fontSize="large" sx={{ color: '#fff' }} />
+              </motion.div>
+            </div>
 
             <Box
               sx={{
