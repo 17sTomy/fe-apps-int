@@ -51,3 +51,13 @@ export const getRegisteredUsers = async () => {
   const response = await AuthorizedService.get(`${BASE_URL}/registered`);
   return response.data;
 };
+
+export const deleteRegisteredUser = async (id) => {
+  const response = await AuthorizedService.delete(`${BASE_URL}/${id}`);
+  return response.data;
+};
+
+export const makeAdmin = async (id) => {
+  const response = await AuthorizedService.put(`${BASE_URL}/convert-admin/${id}`);
+  return response.data;
+};

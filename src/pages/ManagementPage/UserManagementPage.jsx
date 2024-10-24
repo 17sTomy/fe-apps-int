@@ -4,8 +4,13 @@ import { Navigate } from 'react-router-dom';
 import { DashboardLayout } from '../../template/DashboardLayout';
 import Table from '../../components/common/Table/Table';
 import { useEffect, useState } from 'react';
-import { getRegisteredUsers } from '../../services/customerService';
+import {
+  deleteRegisteredUser,
+  getRegisteredUsers,
+  makeAdmin,
+} from '../../services/customerService';
 import dayjs from 'dayjs';
+import { MaterialLoader } from '../../components/common/Loader/MaterialLoader';
 
 const headCells = [
   {
@@ -71,42 +76,66 @@ export const UserManagementPage = () => {
   }
 
   const [customerList, setCustomerList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleDeletion = async (item) => {
-    // Iterar sobre cada uno y eliminar
-    console.warn('Eliminar ', itemId);
+    setLoading(true);
+
+    try {
+      for (const itemId of item) {
+        await deleteRegisteredUser(itemId);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
+    await fetchData();
+    setLoading(false);
   };
 
   const handleAdminStatus = async (item) => {
-    console.warn('Alternar permisos de admin sobre ', item);
+    setLoading(true);
+
+    try {
+      for (const itemId of item) {
+        await makeAdmin(itemId);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
+    await fetchData();
+    setLoading(false);
+  };
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const list = await getRegisteredUsers();
+      const processedList = [];
+
+      for (const customer of list) {
+        processedList.push(
+          createData(
+            customer.id,
+            customer.email,
+            customer.firstname,
+            customer.lastname,
+            customer.dateOfBirth,
+            customer.kycStatus,
+            customer.isAdmin
+          )
+        );
+      }
+
+      setCustomerList(processedList);
+    } catch (e) {
+      console.error(e);
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const list = await getRegisteredUsers();
-        const processedList = [];
-
-        for (const customer of list) {
-          processedList.push(
-            createData(
-              customer.id,
-              customer.email,
-              customer.firstname,
-              customer.lastname,
-              customer.dateOfBirth,
-              customer.kycStatus,
-              customer.isAdmin
-            )
-          );
-        }
-
-        setCustomerList(processedList);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-
     fetchData();
   }, []);
 
@@ -115,12 +144,16 @@ export const UserManagementPage = () => {
       <h1>Gestión de Usuarios</h1>
 
       <div style={{ marginTop: 48 }}>
-        <Table
-          headCells={headCells}
-          rows={customerList}
-          handleDeletion={(item) => handleDeletion(item)}
-          handleAdminStatus={(item) => handleAdminStatus(item)}
-        />
+        {loading ? (
+          <MaterialLoader />
+        ) : (
+          <Table
+            headCells={headCells}
+            rows={customerList}
+            handleDeletion={(item) => handleDeletion(item)}
+            handleAdminStatus={(item) => handleAdminStatus(item)}
+          />
+        )}
       </div>
     </DashboardLayout>
   );
