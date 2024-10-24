@@ -40,7 +40,7 @@ const Details = styled(Box)(({ theme }) => ({
 export default function ProductCard({ product, modifier = false }) {
   return (
     <StyledCard>
-      <Link to={`/productos/${product.id}`}>
+      <Link to={modifier ? `/publicaciones/${product.id}` : `/productos/${product.id}`}>
         <CardActionArea>
           <CardMedia
             component="img"
