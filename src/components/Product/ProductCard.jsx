@@ -56,7 +56,16 @@ export default function ProductCard({ product, modifier = false }) {
           <Typography gutterBottom variant="h5" component="div">
             {product.name}
           </Typography>
-          <Typography variant="body2" color="white">
+          <Typography
+            variant="body2"
+            color="white"
+            style={{
+              display: '-webkit-box',
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              WebkitLineClamp: 3, 
+            }}>
             {product.description}
           </Typography>
           <Typography variant="h6" sx={{ color: 'white', marginTop: 'auto' }}>
