@@ -11,9 +11,11 @@ import {
   faReceipt,
   faRightToBracket,
   faUser,
+  faHeart,
 } from '@fortawesome/free-solid-svg-icons';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useSelector } from 'react-redux';
 import { logout } from '../../helpers/authenticationHelper';
 import { useDevice } from '../../hooks/useDevice';
@@ -41,6 +43,11 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
             <ShoppingCartIcon />
           </Badge>
         ),
+      },
+      {
+        path: '/favoritos',
+        label: 'Favoritos',
+        icon: faHeart,
       },
       {
         path: '/compras',
