@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getFavoriteProducts, toggleFavoriteProduct } from '../services/productsService';
 
 const useFavorites = () => {
@@ -6,18 +6,18 @@ const useFavorites = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchFavorites = async () => {
+  const fetchFavorites = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const favoritesData = await getFavoriteProducts();
       setFavorites(favoritesData);
     } catch (err) {
-      setError('Error al obtener los productos favoritos.');
+      setError("Error al obtener los productos favoritos.");
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchFavorites();
@@ -30,18 +30,13 @@ const useFavorites = () => {
       await toggleFavoriteProduct(id);
       fetchFavorites();
     } catch (err) {
-      setError('Error al actualizar el estado de favorito del producto.');
+      setError("Error al actualizar el estado de favorito del producto.");
     } finally {
       setLoading(false);
     }
   };
 
-  return {
-    favorites,
-    loading,
-    error,
-    handleToggleFavorite,
-  };
+  return { favorites, loading, error, handleToggleFavorite };
 };
 
 export default useFavorites;
