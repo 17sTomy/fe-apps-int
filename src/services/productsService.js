@@ -32,11 +32,12 @@ export const viewProduct = async (id) => {
 };
 
 export const getFavoriteProducts = async () => {
-  await AuthorizedService.post(`${BASE_URL}/favorites`);
+  const response = await AuthorizedService.get(`${BASE_URL}/favorites`);
+  return response.data;
 };
 
 export const toggleFavoriteProduct = async (id) => {
-  await AuthorizedService.post(`${BASE_URL}/${id}/favorite`);
+  await AuthorizedService.put(`${BASE_URL}/${id}/favorite`);
 };
 
 export const createProduct = async (productData) => {
