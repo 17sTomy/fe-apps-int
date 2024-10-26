@@ -31,6 +31,14 @@ export const viewProduct = async (id) => {
   await AuthorizedService.post(`${BASE_URL}/${id}/view`);
 };
 
+export const getFavoriteProducts = async () => {
+  await AuthorizedService.post(`${BASE_URL}/favorites`);
+};
+
+export const toggleFavoriteProduct = async (id) => {
+  await AuthorizedService.post(`${BASE_URL}/${id}/favorite`);
+};
+
 export const createProduct = async (productData) => {
   try {
     const response = await axios.post(API_URL, productData);
