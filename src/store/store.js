@@ -3,6 +3,7 @@ import counterSlice from './slice/counterSlice.js';
 import accountSlice from './slice/accountSlice.js';
 import themeSlice from './slice/themeSlice.js';
 import cartSlice from './slice/cartSlice.js';
+import favoritesSlice from './slice/favoritesSlice.js';
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     counter: counterSlice,
     theme: themeSlice,
     cart: cartSlice,
+    favorites: favoritesSlice,
   },
 });
