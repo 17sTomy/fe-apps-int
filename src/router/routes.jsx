@@ -15,6 +15,7 @@ import { ManagementPage } from '../pages/ManagementPage/ManagementPage';
 import { UserManagementPage } from '../pages/ManagementPage/UserManagementPage';
 import { ModifyProductPage } from '../pages/ProductsPage/ModifyProductPage';
 import { CreateProductPage } from '../pages/ProductsPage/CreateProductPage';
+import { FavoritesPage } from '../pages/FavoritesPage/FavoritesPage.jsx';
 
 export default [
   {
@@ -58,6 +59,14 @@ export default [
     element: (
       <OptionalAuthRoute>
         <CartPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/favoritos',
+    element: (
+      <OptionalAuthRoute>
+        <FavoritesPage />
       </OptionalAuthRoute>
     ),
   },
