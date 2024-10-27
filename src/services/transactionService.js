@@ -1,13 +1,18 @@
-import axios from 'axios';
+import { AuthorizedService } from '../api';
 
-const API_URL = '/api/transactions';
+const BASE_URL = '/api/transaction';
 
 export const getTransactions = async () => {
-  try {
-    const response = await axios.get(API_URL);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching transactions:', error);
-    throw error;
-  }
+  const response = await AuthorizedService.get(BASE_URL);
+  return response.data;
+};
+
+export const getTransactionById = async (id) => {
+  const response = await AuthorizedService.get(`${BASE_URL}/${id}`);
+  return response.data;
+};
+ 
+export const checkout = async () => {
+  const response = await AuthorizedService.post(BASE_URL);
+  return response.data;
 };

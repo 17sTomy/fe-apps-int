@@ -14,12 +14,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useSelector } from 'react-redux';
 import { useTheme } from '../../hooks/useTheme';
 import { useCart } from '../../hooks/useCart';
+import { useTransaction } from '../../hooks/useTransaction';
 import HdIcon from '@mui/icons-material/Hd';
+import Loader from '../common/Loader/Loader';
 
 export default function CartTable() {
   const cart = useSelector((state) => state.account.cart);
-  const { addProductToCart, removeOneProductFromCart, removeProductFromCart, clearAllFromCart } =
-    useCart();
+  const { addProductToCart, removeOneProductFromCart, removeProductFromCart, clearAllFromCart } = useCart();
+  const { checkout, loading } = useTransaction();
   const { theme } = useTheme();
 
   const tableCellStyles = {
@@ -30,6 +32,8 @@ export default function CartTable() {
     cart?.cartItems?.reduce((acc, item) => {
       return acc + item.product.price * item.quantity;
     }, 0) || 0;
+
+  if (loading) <Loader />
 
   return (
     <TableContainer>
@@ -127,7 +131,12 @@ export default function CartTable() {
 
             <TableRow>
               <TableCell colSpan={4}>
-                <Button variant="contained" color="primary" sx={{ width: '100%' }}>
+                <Button 
+                  variant="contained" 
+                  color="primary" 
+                  sx={{ width: '100%' }}
+                  onClick={checkout}
+                >
                   Comprar
                 </Button>
               </TableCell>
