@@ -37,7 +37,8 @@ export const getFavoriteProducts = async () => {
 };
 
 export const toggleFavoriteProduct = async (id) => {
-  await AuthorizedService.put(`${BASE_URL}/${id}/favorite`);
+  const response = await AuthorizedService.put(`${BASE_URL}/${id}/favorite`);
+  return response.data;
 };
 
 export const createProduct = async (productData) => {

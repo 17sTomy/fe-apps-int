@@ -1,43 +1,39 @@
-import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFavorites, setLoading, setError } from '../store/slice/favoritesSlice';
 import { getFavoriteProducts, toggleFavoriteProduct } from '../services/productsService';
 
 const useFavorites = () => {
-  const [favorites, setFavorites] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const accountStore = useSelector((state) => state.account);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        const data = await getFavoriteProducts();
-        setFavorites(data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
+  const fetchFavorites = async () => {
+    if (!accountStore.authenticated) {
+      return null;
     };
 
-    fetchFavorites();
-  }, []);
+    dispatch(setLoading());
+    try {
+      const favorites = await getFavoriteProducts();
+      dispatch(setFavorites(favorites));
+    } catch (err) {
+      dispatch(setError(err.message));
+    } 
+  };
 
   const handleToggleFavorite = async (id) => {
-    setLoading(true);
-    setError(null);
     try {
       await toggleFavoriteProduct(id);
+      await fetchFavorites();
     } catch (err) {
-      setError("Error al actualizar el estado de favorito del producto.");
+      dispatch(setError("Error al actualizar el estado de favorito del producto"));
     } finally {
-      setLoading(false);
+      dispatch(setLoading(false));
     }
   };
 
   return { 
-    handleToggleFavorite, 
-    favorites, 
-    loading, 
-    error 
+    fetchFavorites,
+    handleToggleFavorite,
   };
 };
 
