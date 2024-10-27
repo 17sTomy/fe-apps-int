@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Table,
@@ -9,6 +10,8 @@ import {
   TableRow,
   Button,
   IconButton,
+  Alert,
+  Snackbar
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useSelector } from 'react-redux';
@@ -24,14 +27,36 @@ export default function CartTable() {
   const { checkout, loading } = useTransaction();
   const { theme } = useTheme();
 
+  const [error, setError] = useState(null);
+  const [errorSnackbarOpen, setErrorSnackbarOpen] = useState(false);
+  const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
+
   const tableCellStyles = {
     color: theme.name === 'dark' ? 'white' : 'black',
   };
 
-  const totalAmount =
-    cart?.cartItems?.reduce((acc, item) => {
+  const totalAmount = cart?.cartItems?.reduce((acc, item) => {
       return acc + item.product.price * item.quantity;
     }, 0) || 0;
+
+  const handleCheckout = async () => {
+    try {
+      await checkout();
+      setSuccessSnackbarOpen(true);
+    } catch (err) {
+      setError("Ocurrió un error al realizar la compra");
+      setErrorSnackbarOpen(true); 
+    }
+  };
+
+  const handleErrorCloseSnackbar = () => {
+    setErrorSnackbarOpen(false);
+  };
+
+  const handleSuccessCloseSnackbar = () => {
+    setSuccessSnackbarOpen(false);
+    window.location.reload(); 
+  };
 
   if (loading) <Loader />
 
@@ -135,7 +160,7 @@ export default function CartTable() {
                   variant="contained" 
                   color="primary" 
                   sx={{ width: '100%' }}
-                  onClick={checkout}
+                  onClick={handleCheckout}
                 >
                   Comprar
                 </Button>
@@ -154,6 +179,19 @@ export default function CartTable() {
           </TableBody>
         </Table>
       )}
+
+      <Snackbar open={errorSnackbarOpen} autoHideDuration={5000} onClose={handleErrorCloseSnackbar} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{ width: '100%', marginTop: '-6%' }}>
+        <Alert onClose={handleErrorCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+          {error}
+        </Alert>
+      </Snackbar>
+
+      <Snackbar open={successSnackbarOpen} autoHideDuration={5000} onClose={handleSuccessCloseSnackbar} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{ width: '100%', marginTop: '-6%' }}>
+        <Alert onClose={handleSuccessCloseSnackbar} severity="success" sx={{ width: '100%', textAlign: 'center' }}>
+          Compra Realizada con Éxito. Gracias!
+        </Alert>
+      </Snackbar>
+
     </TableContainer>
   );
 }
