@@ -118,7 +118,11 @@ export default function CartTable() {
                   <Button
                     size="small"
                     variant="contained"
-                    onClick={() => addProductToCart(item.product.id)}
+                    onClick={() => {
+                      if (item.quantity < item.product.stock) {
+                        addProductToCart(item.product.id);
+                      }
+                    }}
                     sx={{
                       width: '25px',
                       height: '25px',
