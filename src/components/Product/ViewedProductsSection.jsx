@@ -24,7 +24,7 @@ export const ViewedProductsSection = () => {
           {products.length === 0 ? (
             <h2 style={{ marginTop: '20px' }}>No has visto películas todavía😭</h2>
           ) : (
-            products.map((product) => (
+            [...products].reverse().map((product) => (
               <Box key={product.id}>
                 <ProductCard product={product} />
               </Box>

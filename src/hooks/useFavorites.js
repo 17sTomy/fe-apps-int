@@ -5,7 +5,7 @@ import { getFavoriteProducts, toggleFavoriteProduct } from '../services/products
 const useFavorites = () => {
   const accountStore = useSelector((state) => state.account);
   const dispatch = useDispatch();
-
+ 
   const fetchFavorites = async () => {
     if (!accountStore.authenticated) {
       return null;
