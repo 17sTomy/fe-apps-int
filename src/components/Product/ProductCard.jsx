@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, CardMedia, CardActionArea, CardContent, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
@@ -6,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import CartButton from '../Cart/CartButton';
 import PropTypes from 'prop-types';
 import ModifyButton from './ModifyButton';
+import useFavorites from '../../hooks/useFavorites';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: 'relative',
@@ -38,6 +40,11 @@ const Details = styled(Box)(({ theme }) => ({
 }));
 
 export default function ProductCard({ product, modifier = false }) {
+  const favorites = useSelector((state) => state.favorites.favorites);
+  const { handleToggleFavorite } = useFavorites();
+
+  const isFavorite = favorites?.some(favorite => favorite === product.id);
+
   return (
     <StyledCard>
       <Link to={modifier ? `/publicaciones/${product.id}` : `/productos/${product.id}`}>
@@ -84,8 +91,11 @@ export default function ProductCard({ product, modifier = false }) {
           ) : (
             <>
               <CartButton productId={product.id} />
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon sx={{ color: 'white' }} />
+              <IconButton 
+                aria-label="add to favorites"
+                onClick={() => handleToggleFavorite(product.id)}
+              >
+                <FavoriteIcon sx={{ color: isFavorite ? 'red' : 'white' }} />
               </IconButton>
             </>
           )}
