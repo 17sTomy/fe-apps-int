@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Card, CardMedia, CardActionArea, CardContent, Typography, Box } from '@mui/material';
+import { Card, CardMedia, CardActionArea, CardContent, Typography, Box, Chip } from '@mui/material';
 import { styled } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
@@ -90,7 +90,15 @@ export default function ProductCard({ product, modifier = false }) {
             <ModifyButton productId={product.id} />
           ) : (
             <>
-              <CartButton productId={product.id} />
+              {product.stock > 0 ? (
+                <CartButton productId={product.id} productStock={product.stock} />
+              ) : (
+                <Chip
+                  label="Producto Agotado"
+                  color="error"
+                  variant="contained"
+                />
+              )}
               <IconButton 
                 aria-label="add to favorites"
                 onClick={() => handleToggleFavorite(product.id)}

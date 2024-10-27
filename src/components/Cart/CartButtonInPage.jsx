@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { Button, Typography } from '@mui/material';
 import { useCart } from '../../hooks/useCart';
 
-export default function CartButtonInPage({ productId }) {
-  const { getCart, addProductToCart, removeOneProductFromCart, error } = useCart();
+export default function CartButtonInPage({ productId, productStock }) {
+  const { addProductToCart, removeOneProductFromCart } = useCart();
   const cart = useSelector((state) => state.account).cart;
   const [quantity, setQuantity] = useState(0);
   const [existingProduct, setExistingProduct] = useState(null);
@@ -21,8 +21,9 @@ export default function CartButtonInPage({ productId }) {
   }, [cart, productId]);
 
   const handleAddToCart = async () => {
-    addProductToCart(productId);
-    getCart();
+    if (quantity < productStock) {
+      addProductToCart(productId);
+    };
   };
 
   const handleRemoveOneFromCart = () => {

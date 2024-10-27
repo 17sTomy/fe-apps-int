@@ -4,19 +4,25 @@ import useProducts from '../../hooks/useProducts';
 import Loader from '../common/Loader/Loader';
 import { getAllImages, getProduct, viewProduct } from '../../services/productsService';
 import { useTheme } from '../../hooks/useTheme';
-import { Box, IconButton, Typography, Button } from '@mui/material';
+import { Box, IconButton, Typography, Button, Chip } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import CartButtonInPage from '../Cart/CartButtonInPage';
 import { ImageModifier } from './ImageModifier';
 import Carousel from 'react-material-ui-carousel';
 import * as React from 'react';
+import useFavorites from '../../hooks/useFavorites';
+import { useSelector } from 'react-redux';
 
 export const OneProductSection = () => {
   const { id } = useParams();
   const { theme } = useTheme();
   const { products, loading, error } = useProducts(getProduct, id);
   const navigate = useNavigate();
+
+  const favorites = useSelector((state) => state.favorites.favorites);
+  const { handleToggleFavorite } = useFavorites();
+  const isFavorite = favorites?.some(favorite => favorite === products.id);
 
   const [images, setImages] = useState([]);
 
@@ -100,8 +106,21 @@ export const OneProductSection = () => {
                 maxWidth: '300px',
                 gap: 2,
               }}>
-              <CartButtonInPage productId={products.id} />
-              <IconButton sx={{ color: theme.name === 'dark' ? 'white' : 'black' }}>
+              {products.stock > 0 ? (
+                <CartButtonInPage productId={products.id} productStock={products.stock} />
+              ) : (
+                <Chip
+                  label="Agotado"
+                  size="large"
+                  color="error"
+                  variant="contained"
+                  sx={{ width: '100%', justifyContent: 'center', textAlign: 'center' }}
+                />
+              )}
+              <IconButton
+                sx={{ color: isFavorite ? 'red' : (theme.name === 'dark' ? 'white' : 'black') }}
+                onClick={() => handleToggleFavorite(products.id)}
+              >
                 <FavoriteIcon />
               </IconButton>
             </Box>
