@@ -15,7 +15,6 @@ export const useTransaction = () => {
     setError(null); 
     try {
       const data = await fetchTransactions(); 
-      console.log(data);
       setTransactions(data);
     } catch (err) {
       setError(err.message);
