@@ -28,7 +28,7 @@ export const FavoritesProductsSection = () => {
           
         >
           {favoriteProducts?.length === 0 ? (
-            <h2 style={{ marginBottom: '30px', textAlign: 'center' }}>Puedes agregar a favoritos clickeando: ❤️</h2>
+            <h1 style={{ marginTop: '30px', textAlign: 'center' }}>Puedes agregar a favoritos clickeando: ❤️</h1>
           ) : (
             <>
               <h1 style={{ marginBottom: '30px', textAlign: 'center' }}>Tus ❤️</h1>
