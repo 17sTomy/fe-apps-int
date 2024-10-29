@@ -1,0 +1,9 @@
+.checkout-page {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  .btn {
+    margin-top: 24px;
+  }
+}
