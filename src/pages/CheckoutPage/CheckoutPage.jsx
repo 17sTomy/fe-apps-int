@@ -12,6 +12,7 @@ import { checkout } from '../../services/transactionService';
 import { useDevice } from '../../hooks/useDevice';
 import { PayBtn } from '../../components/PayBtn/PayBtn';
 import { Check } from '@mui/icons-material';
+import useAuth from '../../hooks/useAuth';
 
 export const CheckoutPage = () => {
   const accountStore = useSelector((state) => state.account);
@@ -20,6 +21,7 @@ export const CheckoutPage = () => {
     return <RestrictedPage />;
   }
 
+  const { initSession } = useAuth();
   const { width } = useDevice();
 
   const [cardNumber, setCardNumber] = useState('');
@@ -74,6 +76,7 @@ export const CheckoutPage = () => {
       await checkout();
       setSuccessSnackbarOpen(true);
       setHasPayed(true);
+      await initSession();
     } catch (err) {
       setError('Ocurrió un error al realizar la compra');
       setErrorSnackbarOpen(true);
