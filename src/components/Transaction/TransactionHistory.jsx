@@ -11,7 +11,6 @@ const TransactionHistory = () => {
   const { theme } = useTheme();
   const { products } = useProducts(getAllProducts);
 
-  console.log(products)
   const tableCellStyles = {
     color: theme.name === 'dark' ? 'white' : 'black',
   };
