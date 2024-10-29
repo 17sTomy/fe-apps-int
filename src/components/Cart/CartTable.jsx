@@ -40,12 +40,14 @@ export default function CartTable() {
     }, 0) || 0;
 
   const handleCheckout = async () => {
-    try {
-      await checkout();
-      setSuccessSnackbarOpen(true);
-    } catch (err) {
-      setError("Ocurrió un error al realizar la compra");
-      setErrorSnackbarOpen(true); 
+    if (!successSnackbarOpen) {
+      try {
+        await checkout();
+        setSuccessSnackbarOpen(true);
+      } catch (err) {
+        setError("Ocurrió un error al realizar la compra");
+        setErrorSnackbarOpen(true); 
+      }
     }
   };
 

@@ -71,7 +71,7 @@ export const useCart = () => {
     }
   };
 
-  const clearAllFromCart = async (productId) => {
+  const clearAllFromCart = async () => {
     setError(null);
     try {
       const response = await clearCart();
