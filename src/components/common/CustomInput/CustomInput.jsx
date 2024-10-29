@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import { useTheme } from '../../../hooks/useTheme';
 
-export const CustomInput = ({ label, value, onChange }) => {
+export const CustomInput = ({ label, value, onChange, type = 'text' }) => {
   const { theme } = useTheme();
 
   const inputStyles = {
@@ -30,6 +30,7 @@ export const CustomInput = ({ label, value, onChange }) => {
       label={label}
       variant="outlined"
       value={value}
+      type={type}
       onChange={(e) => {
         onChange(e.target.value);
       }}

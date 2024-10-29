@@ -83,7 +83,7 @@ export const CheckoutPage = () => {
             onChange={handleExpirationDateChange}
             label="Fecha de vencimiento"
           />
-          <CustomInput value={ccv} onChange={setCcv} label="Código de seguridad" />
+          <CustomInput type="password" value={ccv} onChange={setCcv} label="Código de seguridad" />
 
           <p style={{ marginTop: 16 }}>
             Total: <span style={{ fontWeight: 'bold' }}>${cart?.totalPrice}</span>
