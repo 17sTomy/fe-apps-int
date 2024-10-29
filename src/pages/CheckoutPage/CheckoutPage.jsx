@@ -71,7 +71,7 @@ export const CheckoutPage = () => {
     }
 
     try {
-      // await checkout();
+      await checkout();
       setSuccessSnackbarOpen(true);
       setHasPayed(true);
     } catch (err) {
