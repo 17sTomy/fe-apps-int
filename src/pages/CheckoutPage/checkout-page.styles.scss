@@ -1,0 +1,28 @@
+.checkout-page {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 36px;
+
+  @media (width < 1000px) {
+    flex-flow: column-reverse nowrap;
+  }
+
+  .left-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  .right-container {
+    margin-top: 24px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .btn {
+      margin-top: 12px;
+    }
+  }
+}

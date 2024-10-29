@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Table,
   TableBody,
@@ -11,7 +11,7 @@ import {
   Button,
   IconButton,
   Alert,
-  Snackbar
+  Snackbar,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useSelector } from 'react-redux';
@@ -23,9 +23,11 @@ import Loader from '../common/Loader/Loader';
 
 export default function CartTable() {
   const cart = useSelector((state) => state.account.cart);
-  const { addProductToCart, removeOneProductFromCart, removeProductFromCart, clearAllFromCart } = useCart();
+  const { addProductToCart, removeOneProductFromCart, removeProductFromCart, clearAllFromCart } =
+    useCart();
   const { checkout, loading } = useTransaction();
   const { theme } = useTheme();
+  const navigate = useNavigate();
 
   const [error, setError] = useState(null);
   const [errorSnackbarOpen, setErrorSnackbarOpen] = useState(false);
@@ -35,20 +37,13 @@ export default function CartTable() {
     color: theme.name === 'dark' ? 'white' : 'black',
   };
 
-  const totalAmount = cart?.cartItems?.reduce((acc, item) => {
+  const totalAmount =
+    cart?.cartItems?.reduce((acc, item) => {
       return acc + item.product.price * item.quantity;
     }, 0) || 0;
 
   const handleCheckout = async () => {
-    if (!successSnackbarOpen) {
-      try {
-        await checkout();
-        setSuccessSnackbarOpen(true);
-      } catch (err) {
-        setError("Ocurrió un error al realizar la compra");
-        setErrorSnackbarOpen(true); 
-      }
-    }
+    navigate('/checkout');
   };
 
   const handleErrorCloseSnackbar = () => {
@@ -57,10 +52,10 @@ export default function CartTable() {
 
   const handleSuccessCloseSnackbar = () => {
     setSuccessSnackbarOpen(false);
-    window.location.reload(); 
+    window.location.reload();
   };
 
-  if (loading) <Loader />
+  if (loading) <Loader />;
 
   return (
     <TableContainer>
@@ -73,8 +68,7 @@ export default function CartTable() {
               color="primary"
               component={Link}
               to="/productos"
-              sx={{ margin: 'auto' }}
-            >
+              sx={{ margin: 'auto' }}>
               Comprar Ahora
               <HdIcon sx={{ marginLeft: '8px' }} />
             </Button>
@@ -113,8 +107,7 @@ export default function CartTable() {
                     size="small"
                     variant="contained"
                     onClick={() => removeOneProductFromCart(item.product.id)}
-                    sx={{ width: '25px', height: '25px', minWidth: '0', padding: '0' }}
-                  >
+                    sx={{ width: '25px', height: '25px', minWidth: '0', padding: '0' }}>
                     -
                   </Button>
                   <Button
@@ -131,16 +124,14 @@ export default function CartTable() {
                       minWidth: '0',
                       padding: '0',
                       marginLeft: '5px',
-                    }}
-                  >
+                    }}>
                     +
                   </Button>
                   <IconButton
                     size="small"
                     onClick={() => removeProductFromCart(item.product.id)}
                     sx={{ marginLeft: '10px' }}
-                    color="error"
-                  >
+                    color="error">
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
@@ -162,12 +153,11 @@ export default function CartTable() {
 
             <TableRow>
               <TableCell colSpan={4}>
-                <Button 
-                  variant="contained" 
-                  color="primary" 
+                <Button
+                  variant="contained"
+                  color="primary"
                   sx={{ width: '100%' }}
-                  onClick={handleCheckout}
-                >
+                  onClick={handleCheckout}>
                   Comprar
                 </Button>
               </TableCell>
@@ -176,8 +166,7 @@ export default function CartTable() {
                   variant="contained"
                   color="error"
                   onClick={clearAllFromCart}
-                  sx={{ width: '100%' }}
-                >
+                  sx={{ width: '100%' }}>
                   Eliminar todos
                 </Button>
               </TableCell>
@@ -186,18 +175,30 @@ export default function CartTable() {
         </Table>
       )}
 
-      <Snackbar open={errorSnackbarOpen} autoHideDuration={5000} onClose={handleErrorCloseSnackbar} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{ width: '100%', marginTop: '-6%' }}>
+      <Snackbar
+        open={errorSnackbarOpen}
+        autoHideDuration={5000}
+        onClose={handleErrorCloseSnackbar}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        sx={{ width: '100%', marginTop: '-6%' }}>
         <Alert onClose={handleErrorCloseSnackbar} severity="error" sx={{ width: '100%' }}>
           {error}
         </Alert>
       </Snackbar>
 
-      <Snackbar open={successSnackbarOpen} autoHideDuration={5000} onClose={handleSuccessCloseSnackbar} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{ width: '100%', marginTop: '-6%' }}>
-        <Alert onClose={handleSuccessCloseSnackbar} severity="success" sx={{ width: '100%', textAlign: 'center' }}>
+      <Snackbar
+        open={successSnackbarOpen}
+        autoHideDuration={5000}
+        onClose={handleSuccessCloseSnackbar}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        sx={{ width: '100%', marginTop: '-6%' }}>
+        <Alert
+          onClose={handleSuccessCloseSnackbar}
+          severity="success"
+          sx={{ width: '100%', textAlign: 'center' }}>
           Compra Realizada con Éxito. Gracias!
         </Alert>
       </Snackbar>
-
     </TableContainer>
   );
 }

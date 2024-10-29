@@ -16,6 +16,7 @@ import { UserManagementPage } from '../pages/ManagementPage/UserManagementPage';
 import { ModifyProductPage } from '../pages/ProductsPage/ModifyProductPage';
 import { CreateProductPage } from '../pages/ProductsPage/CreateProductPage';
 import { FavoritesPage } from '../pages/FavoritesPage/FavoritesPage.jsx';
+import { CheckoutPage } from '../pages/CheckoutPage/CheckoutPage';
 
 export default [
   {
@@ -139,6 +140,14 @@ export default [
     element: (
       <OptionalAuthRoute>
         <CreateProductPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/checkout',
+    element: (
+      <OptionalAuthRoute>
+        <CheckoutPage />
       </OptionalAuthRoute>
     ),
   },
