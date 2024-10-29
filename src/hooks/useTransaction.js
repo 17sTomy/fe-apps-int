@@ -41,7 +41,6 @@ export const useTransaction = () => {
     setError(null);
     try {
       const data = await performCheckout();
-      // window.location.reload();
       return data;
     } catch (err) {
       throw new Error("Error");
