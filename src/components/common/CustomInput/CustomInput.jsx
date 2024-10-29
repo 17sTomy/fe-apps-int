@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import { useTheme } from '../../../hooks/useTheme';
 
-export const CustomInput = ({ label, value, onChange, type = 'text' }) => {
+export const CustomInput = ({ label, value, onChange, type = 'text', disabled = false }) => {
   const { theme } = useTheme();
 
   const inputStyles = {
@@ -35,6 +35,7 @@ export const CustomInput = ({ label, value, onChange, type = 'text' }) => {
         onChange(e.target.value);
       }}
       sx={inputStyles}
+      disabled={disabled}
     />
   );
 };

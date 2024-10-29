@@ -58,6 +58,27 @@ export const ProfilePage = () => {
         <h1>Mi perfil</h1>
 
         <CustomInput
+          label="Nombre"
+          value={accountStore.accountInfo?.firstname}
+          onChange={() => {}}
+          disabled
+        />
+
+        <CustomInput
+          label="Apellido"
+          value={accountStore.accountInfo?.lastname}
+          onChange={() => {}}
+          disabled
+        />
+
+        <CustomInput
+          label="Email"
+          value={accountStore.accountInfo?.email}
+          onChange={() => {}}
+          disabled
+        />
+
+        <CustomInput
           label="Calle"
           value={streetName}
           onChange={(e) => {
