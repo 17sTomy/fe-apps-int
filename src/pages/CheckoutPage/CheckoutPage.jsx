@@ -17,6 +17,8 @@ export const CheckoutPage = () => {
     return <RestrictedPage />;
   }
 
+  const cart = useSelector((state) => state.account.cart);
+
   const [cardNumber, setCardNumber] = useState('');
   const [cardName, setCardName] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
@@ -82,6 +84,10 @@ export const CheckoutPage = () => {
             label="Fecha de vencimiento"
           />
           <CustomInput value={ccv} onChange={setCcv} label="Código de seguridad" />
+
+          <p style={{ marginTop: 16 }}>
+            Total: <span style={{ fontWeight: 'bold' }}>${cart?.totalPrice}</span>
+          </p>
 
           <Button className="btn" variant="contained" color="success" onClick={handleCheckout}>
             Confirmar pago
