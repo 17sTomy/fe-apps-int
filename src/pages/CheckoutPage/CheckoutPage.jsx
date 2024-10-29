@@ -9,6 +9,9 @@ import Button from '@mui/material/Button';
 import { CreditCard } from '../../components/CreditCard/CreditCard';
 import { Alert, Snackbar } from '@mui/material';
 import { checkout } from '../../services/transactionService';
+import { useDevice } from '../../hooks/useDevice';
+import { PayBtn } from '../../components/PayBtn/PayBtn';
+import { Check } from '@mui/icons-material';
 
 export const CheckoutPage = () => {
   const accountStore = useSelector((state) => state.account);
@@ -17,15 +20,16 @@ export const CheckoutPage = () => {
     return <RestrictedPage />;
   }
 
-  const cart = useSelector((state) => state.account.cart);
+  const { width } = useDevice();
 
   const [cardNumber, setCardNumber] = useState('');
   const [cardName, setCardName] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
-  const [ccv, setCcv] = useState('');
+  const [cvv, setCvv] = useState('');
   const [errorSnackbarOpen, setErrorSnackbarOpen] = useState(false);
   const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
   const [error, setError] = useState(null);
+  const [hasPayed, setHasPayed] = useState(false);
 
   const handleCardNumberChange = (number) => {
     if (number.length > 16) {
@@ -47,10 +51,29 @@ export const CheckoutPage = () => {
     setExpirationDate(formattedValue);
   };
 
+  const handleCvvChange = (number) => {
+    if (number.length > 3) {
+      return;
+    }
+    setCvv(number);
+  };
+
   const handleCheckout = async () => {
+    if (
+      cardNumber.length !== 16 ||
+      !cardNumber ||
+      expirationDate.length !== 5 ||
+      cvv.length !== 3
+    ) {
+      setError('Por favor completá todos los datos');
+      setErrorSnackbarOpen(true);
+      return;
+    }
+
     try {
-      await checkout();
+      // await checkout();
       setSuccessSnackbarOpen(true);
+      setHasPayed(true);
     } catch (err) {
       setError('Ocurrió un error al realizar la compra');
       setErrorSnackbarOpen(true);
@@ -69,55 +92,81 @@ export const CheckoutPage = () => {
   return (
     <DashboardLayout>
       <AnimatedView orientation="horizontal">
-        <div className="checkout-page">
-          <CreditCard cardNumber={cardNumber} cardName={cardName} expirationDate={expirationDate} />
-          <h1 style={{ marginTop: 24 }}>Realizar pago</h1>
-          <CustomInput
-            value={cardNumber}
-            onChange={handleCardNumberChange}
-            label="Número de tarjeta"
-          />
-          <CustomInput value={cardName} onChange={setCardName} label="Nombre y apellido" />
-          <CustomInput
-            value={expirationDate}
-            onChange={handleExpirationDateChange}
-            label="Fecha de vencimiento"
-          />
-          <CustomInput type="password" value={ccv} onChange={setCcv} label="Código de seguridad" />
+        {hasPayed ? (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: 24,
+            }}>
+            <Check style={{ color: 'green', fontSize: 68 }} />
+            <h1>Pago exitoso</h1>
+            <h3>¡Muchas gracias!</h3>
+          </div>
+        ) : (
+          <>
+            <h1 style={{ textAlign: 'center', marginBottom: 24 }}>Realizar pago</h1>
+            <div className="checkout-page">
+              <div className="left-container">
+                <CustomInput
+                  value={cardNumber}
+                  onChange={handleCardNumberChange}
+                  label="Número de tarjeta"
+                />
+                <CustomInput value={cardName} onChange={setCardName} label="Nombre y apellido" />
+                <CustomInput
+                  value={expirationDate}
+                  onChange={handleExpirationDateChange}
+                  label="Fecha de vencimiento"
+                />
+                <CustomInput
+                  type="password"
+                  value={cvv}
+                  onChange={handleCvvChange}
+                  label="Código de seguridad"
+                />
 
-          <p style={{ marginTop: 16 }}>
-            Total: <span style={{ fontWeight: 'bold' }}>${cart?.totalPrice}</span>
-          </p>
+                {width <= 1000 && <PayBtn handleCheckout={handleCheckout} />}
 
-          <Button className="btn" variant="contained" color="success" onClick={handleCheckout}>
-            Confirmar pago
-          </Button>
+                <Snackbar
+                  open={errorSnackbarOpen}
+                  autoHideDuration={5000}
+                  onClose={handleErrorCloseSnackbar}
+                  anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                  sx={{ width: '100%', marginTop: '-6%' }}>
+                  <Alert onClose={handleErrorCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+                    {error}
+                  </Alert>
+                </Snackbar>
 
-          <Snackbar
-            open={errorSnackbarOpen}
-            autoHideDuration={5000}
-            onClose={handleErrorCloseSnackbar}
-            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-            sx={{ width: '100%', marginTop: '-6%' }}>
-            <Alert onClose={handleErrorCloseSnackbar} severity="error" sx={{ width: '100%' }}>
-              {error}
-            </Alert>
-          </Snackbar>
+                <Snackbar
+                  open={successSnackbarOpen}
+                  autoHideDuration={5000}
+                  onClose={handleSuccessCloseSnackbar}
+                  anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                  sx={{ width: '100%', marginTop: '-6%' }}>
+                  <Alert
+                    onClose={handleSuccessCloseSnackbar}
+                    severity="success"
+                    sx={{ width: '100%', textAlign: 'center' }}>
+                    Compra Realizada con Éxito. Gracias!
+                  </Alert>
+                </Snackbar>
+              </div>
+              <div className="right-container">
+                <CreditCard
+                  cardNumber={cardNumber}
+                  cardName={cardName}
+                  expirationDate={expirationDate}
+                />
 
-          <Snackbar
-            open={successSnackbarOpen}
-            autoHideDuration={5000}
-            onClose={handleSuccessCloseSnackbar}
-            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-            sx={{ width: '100%', marginTop: '-6%' }}>
-            <Alert
-              onClose={handleSuccessCloseSnackbar}
-              severity="success"
-              sx={{ width: '100%', textAlign: 'center' }}>
-              Compra Realizada con Éxito. Gracias!
-            </Alert>
-          </Snackbar>
-        </div>
+                {width > 1000 && <PayBtn handleCheckout={handleCheckout} />}
+              </div>
+            </div>
+          </>
+        )}
       </AnimatedView>
     </DashboardLayout>
   );
