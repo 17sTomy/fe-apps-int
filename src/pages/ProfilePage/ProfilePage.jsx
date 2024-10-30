@@ -56,27 +56,14 @@ export const ProfilePage = () => {
           gap: 2,
         }}>
         <h1>Mi perfil</h1>
-
-        <CustomInput
-          label="Nombre"
-          value={accountStore.accountInfo?.firstname}
-          onChange={() => {}}
-          disabled
-        />
-
-        <CustomInput
-          label="Apellido"
-          value={accountStore.accountInfo?.lastname}
-          onChange={() => {}}
-          disabled
-        />
-
-        <CustomInput
-          label="Email"
-          value={accountStore.accountInfo?.email}
-          onChange={() => {}}
-          disabled
-        />
+        <h3>
+          ¡Hola de nuevo,{' '}
+          {`${accountStore.accountInfo.firstname} ${accountStore.accountInfo.lastname}!`}
+        </h3>
+        <p>
+          Estás registrado con el email{' '}
+          <span style={{ fontWeight: 'bold' }}>{accountStore.accountInfo.email}</span>
+        </p>
 
         <CustomInput
           label="Calle"
