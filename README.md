@@ -1,5 +1,7 @@
 # Frontend with React.js for the Interactive Applications Course
 
+![Project Preview](src/assets/preview.gif)
+
 ## Features
 
 - **Browse Products by Categories, Recently Viewed, or Featured**: Users can explore products based on different criteria, enhancing discoverability.
