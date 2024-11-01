@@ -5,7 +5,6 @@ import { AnimatedView } from '../../components/common/AnimatedElements/AnimatedV
 import './checkout-page.styles.scss';
 import { CustomInput } from '../../components/common/CustomInput/CustomInput';
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
 import { CreditCard } from '../../components/CreditCard/CreditCard';
 import { Alert, Snackbar } from '@mui/material';
 import { checkout } from '../../services/transactionService';
@@ -13,12 +12,17 @@ import { useDevice } from '../../hooks/useDevice';
 import { PayBtn } from '../../components/PayBtn/PayBtn';
 import { Check } from '@mui/icons-material';
 import useAuth from '../../hooks/useAuth';
+import { Navigate } from 'react-router-dom';
 
 export const CheckoutPage = () => {
   const accountStore = useSelector((state) => state.account);
 
   if (!accountStore.authenticated) {
     return <RestrictedPage />;
+  }
+
+  if (!accountStore.cart?.cartItems?.length) {
+    return <Navigate to={'/productos'} />;
   }
 
   const { initSession } = useAuth();
