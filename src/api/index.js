@@ -28,6 +28,8 @@ AuthorizedService.interceptors.response.use(
     if ([401, 403].includes(error?.response?.status)) {
       logout();
       window.location.replace('/login?error=true');
+    } else if ([400].includes(error?.response?.status)) {
+      throw error?.response?.data;
     }
   }
 );

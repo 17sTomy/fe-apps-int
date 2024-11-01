@@ -17,6 +17,7 @@ import { ModifyProductPage } from '../pages/ProductsPage/ModifyProductPage';
 import { CreateProductPage } from '../pages/ProductsPage/CreateProductPage';
 import { FavoritesPage } from '../pages/FavoritesPage/FavoritesPage.jsx';
 import { CheckoutPage } from '../pages/CheckoutPage/CheckoutPage';
+import { SuccessPaymentPage } from '../pages/SuccessPaymentPage/SuccessPaymentPage';
 
 export default [
   {
@@ -148,6 +149,14 @@ export default [
     element: (
       <OptionalAuthRoute>
         <CheckoutPage />
+      </OptionalAuthRoute>
+    ),
+  },
+  {
+    path: '/payment/success',
+    element: (
+      <OptionalAuthRoute>
+        <SuccessPaymentPage />
       </OptionalAuthRoute>
     ),
   },

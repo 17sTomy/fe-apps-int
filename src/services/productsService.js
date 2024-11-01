@@ -26,7 +26,7 @@ export const getViewedProducts = async () => {
   const response = await AuthorizedService.get(`${BASE_URL}/recently-viewed`);
   return response.data;
 };
- 
+
 export const viewProduct = async (id) => {
   await AuthorizedService.post(`${BASE_URL}/${id}/view`);
 };
@@ -78,7 +78,7 @@ export const updateProduct = async (id, productDetails) => {
 };
 
 export const getAllImages = async (id) => {
-  const response = await AuthorizedService.get(`${BASE_URL}/${id}/images`);
+  const response = await UnauthorizedService.get(`${BASE_URL}/${id}/images`);
   return response.data;
 };
 

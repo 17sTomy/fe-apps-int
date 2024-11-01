@@ -24,6 +24,7 @@ import {
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useTheme } from '../hooks/useTheme';
+import { DashboardLayout } from '../template/DashboardLayout';
 
 export const SignupPage = () => {
   const { handleSignup, showSnackbar, handleCloseSnackbar, authError } = useAuth();
@@ -34,20 +35,18 @@ export const SignupPage = () => {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   return (
-    <ThemeProvider theme={materialTheme}>
+    <DashboardLayout>
       <Container component="main" maxWidth="xs">
         <Snackbar
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           open={showSnackbar}
           onClose={handleCloseSnackbar}
-          autoHideDuration={5000}
-        >
+          autoHideDuration={5000}>
           <Alert
             onClose={handleCloseSnackbar}
             severity="error"
             variant="filled"
-            sx={{ width: '100%' }}
-          >
+            sx={{ width: '100%' }}>
             ¡Ups! Parece que hubo un problema. Asegurate de que el correo electrónico y la
             contraseña sean válidos.
           </Alert>
@@ -59,8 +58,7 @@ export const SignupPage = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-          }}
-        >
+          }}>
           <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -91,8 +89,7 @@ export const SignupPage = () => {
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
-                      edge="end"
-                    >
+                      edge="end">
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
@@ -112,8 +109,7 @@ export const SignupPage = () => {
                     <IconButton
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
-                      edge="end"
-                    >
+                      edge="end">
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
@@ -134,6 +130,6 @@ export const SignupPage = () => {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+    </DashboardLayout>
   );
 };
