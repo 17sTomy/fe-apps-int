@@ -82,7 +82,7 @@ export const CheckoutPage = () => {
       setHasPayed(true);
       await initSession();
     } catch (err) {
-      setError('Ocurrió un error al realizar la compra');
+      setError(err?.error ?? 'Ocurrió un error al realizar la compra');
       setErrorSnackbarOpen(true);
     }
   };
