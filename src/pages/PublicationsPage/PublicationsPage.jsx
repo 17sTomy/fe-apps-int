@@ -35,7 +35,9 @@ export const PublicationsPage = () => {
 
   const applyFilterQuery = (query) => {
     if (!query) {
-      setFilteredProducts([...products]);
+      setFilteredProducts(
+        products.filter((product) => product.createdByEmail === accountStore.accountInfo.email)
+      );
       return;
     }
 
