@@ -20,9 +20,10 @@ export const OneProductSection = () => {
   const { products, loading, error } = useProducts(getProduct, id);
   const navigate = useNavigate();
 
+  const accountStore = useSelector((state) => state.account);
   const favorites = useSelector((state) => state.favorites.favorites);
   const { handleToggleFavorite } = useFavorites();
-  const isFavorite = favorites?.some(favorite => favorite === products.id);
+  const isFavorite = favorites?.some((favorite) => favorite === products.id);
 
   const [images, setImages] = useState([]);
 
@@ -32,7 +33,7 @@ export const OneProductSection = () => {
   };
 
   useEffect(() => {
-    if (id) {
+    if (id && accountStore.authenticated) {
       viewProduct(id);
     }
   }, [id]);
@@ -118,9 +119,8 @@ export const OneProductSection = () => {
                 />
               )}
               <IconButton
-                sx={{ color: isFavorite ? 'red' : (theme.name === 'dark' ? 'white' : 'black') }}
-                onClick={() => handleToggleFavorite(products.id)}
-              >
+                sx={{ color: isFavorite ? 'red' : theme.name === 'dark' ? 'white' : 'black' }}
+                onClick={() => handleToggleFavorite(products.id)}>
                 <FavoriteIcon />
               </IconButton>
             </Box>
