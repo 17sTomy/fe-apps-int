@@ -97,6 +97,8 @@ export const OneProductSection = () => {
             <Typography variant="h5" component="p" color="primary">
               ${products.price}
             </Typography>
+            <Typography component="p">Director/es: {products.director}</Typography>
+            <Typography component="p">Categoría: {products.category}</Typography>
             <Typography component="p">Stock: {products.stock} Unidades</Typography>
 
             <Box
