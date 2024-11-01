@@ -62,6 +62,7 @@ export const ModifyProductSection = () => {
     setPrice(products.price || '');
     setStock(products.stock || '');
     setMainImage(products.imageUrl || '');
+    setCategory(products.category || '');
 
     if (products.id) fetchAllImages();
   }, [products]);
