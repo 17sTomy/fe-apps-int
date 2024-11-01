@@ -10,21 +10,11 @@ import { Alert, Snackbar } from '@mui/material';
 import { checkout } from '../../services/transactionService';
 import { useDevice } from '../../hooks/useDevice';
 import { PayBtn } from '../../components/PayBtn/PayBtn';
-import { Check } from '@mui/icons-material';
 import useAuth from '../../hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 
 export const CheckoutPage = () => {
   const accountStore = useSelector((state) => state.account);
-
-  if (!accountStore.authenticated) {
-    return <RestrictedPage />;
-  }
-
-  if (!accountStore.cart?.cartItems?.length) {
-    return <Navigate to={'/productos'} />;
-  }
-
   const { initSession } = useAuth();
   const { width } = useDevice();
 
@@ -35,7 +25,18 @@ export const CheckoutPage = () => {
   const [errorSnackbarOpen, setErrorSnackbarOpen] = useState(false);
   const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
   const [error, setError] = useState(null);
-  const [hasPayed, setHasPayed] = useState(false);
+
+  if (!accountStore.authenticated) {
+    return <RestrictedPage />;
+  }
+
+  if (localStorage.getItem('redirection') === '/payment/success') {
+    return <Navigate to={'/payment/success'} />;
+  }
+
+  if (!accountStore.cart?.cartItems?.length) {
+    return <Navigate to={'/productos'} />;
+  }
 
   const handleCardNumberChange = (number) => {
     if (number.length > 16) {
@@ -78,8 +79,7 @@ export const CheckoutPage = () => {
 
     try {
       await checkout();
-      setSuccessSnackbarOpen(true);
-      setHasPayed(true);
+      localStorage.setItem('redirection', '/payment/success');
       await initSession();
     } catch (err) {
       setError(err?.error ?? 'Ocurrió un error al realizar la compra');
@@ -99,81 +99,66 @@ export const CheckoutPage = () => {
   return (
     <DashboardLayout>
       <AnimatedView orientation="horizontal">
-        {hasPayed ? (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 24,
-            }}>
-            <Check style={{ color: 'green', fontSize: 68 }} />
-            <h1>Pago exitoso</h1>
-            <h3>¡Muchas gracias!</h3>
-          </div>
-        ) : (
-          <>
-            <h1 style={{ textAlign: 'center', marginBottom: 24 }}>Realizar pago</h1>
-            <div className="checkout-page">
-              <div className="left-container">
-                <CustomInput
-                  value={cardNumber}
-                  onChange={handleCardNumberChange}
-                  label="Número de tarjeta"
-                />
-                <CustomInput value={cardName} onChange={setCardName} label="Nombre y apellido" />
-                <CustomInput
-                  value={expirationDate}
-                  onChange={handleExpirationDateChange}
-                  label="Fecha de vencimiento"
-                />
-                <CustomInput
-                  type="password"
-                  value={cvv}
-                  onChange={handleCvvChange}
-                  label="Código de seguridad"
-                />
+        <>
+          <h1 style={{ textAlign: 'center', marginBottom: 24 }}>Realizar pago</h1>
+          <div className="checkout-page">
+            <div className="left-container">
+              <CustomInput
+                value={cardNumber}
+                onChange={handleCardNumberChange}
+                label="Número de tarjeta"
+              />
+              <CustomInput value={cardName} onChange={setCardName} label="Nombre y apellido" />
+              <CustomInput
+                value={expirationDate}
+                onChange={handleExpirationDateChange}
+                label="Fecha de vencimiento"
+              />
+              <CustomInput
+                type="password"
+                value={cvv}
+                onChange={handleCvvChange}
+                label="Código de seguridad"
+              />
 
-                {width <= 1000 && <PayBtn handleCheckout={handleCheckout} />}
+              {width <= 1000 && <PayBtn handleCheckout={handleCheckout} />}
 
-                <Snackbar
-                  open={errorSnackbarOpen}
-                  autoHideDuration={5000}
-                  onClose={handleErrorCloseSnackbar}
-                  anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                  sx={{ width: '100%', marginTop: '-6%' }}>
-                  <Alert onClose={handleErrorCloseSnackbar} severity="error" sx={{ width: '100%' }}>
-                    {error}
-                  </Alert>
-                </Snackbar>
+              <Snackbar
+                open={errorSnackbarOpen}
+                autoHideDuration={5000}
+                onClose={handleErrorCloseSnackbar}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                sx={{ width: '100%', marginTop: '-6%' }}>
+                <Alert onClose={handleErrorCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+                  {error}
+                </Alert>
+              </Snackbar>
 
-                <Snackbar
-                  open={successSnackbarOpen}
-                  autoHideDuration={5000}
+              <Snackbar
+                open={successSnackbarOpen}
+                autoHideDuration={5000}
+                onClose={handleSuccessCloseSnackbar}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                sx={{ width: '100%', marginTop: '-6%' }}>
+                <Alert
                   onClose={handleSuccessCloseSnackbar}
-                  anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                  sx={{ width: '100%', marginTop: '-6%' }}>
-                  <Alert
-                    onClose={handleSuccessCloseSnackbar}
-                    severity="success"
-                    sx={{ width: '100%', textAlign: 'center' }}>
-                    Compra Realizada con Éxito. Gracias!
-                  </Alert>
-                </Snackbar>
-              </div>
-              <div className="right-container">
-                <CreditCard
-                  cardNumber={cardNumber}
-                  cardName={cardName}
-                  expirationDate={expirationDate}
-                />
-
-                {width > 1000 && <PayBtn handleCheckout={handleCheckout} />}
-              </div>
+                  severity="success"
+                  sx={{ width: '100%', textAlign: 'center' }}>
+                  Compra Realizada con Éxito. Gracias!
+                </Alert>
+              </Snackbar>
             </div>
-          </>
-        )}
+            <div className="right-container">
+              <CreditCard
+                cardNumber={cardNumber}
+                cardName={cardName}
+                expirationDate={expirationDate}
+              />
+
+              {width > 1000 && <PayBtn handleCheckout={handleCheckout} />}
+            </div>
+          </div>
+        </>
       </AnimatedView>
     </DashboardLayout>
   );
