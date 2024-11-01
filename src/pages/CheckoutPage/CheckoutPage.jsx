@@ -38,6 +38,10 @@ export const CheckoutPage = () => {
     return <Navigate to={'/productos'} />;
   }
 
+  if (accountStore.accountInfo.kycStatus !== 'COMPLETED_KYC') {
+    return <Navigate to="/kyc" />;
+  }
+
   const handleCardNumberChange = (number) => {
     if (number.length > 16) {
       return;
