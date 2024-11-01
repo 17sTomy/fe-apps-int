@@ -79,7 +79,7 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
 
   const handleSessionAction = () => {
     if (accountStore.authenticated) {
-      logout();
+      logout(true);
     } else {
       navigate('/login');
     }
