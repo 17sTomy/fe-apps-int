@@ -16,6 +16,7 @@ import * as React from 'react';
 import { Delete, Save } from '@mui/icons-material';
 import Carousel from 'react-material-ui-carousel';
 import { ImageModifier } from './ImageModifier';
+import ComboBox from '../ComboBox/ComboBox';
 
 export const ModifyProductSection = () => {
   const { id } = useParams();
@@ -48,6 +49,7 @@ export const ModifyProductSection = () => {
   const [stock, setStock] = useState(products?.stock ?? '');
   const [mainImage, setMainImage] = useState(products?.imageUrl ?? '');
   const [images, setImages] = useState([]);
+  const [category, setCategory] = useState(null);
 
   const fetchAllImages = async () => {
     const images = await getAllImages(products.id);
@@ -60,6 +62,7 @@ export const ModifyProductSection = () => {
     setPrice(products.price || '');
     setStock(products.stock || '');
     setMainImage(products.imageUrl || '');
+    setCategory(products.category || '');
 
     if (products.id) fetchAllImages();
   }, [products]);
@@ -70,6 +73,7 @@ export const ModifyProductSection = () => {
       description,
       stock,
       price,
+      category,
       imageUrl: mainImage,
     });
 
@@ -176,6 +180,27 @@ export const ModifyProductSection = () => {
                 setMainImage(e.target.value);
               }}
               sx={inputStyles}
+            />
+
+            <ComboBox
+              setCategory={setCategory}
+              defaultValue={products?.category}
+              inputSx={{ color: theme.secondary }}
+              sx={{
+                width: 300,
+                marginTop: 2.5,
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: theme.secondary,
+                  },
+                  '& .MuiInputBase-input::placeholder': {
+                    color: 'white',
+                  },
+                },
+                input: {
+                  color: theme.secondary,
+                },
+              }}
             />
 
             <Box

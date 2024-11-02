@@ -20,12 +20,17 @@ const options = [
   'Autos',
 ].sort();
 
-export default function ComboBox({ setCategory }) {
+export default function ComboBox({
+  setCategory,
+  defaultValue = options[0],
+  sx = {},
+  inputSx = {},
+}) {
   return (
     <Autocomplete
       disablePortal
       options={options}
-      defaultValue={options[0]}
+      defaultValue={defaultValue}
       onChange={(event, newValue) => {
         setCategory(newValue);
       }}
@@ -42,13 +47,14 @@ export default function ComboBox({ setCategory }) {
         input: {
           color: 'rgb(0, 129, 198)',
         },
+        ...sx,
       }}
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Category"
+          label="Categoría"
           InputLabelProps={{
-            style: { color: 'rgb(0, 129, 198)' },
+            style: { color: 'rgb(0, 129, 198)', ...inputSx },
           }}
         />
       )}
