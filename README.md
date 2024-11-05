@@ -1,4 +1,4 @@
-# E-Commerce Web Application
+# E-Commerce Web Application 
 
 ## Frontend with React.js for the Interactive Applications Course
 
@@ -42,3 +42,11 @@ Follow these steps to set up the app on your local machine:
 3. Run the server and then open http://localhost:5173/ in the browser:
    ```
    npm run dev
+
+##Contributions
+
+This project was developed for the Interactive Applications course as an academic document for the Computer Engineering program at UADE. Contributions to this repository are not open, as this is an academic project. However, downloading and exploring the repository for educational purposes is permitted.
+
+##License
+
+This project is licensed for academic and non-commercial use only. Redistribution and use in source and binary forms, with or without modification, are permitted for educational purposes. Commercial use, distribution, or sublicensing is prohibited without explicit permission.
