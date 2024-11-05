@@ -1,6 +1,19 @@
-# Frontend with React.js for the Interactive Applications Course
+# E-Commerce Web Application
+
+## Frontend with React.js for the Interactive Applications Course
 
 ![Project Preview](src/assets/preview.gif)
+
+This project is the first delivery of the Mandatory Practical Work (TPO) for the **Interactive Applications** course in the second semester of 2024, part of the **Computer Engineering** degree at **Universidad Argentina de la Empresa (UADE)**. It includes a **React.js** frontend and a **Java Spring Boot** backend, creating a complete e-commerce application.
+
+## Team Members
+•⁠  ⁠Tomás Álvarez
+•⁠  ⁠Matías Gluck
+•⁠  ⁠Franco Massi
+•⁠  ⁠Tobias Medina
+
+## Presentation Date
+Tuesday, November 12th, 2024
 
 ## Features
 
