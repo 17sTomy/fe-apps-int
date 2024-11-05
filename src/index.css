@@ -9,3 +9,22 @@
 body {
   transition: background 0.3s ease;
 }
+
+::-webkit-scrollbar {
+  width: 10px;              
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;   
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2); 
+  border-radius: 10px;       
+  border: 2px solid transparent; 
+  background-clip: padding-box; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4); 
+}
