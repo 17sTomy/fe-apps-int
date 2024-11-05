@@ -43,10 +43,10 @@ Follow these steps to set up the app on your local machine:
    ```
    npm run dev
 
-##Contributions
+## Contributions
 
 This project was developed for the Interactive Applications course as an academic document for the Computer Engineering program at UADE. Contributions to this repository are not open, as this is an academic project. However, downloading and exploring the repository for educational purposes is permitted.
 
-##License
+## License
 
 This project is licensed for academic and non-commercial use only. Redistribution and use in source and binary forms, with or without modification, are permitted for educational purposes. Commercial use, distribution, or sublicensing is prohibited without explicit permission.
