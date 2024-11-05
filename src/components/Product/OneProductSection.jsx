@@ -117,7 +117,11 @@ export const OneProductSection = () => {
                   size="large"
                   color="error"
                   variant="contained"
-                  sx={{ width: '100%', justifyContent: 'center', textAlign: 'center' }}
+                  sx={{ 
+                    width: '100%', 
+                    justifyContent: 'center', 
+                    textAlign: 'center' 
+                  }}
                 />
               )}
               <IconButton

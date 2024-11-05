@@ -90,7 +90,11 @@ export const CreateProductSection = () => {
       <Button
         startIcon={<ArrowBackIosNewIcon />}
         onClick={() => navigate(-1)}
-        sx={{ alignSelf: 'flex-start', marginTop: '-20px' }}>
+        sx={{ 
+          alignSelf: 
+          'flex-start', 
+          marginTop: '-20px' 
+        }}>
         Volver
       </Button>
 

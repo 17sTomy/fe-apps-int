@@ -3,7 +3,12 @@ import Stack from '@mui/material/Stack';
 
 export default function BasicButtons({ selectedButton, handleButtonClick }) {
   return (
-    <Stack spacing={2} direction="row" justifyContent="center" sx={{ marginBottom: 4 }}>
+    <Stack 
+      spacing={2} 
+      direction="row" 
+      justifyContent="center" 
+      sx={{ marginBottom: 4 }}
+    >
       <Button
         variant={selectedButton === 'todos' ? 'contained' : 'outlined'}
         onClick={() => handleButtonClick('todos')}
