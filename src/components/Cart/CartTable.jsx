@@ -90,13 +90,22 @@ export default function CartTable() {
             {cart?.cartItems?.map((item) => (
               <TableRow key={item.product.id}>
                 <TableCell>
-                  <img
-                    src={item.product.imageUrl}
-                    alt={item.product.name}
-                    style={{ width: '50px', height: '50px', objectFit: 'cover' }}
-                  />
+                  <Link to={`/productos/${item.product.id}`}>
+                    <img
+                      src={item.product.imageUrl}
+                      alt={item.product.name}
+                      style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+                      />
+                  </Link>
                 </TableCell>
-                <TableCell sx={tableCellStyles}>{item.product.name}</TableCell>
+                <TableCell sx={tableCellStyles}>
+                  <Link 
+                    to={`/productos/${item.product.id}`}
+                    style={{ textDecoration: 'none', color: 'white' }}
+                  >
+                    {item.product.name}
+                  </Link>
+                </TableCell>
                 <TableCell sx={tableCellStyles}>${item.product.price.toFixed(2)}</TableCell>
                 <TableCell sx={tableCellStyles}>{item.quantity}</TableCell>
                 <TableCell sx={tableCellStyles}>
@@ -107,7 +116,12 @@ export default function CartTable() {
                     size="small"
                     variant="contained"
                     onClick={() => removeOneProductFromCart(item.product.id)}
-                    sx={{ width: '25px', height: '25px', minWidth: '0', padding: '0' }}>
+                    sx={{ 
+                      width: '25px', 
+                      height: '25px', 
+                      minWidth: '0', 
+                      padding: '0' 
+                    }}>
                     -
                   </Button>
                   <Button
@@ -180,7 +194,10 @@ export default function CartTable() {
         autoHideDuration={5000}
         onClose={handleErrorCloseSnackbar}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        sx={{ width: '100%', marginTop: '-6%' }}>
+        sx={{ 
+          width: '100%', 
+          marginTop: '-6%' 
+        }}>
         <Alert onClose={handleErrorCloseSnackbar} severity="error" sx={{ width: '100%' }}>
           {error}
         </Alert>
@@ -191,11 +208,17 @@ export default function CartTable() {
         autoHideDuration={5000}
         onClose={handleSuccessCloseSnackbar}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        sx={{ width: '100%', marginTop: '-6%' }}>
+        sx={{ 
+          width: '100%', 
+          marginTop: '-6%' 
+        }}>
         <Alert
           onClose={handleSuccessCloseSnackbar}
           severity="success"
-          sx={{ width: '100%', textAlign: 'center' }}>
+          sx={{ 
+            width: '100%', 
+            textAlign: 'center' 
+          }}>
           Compra Realizada con Éxito. Gracias!
         </Alert>
       </Snackbar>
