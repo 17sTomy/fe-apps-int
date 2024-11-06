@@ -33,6 +33,7 @@ export const CreateProductSection = () => {
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [director, setDirector] = useState('');
   const [price, setPrice] = useState('');
   const [stock, setStock] = useState('');
   const [mainImage, setMainImage] = useState('');
@@ -43,6 +44,7 @@ export const CreateProductSection = () => {
       const response = await createProductV2({
         name,
         description,
+        director,
         stock,
         price,
         imageUrl: mainImage,
@@ -90,10 +92,9 @@ export const CreateProductSection = () => {
       <Button
         startIcon={<ArrowBackIosNewIcon />}
         onClick={() => navigate(-1)}
-        sx={{ 
-          alignSelf: 
-          'flex-start', 
-          marginTop: '-20px' 
+        sx={{
+          alignSelf: 'flex-start',
+          marginTop: '-20px',
         }}>
         Volver
       </Button>
@@ -125,6 +126,16 @@ export const CreateProductSection = () => {
           value={description}
           onChange={(e) => {
             setDescription(e.target.value);
+          }}
+          sx={inputStyles}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Director/es"
+          variant="outlined"
+          value={director}
+          onChange={(e) => {
+            setDirector(e.target.value);
           }}
           sx={inputStyles}
         />
