@@ -24,6 +24,16 @@ export default function useAuth() {
     return { accountInfo: infoResponse, cart: cartResponse };
   };
 
+  const initLogin = async (data) => {
+    const loginResponse = await login(data);
+    localStorage.setItem('token', loginResponse.token);
+    const accountData = await initSession();
+    if (accountData.accountInfo.kycStatus !== 'COMPLETED_KYC') {
+      return navigate('/kyc');
+    }
+    return navigate('/productos');
+  }
+
   const handleLogin = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -31,17 +41,10 @@ export default function useAuth() {
     const password = data.get('password')?.trim();
 
     try {
-      const data = {
+      return await initLogin({
         email,
         password,
-      };
-      const loginResponse = await login(data);
-      localStorage.setItem('token', loginResponse.token);
-      const accountData = await initSession();
-      if (accountData.accountInfo.kycStatus !== 'COMPLETED_KYC') {
-        return navigate('/kyc');
-      }
-      return navigate('/productos');
+      });
     } catch (e) {
       console.error(e);
       setAuthError(true);
@@ -68,7 +71,7 @@ export default function useAuth() {
         password,
       };
       await signup(data);
-      navigate('/login');
+      await initLogin(data)
     } catch (e) {
       console.error(e);
       setAuthError(true);
