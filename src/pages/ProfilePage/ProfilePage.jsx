@@ -11,6 +11,7 @@ import { Save } from '@mui/icons-material';
 import { editCustomerInfoV2 } from '../../services/customerService';
 import useAuth from '../../hooks/useAuth';
 import { CustomInput } from '../../components/common/CustomInput/CustomInput';
+import { Alert, Snackbar } from '@mui/material';
 
 export const ProfilePage = () => {
   const accountStore = useSelector((state) => state.account);
@@ -29,6 +30,7 @@ export const ProfilePage = () => {
     accountStore.accountInfo.complementaryAddress ?? ''
   );
   const [phoneNumber, setPhoneNumber] = useState(accountStore.accountInfo.phoneNumber ?? '');
+  const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
 
   const navigate = useNavigate();
   const { initSession } = useAuth();
@@ -42,7 +44,11 @@ export const ProfilePage = () => {
     });
 
     await initSession();
-    navigate(-1);
+    setSuccessSnackbarOpen(true);
+  };
+
+  const handleSuccessCloseSnackbar = () => {
+    setSuccessSnackbarOpen(false);
   };
 
   return (
@@ -65,37 +71,17 @@ export const ProfilePage = () => {
           <span style={{ fontWeight: 'bold' }}>{accountStore.accountInfo.email}</span>
         </p>
 
-        <CustomInput
-          label="Calle"
-          value={streetName}
-          onChange={(e) => {
-            setStreetName(e.target.value);
-          }}
-        />
+        <CustomInput label="Calle" value={streetName} onChange={setStreetName} />
 
-        <CustomInput
-          label="Número"
-          value={streetNumber}
-          onChange={(e) => {
-            setStreetNumber(e.target.value);
-          }}
-        />
+        <CustomInput label="Número" value={streetNumber} onChange={setStreetNumber} />
 
         <CustomInput
           label="Dpto / piso"
           value={complementaryAddress}
-          onChange={(e) => {
-            setComplementaryAddress(e.target.value);
-          }}
+          onChange={setComplementaryAddress}
         />
 
-        <CustomInput
-          label="Celular"
-          value={phoneNumber}
-          onChange={(e) => {
-            setPhoneNumber(e.target.value);
-          }}
-        />
+        <CustomInput label="Celular" value={phoneNumber} onChange={setPhoneNumber} />
 
         <Button
           variant="contained"
@@ -105,6 +91,22 @@ export const ProfilePage = () => {
           onClick={handleSave}>
           Guardar
         </Button>
+
+        <Snackbar
+          open={successSnackbarOpen}
+          autoHideDuration={5000}
+          onClose={handleSuccessCloseSnackbar}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+          <Alert
+            onClose={handleSuccessCloseSnackbar}
+            severity="success"
+            sx={{
+              width: '100%',
+              textAlign: 'center',
+            }}>
+            Datos modificados exitosamente.
+          </Alert>
+        </Snackbar>
       </Box>
     </DashboardLayout>
   );

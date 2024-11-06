@@ -8,7 +8,7 @@ export const PayBtn = ({ handleCheckout }) => {
   return (
     <div style={{ display: 'grid', placeItems: 'center', marginTop: 16 }}>
       <p>
-        Total: <span style={{ fontWeight: 'bold' }}>${cart?.totalPrice}</span>
+        Total: <span style={{ fontWeight: 'bold' }}>${cart?.totalPrice.toFixed(2)}</span>
       </p>
       <Button className="btn" variant="contained" color="success" onClick={handleCheckout}>
         Confirmar pago
