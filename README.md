@@ -37,6 +37,14 @@ The frontend stack includes:
 •⁠  ⁠*JavaScript (JS)*: Core language for interactivity and logic.
 •⁠  ⁠*Vite*: Tool for fast development and optimized builds.
 
+The backend stack includes:
+
+•⁠  ⁠*Java Spring Boot*: Framework for building the REST API with microservices architecture.
+•⁠  ⁠*JPA (Java Persistence API)*: Manages object-relational mapping and database interaction.
+•⁠  ⁠*CRUD Repository*: Handles Create, Read, Update, Delete operations for the database.
+•⁠  ⁠*JWT (JSON Web Token)*: Provides secure authentication and authorization for API routes.
+•⁠  ⁠*MySQL*: Database to store structured information for products, users, and purchases.
+
 ## Use Cases
 
 #### User Management:
