@@ -28,6 +28,16 @@ Tuesday, November 12th, 2024
 
 [Backend Repository](https://github.com/MatiasUrielGluck/be-apps-int)
 
+## Technologies Used
+
+The frontend stack includes:
+
+•⁠  ⁠*React*: Used to develop dynamic user interfaces with component-based architecture.
+•⁠  ⁠*Bootstrap*: Provides responsive, mobile-first design and styling.
+•⁠  ⁠*JavaScript (JS)*: Core language for interactivity and logic.
+•⁠  ⁠*Vite*: Tool for fast development and optimized builds.
+
+
 ## Installation and Use
 Follow these steps to set up the app on your local machine:
 
