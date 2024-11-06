@@ -89,6 +89,25 @@ Follow these steps to set up the app on your local machine:
    ```
    npm run dev
 
+
+Backend Setup
+
+1.⁠ ⁠Clone the repository:
+```
+git clone https://github.com/MatiasUrielGluck/be-apps-int.git
+```
+
+2.⁠ ⁠Configure database credentials in the application.properties file.
+
+
+3.⁠ ⁠Run the backend server:
+```
+mvn spring-boot:run
+```
+
+4.⁠ ⁠Access the API at http://localhost:8080.
+
+
 ## Contributions
 
 This project was developed for the Interactive Applications course as an academic document for the Computer Engineering program at UADE. Contributions to this repository are not open, as this is an academic project. However, downloading and exploring the repository for educational purposes is permitted.
