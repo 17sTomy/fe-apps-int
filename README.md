@@ -221,8 +221,6 @@ mvn spring-boot:run
 
 4.⁠ ⁠Access the API at http://localhost:8080.
 
-4.⁠ ⁠Acceder a la API en http://localhost:8080.
-
 ## Contribuciones
 
 Este proyecto fue desarrollado para la materia de Aplicaciones Interactivas como un documento académico para el programa de Ingeniería en Informática en UADE. Las contribuciones a este repositorio no están abiertas, ya que se trata de un proyecto académico. Sin embargo, se permite descargar y explorar el repositorio con fines educativos.
