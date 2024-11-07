@@ -32,47 +32,47 @@ Tuesday, November 12th, 2024
 
 The frontend stack includes:
 
--  ⁠*React*: Used to develop dynamic user interfaces with component-based architecture.
--  ⁠*Bootstrap*: Provides responsive, mobile-first design and styling.
--  ⁠*JavaScript (JS)*: Core language for interactivity and logic.
--  ⁠*Vite*: Tool for fast development and optimized builds.
+-  ⁠**React**: Used to develop dynamic user interfaces with component-based architecture.
+-  ⁠**Bootstrap**: Provides responsive, mobile-first design and styling.
+-  ⁠**JavaScript (JS)**: Core language for interactivity and logic.
+-  ⁠**Vite**: Tool for fast development and optimized builds.
 
 The backend stack includes:
 
--  ⁠*Java Spring Boot*: Framework for building the REST API with microservices architecture.
--  ⁠*JPA (Java Persistence API)*: Manages object-relational mapping and database interaction.
--  ⁠*CRUD Repository*: Handles Create, Read, Update, Delete operations for the database.
--  ⁠*JWT (JSON Web Token)*: Provides secure authentication and authorization for API routes.
--  ⁠*MySQL*: Database to store structured information for products, users, and purchases.
+-  ⁠**Java Spring Boot**: Framework for building the REST API with microservices architecture.
+-  ⁠**JPA (Java Persistence API)**: Manages object-relational mapping and database interaction.
+-  ⁠**CRUD Repository**: Handles Create, Read, Update, Delete operations for the database.
+-  ⁠**JWT (JSON Web Token)**: Provides secure authentication and authorization for API routes.
+-  ⁠**MySQL**: Database to store structured information for products, users, and purchases.
 
 ## Use Cases
 
 #### User Management:
--  ⁠*User Registration*: Allows users to sign up with username, email, password, birth date, first name, and last name.
--  ⁠*Login*: Authenticates users using email/username and password, generating a JWT for system access.
+-  ⁠**User Registration**: Allows users to sign up with username, email, password, birth date, first name, and last name.
+-  ⁠**Login**: Authenticates users using email/username and password, generating a JWT for system access.
 
 #### Product Catalog:
--  ⁠*Product Viewing*: Authenticated users can access a homepage displaying featured products, categorized items, and recently viewed products.
--  ⁠*Product Detail*: Users can view details of each product, including price, stock, and description. If out of stock, users are notified and can't add it to their cart. Items can also be added to a favorites list.
+-  ⁠**Product Viewing**: Authenticated users can access a homepage displaying featured products, categorized items, and recently viewed products.
+-  ⁠**Product Detail**: Users can view details of each product, including price, stock, and description. If out of stock, users are notified and can't add it to their cart. Items can also be added to a favorites list.
 
 #### Shopping Cart:
--  ⁠*Cart Management*: Users can add, remove, or clear items in their cart. During checkout, stock availability is verified, and out-of-stock items are flagged.
--  ⁠*Stock Reduction*: Successfully purchased items have stock adjusted accordingly.
+-  ⁠**Cart Management**: Users can add, remove, or clear items in their cart. During checkout, stock availability is verified, and out-of-stock items are flagged.
+-  ⁠**Stock Reduction**: Successfully purchased items have stock adjusted accordingly.
 
 #### Product Management:
--  ⁠*Product Publishing*: Administrators can add new products with images, descriptions, and categories.
--  ⁠*Stock Management*: Administrators can update product stock or remove products as needed.
+-  ⁠**Product Publishing**: Administrators can add new products with images, descriptions, and categories.
+-  ⁠**Stock Management**: Administrators can update product stock or remove products as needed.
 
 #### Profile Section:
--  ⁠*My Profile*: Users can view personal info and a history of completed transactions with dates.
+-  ⁠**My Profile**: Users can view personal info and a history of completed transactions with dates.
 
 ---
 
 ## Additional Implemented Features
 
--  ⁠*Product Recommendation Engine*: Recommends products based on genre, decade, director, and favorite items.
--  ⁠*Admin Requests Module*: Allows administrators to handle specific requests.
--  ⁠*Review Section*: Users can leave reviews and rate purchased products.
+-  ⁠**Product Recommendation Engine**: Recommends products based on genre, decade, director, and favorite items.
+-  ⁠**Admin Requests Module**: Allows administrators to handle specific requests.
+-  ⁠**Review Section**: Users can leave reviews and rate purchased products.
 
 ## Installation and Use
 Follow these steps to set up the app on your local machine:
@@ -123,15 +123,15 @@ This project is licensed for academic and non-commercial use only. Redistributio
 
 ![](Imagenes/LogoUADE.svg)
 
-Este proyecto es la primera entrega del Trabajo Práctico Obligatorio (TPO) para la materia de *Aplicaciones Interactivas* del segundo semestre de 2024, en la carrera de *Ingeniería en Informática* en la *Universidad Argentina de la Empresa (UADE)*. Consiste en un frontend desarrollado en *React.js* y un backend en *Java Spring Boot*, formando una aplicación de e-commerce completa
+Este proyecto es la primera entrega del Trabajo Práctico Obligatorio (TPO) para la materia de **Aplicaciones Interactivas** del segundo semestre de 2024, en la carrera de **Ingeniería en Informática** en la **Universidad Argentina de la Empresa (UADE)**. Consiste en un frontend desarrollado en *React.js* y un backend en **Java Spring Boot**, formando una aplicación de e-commerce completa
 
 ![Project Preview](src/assets/preview.gif)
 
 ## Integrantes del equipo
-•⁠  ⁠Tomás Álvarez
-•⁠  ⁠Matías Gluck
-•⁠  ⁠Franco Massi
-•⁠  ⁠Tobias Medina
+-  ⁠Tomás Álvarez
+-  ⁠Matías Gluck
+-  ⁠Franco Massi
+-  ⁠Tobias Medina
 
 ## Fecha de presentación
 Martes, 12 de noviembre de 2024
