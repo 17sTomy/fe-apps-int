@@ -161,3 +161,23 @@ La pila del backend ([Repositorio Backend](https://github.com/MatiasUrielGluck/b
 -⁠  ⁠**JWT (JSON Web Token)**: Proporciona autenticación y autorización seguras para las rutas de la API.
 -⁠  **MySQL**: Base de datos para almacenar información estructurada de productos, usuarios y compras.
 
+## Casos de Uso
+
+#### Gestión de Usuarios:
+-  ⁠**Registro de Usuarios**: Permite a los usuarios registrarse con nombre de usuario, email, contraseña, fecha de nacimiento, nombre y apellido.
+-⁠  ⁠**Inicio de Sesión**: Autentica a los usuarios usando email/nombre de usuario y contraseña, generando un JWT para acceder al sistema.
+
+#### Catálogo de Productos:
+-  ⁠**Visualización de Productos**: Los usuarios autenticados pueden acceder a una página principal que muestra productos destacados, artículos por categoría y productos vistos recientemente.
+-  ⁠**Detalle de Productos**: Los usuarios pueden ver detalles de cada producto, incluyendo precio, stock y descripción. Si el producto está agotado, se notifica a los usuarios y no pueden añadirlo al carrito. También pueden agregar artículos a una lista de favoritos.
+
+#### Carrito de Compras:
+-  ⁠**Gestión del Carrito**: Los usuarios pueden agregar, eliminar o vaciar elementos de su carrito. Durante el pago, se verifica la disponibilidad de stock y se marcan los artículos agotados.
+-⁠  ⁠**Reducción de Stock**: Los artículos comprados exitosamente tienen su stock ajustado en consecuencia.
+
+#### Gestión de Productos:
+•⁠  ⁠**Publicación de Productos**: Los administradores pueden añadir nuevos productos con imágenes, descripciones y categorías.
+•⁠  ⁠**Gestión de Stock**: Los administradores pueden actualizar el stock de los productos o eliminar productos según sea necesario.
+
+#### Sección de Perfil:-
+-  ⁠**Mi Perfil**: Los usuarios pueden ver su información personal y un historial de transacciones completadas con sus fechas.
