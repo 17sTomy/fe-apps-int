@@ -26,8 +26,6 @@ Tuesday, November 12th, 2024
 - **Admin Access**: An administrator has access to a dedicated panel where they can manage users, products, and product listings.
 - **JWT Authentication**: Secure authentication system using JSON Web Tokens (JWT) to verify users' identities, manage sessions, and restrict access to certain features for authenticated users only.
 
-[Backend Repository](https://github.com/MatiasUrielGluck/be-apps-int)
-
 ## Technologies Used
 
 The frontend stack includes:
@@ -37,7 +35,7 @@ The frontend stack includes:
 -  ⁠**JavaScript (JS)**: Core language for interactivity and logic.
 -  ⁠**Vite**: Tool for fast development and optimized builds.
 
-The backend stack includes:
+The backend ([Backend Repository](https://github.com/MatiasUrielGluck/be-apps-int)) stack includes:
 
 -  ⁠**Java Spring Boot**: Framework for building the REST API with microservices architecture.
 -  ⁠**JPA (Java Persistence API)**: Manages object-relational mapping and database interaction.
@@ -65,8 +63,6 @@ The backend stack includes:
 
 #### Profile Section:
 -  ⁠**My Profile**: Users can view personal info and a history of completed transactions with dates.
-
----
 
 ## Additional Implemented Features
 
@@ -116,6 +112,7 @@ This project was developed for the Interactive Applications course as an academi
 
 This project is licensed for academic and non-commercial use only. Redistribution and use in source and binary forms, with or without modification, are permitted for educational purposes. Commercial use, distribution, or sublicensing is prohibited without explicit permission.
 
+---
 
 # Aplicación Web de E-Commerce (README en español 🇦🇷)
 
@@ -145,7 +142,7 @@ Martes, 12 de noviembre de 2024
 -  ⁠**Acceso para administradores**: Los administradores tienen acceso a un panel dedicado para gestionar usuarios, productos y publicaciones de productos.
 -  ⁠**Autenticación JWT**: Sistema de autenticación segura usando JSON Web Tokens (JWT) para verificar la identidad de los usuarios, gestionar sesiones y restringir el acceso a ciertas funciones solo para usuarios autenticados.
 
-[Repositorio Backend](https://github.com/MatiasUrielGluck/be-apps-int)
+
 
 ## Tecnologías Utilizadas
 
@@ -155,3 +152,12 @@ La pila del frontend incluye:
 -  ⁠**Bootstrap**: Proporciona un diseño responsivo, primero para dispositivos móviles, y estilos.
 -  **JavaScript (JS)** : Lenguaje principal para la interactividad y lógica.
 -  ⁠**Vite**: Herramienta para desarrollo rápido y construcción optimizada.
+
+La pila del backend ([Repositorio Backend](https://github.com/MatiasUrielGluck/be-apps-int)) incluye:
+
+-⁠  **Java Spring Boot**: Framework para construir la API REST con arquitectura de microservicios.
+-⁠  ⁠**JPA (Java Persistence API)**: Maneja el mapeo objeto-relacional y la interacción con la base de datos.
+-⁠  ⁠**Repositorio CRUD**: Maneja las operaciones de Crear, Leer, Actualizar, y Eliminar para la base de datos.
+-⁠  ⁠**JWT (JSON Web Token)**: Proporciona autenticación y autorización seguras para las rutas de la API.
+-⁠  **MySQL**: Base de datos para almacenar información estructurada de productos, usuarios y compras.
+
