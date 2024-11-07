@@ -115,3 +115,12 @@ This project was developed for the Interactive Applications course as an academi
 ## License
 
 This project is licensed for academic and non-commercial use only. Redistribution and use in source and binary forms, with or without modification, are permitted for educational purposes. Commercial use, distribution, or sublicensing is prohibited without explicit permission.
+
+
+# Aplicación Web de E-Commerce
+
+## Frontend con React.js para la materia de Aplicaciones Interactivas
+
+![](Imagenes/LogoUADE.svg)
+
+Este proyecto es la primera entrega del Trabajo Práctico Obligatorio (TPO) para la materia de *Aplicaciones Interactivas* del segundo semestre de 2024, en la carrera de *Ingeniería en Informática* en la *Universidad Argentina de la Empresa (UADE). Consiste en un frontend desarrollado en **React.js* y un backend en *Java Spring Boot*, formando una aplicación de e-commerce completa
