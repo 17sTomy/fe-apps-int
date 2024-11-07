@@ -84,7 +84,7 @@ Follow these steps to set up the app on your local machine:
 3. Run the server and then open http://localhost:5173/ in the browser:
    ```
    npm run dev
-
+   ```
 
 Backend Setup
 
@@ -164,20 +164,20 @@ La pila del backend ([Repositorio Backend](https://github.com/MatiasUrielGluck/b
 ## Casos de Uso
 
 #### Gestión de Usuarios:
-- ⁠**Registro de Usuarios**: Permite a los usuarios registrarse con nombre de usuario, email, contraseña, fecha de nacimiento, nombre y apellido.
--⁠ **Inicio de Sesión**: Autentica a los usuarios usando email/nombre de usuario y contraseña, generando un JWT para acceder al sistema.
+- ⁠ **Registro de Usuarios**: Permite a los usuarios registrarse con nombre de usuario, email, contraseña, fecha de nacimiento, nombre y apellido.
+-  **Inicio de Sesión**: Autentica a los usuarios usando email/nombre de usuario y contraseña, generando un JWT para acceder al sistema.
 
 #### Catálogo de Productos:
-- ⁠**Visualización de Productos**: Los usuarios autenticados pueden acceder a una página principal que muestra productos destacados, artículos por categoría y productos vistos recientemente.
-- ⁠**Detalle de Productos**: Los usuarios pueden ver detalles de cada producto, incluyendo precio, stock y descripción. Si el producto está agotado, se notifica a los usuarios y no pueden añadirlo al carrito. También pueden agregar artículos a una lista de favoritos.
+-  ⁠**Visualización de Productos**: Los usuarios autenticados pueden acceder a una página principal que muestra productos destacados, artículos por categoría y productos vistos recientemente.
+-  ⁠**Detalle de Productos**: Los usuarios pueden ver detalles de cada producto, incluyendo precio, stock y descripción. Si el producto está agotado, se notifica a los usuarios y no pueden añadirlo al carrito. También pueden agregar artículos a una lista de favoritos.
 
 #### Carrito de Compras:
-- **Gestión del Carrito**: Los usuarios pueden agregar, eliminar o vaciar elementos de su carrito. Durante el pago, se verifica la disponibilidad de stock y se marcan los artículos agotados.
--⁠  ⁠**Reducción de Stock**: Los artículos comprados exitosamente tienen su stock ajustado en consecuencia.
+-  **Gestión del Carrito**: Los usuarios pueden agregar, eliminar o vaciar elementos de su carrito. Durante el pago, se verifica la disponibilidad de stock y se marcan los artículos agotados.
+-  ⁠**Reducción de Stock**: Los artículos comprados exitosamente tienen su stock ajustado en consecuencia.
 
 #### Gestión de Productos:
-•⁠ **Publicación de Productos**: Los administradores pueden añadir nuevos productos con imágenes, descripciones y categorías.
-•⁠ **Gestión de Stock**: Los administradores pueden actualizar el stock de los productos o eliminar productos según sea necesario.
+-  **Publicación de Productos**: Los administradores pueden añadir nuevos productos con imágenes, descripciones y categorías.
+-  **Gestión de Stock**: Los administradores pueden actualizar el stock de los productos o eliminar productos según sea necesario.
 
 #### Sección de Perfil:-
 - **Mi Perfil**: Los usuarios pueden ver su información personal y un historial de transacciones completadas con sus fechas.
@@ -185,5 +185,48 @@ La pila del backend ([Repositorio Backend](https://github.com/MatiasUrielGluck/b
 ## Características Adicionales Implementadas
 
 -  ⁠**Motor de Recomendación de Productos**: Recomienda productos según género, década, director y artículos favoritos.
--⁠  ⁠**Módulo de Solicitudes para Administradores**: Permite a los administradores gestionar solicitudes específicas.
--⁠  ⁠**Sección de Reseñas**: Los usuarios pueden dejar reseñas y calificar productos comprados.
+-  ⁠**Módulo de Solicitudes para Administradores**: Permite a los administradores gestionar solicitudes específicas.
+-  **Sección de Reseñas**: Los usuarios pueden dejar reseñas y calificar productos comprados.
+
+## Instalación y Uso
+
+Sigue estos pasos para configurar la aplicación en tu máquina local:
+
+1.⁠ ⁠Clonar el repositorio:
+   ```
+   git clone https://github.com/17sTomy/fe-apps-int.git
+   ```
+2. ⁠Instalar dependencias usando npm:
+   ```
+   npm install
+   ``` 
+3. ⁠Ejecutar el servidor y abrir http://localhost:5173/ en el navegador:
+   ```
+   npm run dev
+   ```
+
+### Configuración del Backend
+
+1.⁠ ⁠Clonar el repositorio:
+```
+git clone https://github.com/MatiasUrielGluck/be-apps-int.git
+```
+
+2.⁠ ⁠Configurar las credenciales de la base de datos en el archivo ⁠ application.properties ⁠.
+
+3.⁠ ⁠Ejecutar el servidor backend:
+```
+mvn spring-boot:run
+```
+
+4.⁠ ⁠Access the API at http://localhost:8080.
+
+4.⁠ ⁠Acceder a la API en http://localhost:8080.
+
+## Contribuciones
+
+Este proyecto fue desarrollado para la materia de Aplicaciones Interactivas como un documento académico para el programa de Ingeniería en Informática en UADE. Las contribuciones a este repositorio no están abiertas, ya que se trata de un proyecto académico. Sin embargo, se permite descargar y explorar el repositorio con fines educativos.
+
+## Licencia
+
+Este proyecto está licenciado para uso académico y no comercial únicamente. La redistribución y el uso en formas de fuente y binario, con o sin modificaciones, están permitidos para fines educativos. Se prohíbe el uso comercial, distribución o sublicencia sin permiso explícito.
