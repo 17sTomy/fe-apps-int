@@ -146,3 +146,12 @@ Martes, 12 de noviembre de 2024
 •⁠  ⁠*Autenticación JWT*: Sistema de autenticación segura usando JSON Web Tokens (JWT) para verificar la identidad de los usuarios, gestionar sesiones y restringir el acceso a ciertas funciones solo para usuarios autenticados.
 
 [Repositorio Backend](https://github.com/MatiasUrielGluck/be-apps-int)
+
+## Tecnologías Utilizadas
+
+La pila del frontend incluye:
+
+•⁠  ⁠*React*: Utilizado para desarrollar interfaces de usuario dinámicas con una arquitectura basada en componentes.
+•⁠  ⁠*Bootstrap*: Proporciona un diseño responsivo, primero para dispositivos móviles, y estilos.
+•⁠  ⁠*JavaScript (JS)*: Lenguaje principal para la interactividad y lógica.
+•⁠  ⁠*Vite*: Herramienta para desarrollo rápido y construcción optimizada.
