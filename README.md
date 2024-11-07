@@ -138,12 +138,12 @@ Martes, 12 de noviembre de 2024
 
 ## Funcionalidades
 
-•⁠  ⁠**Explorar productos por categorías, recientemente vistos o destacados**: Los usuarios pueden explorar productos según diferentes criterios, mejorando su descubrimiento.
-•⁠ **Agregar y manipular productos en el carrito**: Los usuarios pueden añadir productos a su carrito, actualizar cantidades y eliminar elementos según necesiten.
-•⁠  **Agregar productos a favoritos**: Permite a los usuarios marcar productos preferidos.
-•⁠  ⁠**Comprar y mantener un historial de transacciones**: Los usuarios pueden completar compras y acceder a un historial de todas las transacciones para consultar pedidos pasados.
-•⁠  ⁠**Acceso para administradores**: Los administradores tienen acceso a un panel dedicado para gestionar usuarios, productos y publicaciones de productos.
-•⁠  ⁠**Autenticación JWT**: Sistema de autenticación segura usando JSON Web Tokens (JWT) para verificar la identidad de los usuarios, gestionar sesiones y restringir el acceso a ciertas funciones solo para usuarios autenticados.
+- ⁠**Explorar productos por categorías, recientemente vistos o destacados**: Los usuarios pueden explorar productos según diferentes criterios, mejorando su descubrimiento.
+- **Agregar y manipular productos en el carrito**: Los usuarios pueden añadir productos a su carrito, actualizar cantidades y eliminar elementos según necesiten.
+-  **Agregar productos a favoritos**: Permite a los usuarios marcar productos preferidos.
+-   ⁠**Comprar y mantener un historial de transacciones**: Los usuarios pueden completar compras y acceder a un historial de todas las transacciones para consultar pedidos pasados.
+-  ⁠**Acceso para administradores**: Los administradores tienen acceso a un panel dedicado para gestionar usuarios, productos y publicaciones de productos.
+-  ⁠**Autenticación JWT**: Sistema de autenticación segura usando JSON Web Tokens (JWT) para verificar la identidad de los usuarios, gestionar sesiones y restringir el acceso a ciertas funciones solo para usuarios autenticados.
 
 [Repositorio Backend](https://github.com/MatiasUrielGluck/be-apps-int)
 
@@ -151,7 +151,7 @@ Martes, 12 de noviembre de 2024
 
 La pila del frontend incluye:
 
-•⁠  ⁠**React**: Utilizado para desarrollar interfaces de usuario dinámicas con una arquitectura basada en componentes.
-•⁠  ⁠**Bootstrap**: Proporciona un diseño responsivo, primero para dispositivos móviles, y estilos.
-•⁠  **JavaScript (JS)** : Lenguaje principal para la interactividad y lógica.
-•⁠  ⁠**Vite**: Herramienta para desarrollo rápido y construcción optimizada.
+-  ⁠**React**: Utilizado para desarrollar interfaces de usuario dinámicas con una arquitectura basada en componentes.
+-  ⁠**Bootstrap**: Proporciona un diseño responsivo, primero para dispositivos móviles, y estilos.
+-  **JavaScript (JS)** : Lenguaje principal para la interactividad y lógica.
+-  ⁠**Vite**: Herramienta para desarrollo rápido y construcción optimizada.
