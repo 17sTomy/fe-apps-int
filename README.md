@@ -155,11 +155,11 @@ La pila del frontend incluye:
 
 La pila del backend ([Repositorio Backend](https://github.com/MatiasUrielGluck/be-apps-int)) incluye:
 
--⁠ **Java Spring Boot**: Framework para construir la API REST con arquitectura de microservicios.
--⁠ **JPA (Java Persistence API)**: Maneja el mapeo objeto-relacional y la interacción con la base de datos.
--⁠ **Repositorio CRUD**: Maneja las operaciones de Crear, Leer, Actualizar, y Eliminar para la base de datos.
--⁠ **JWT (JSON Web Token)**: Proporciona autenticación y autorización seguras para las rutas de la API.
--⁠ **MySQL**: Base de datos para almacenar información estructurada de productos, usuarios y compras.
+-  **Java Spring Boot**: Framework para construir la API REST con arquitectura de microservicios.
+-  **JPA (Java Persistence API)**: Maneja el mapeo objeto-relacional y la interacción con la base de datos.
+-⁠  **Repositorio CRUD**: Maneja las operaciones de Crear, Leer, Actualizar, y Eliminar para la base de datos.
+-  **JWT (JSON Web Token)**: Proporciona autenticación y autorización seguras para las rutas de la API.
+-  **MySQL**: Base de datos para almacenar información estructurada de productos, usuarios y compras.
 
 ## Casos de Uso
 
