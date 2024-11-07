@@ -137,10 +137,10 @@ Martes, 12 de noviembre de 2024
 
 - ⁠**Explorar productos por categorías, recientemente vistos o destacados**: Los usuarios pueden explorar productos según diferentes criterios, mejorando su descubrimiento.
 - **Agregar y manipular productos en el carrito**: Los usuarios pueden añadir productos a su carrito, actualizar cantidades y eliminar elementos según necesiten.
--  **Agregar productos a favoritos**: Permite a los usuarios marcar productos preferidos.
--   ⁠**Comprar y mantener un historial de transacciones**: Los usuarios pueden completar compras y acceder a un historial de todas las transacciones para consultar pedidos pasados.
--  ⁠**Acceso para administradores**: Los administradores tienen acceso a un panel dedicado para gestionar usuarios, productos y publicaciones de productos.
--  ⁠**Autenticación JWT**: Sistema de autenticación segura usando JSON Web Tokens (JWT) para verificar la identidad de los usuarios, gestionar sesiones y restringir el acceso a ciertas funciones solo para usuarios autenticados.
+- **Agregar productos a favoritos**: Permite a los usuarios marcar productos preferidos.
+- **Comprar y mantener un historial de transacciones**: Los usuarios pueden completar compras y acceder a un historial de todas las transacciones para consultar pedidos pasados.
+- ⁠**Acceso para administradores**: Los administradores tienen acceso a un panel dedicado para gestionar usuarios, productos y publicaciones de productos.
+- **Autenticación JWT**: Sistema de autenticación segura usando JSON Web Tokens (JWT) para verificar la identidad de los usuarios, gestionar sesiones y restringir el acceso a ciertas funciones solo para usuarios autenticados.
 
 
 
@@ -150,34 +150,40 @@ La pila del frontend incluye:
 
 -  ⁠**React**: Utilizado para desarrollar interfaces de usuario dinámicas con una arquitectura basada en componentes.
 -  ⁠**Bootstrap**: Proporciona un diseño responsivo, primero para dispositivos móviles, y estilos.
--  **JavaScript (JS)** : Lenguaje principal para la interactividad y lógica.
+-  **JavaScript (JS)**: Lenguaje principal para la interactividad y lógica.
 -  ⁠**Vite**: Herramienta para desarrollo rápido y construcción optimizada.
 
 La pila del backend ([Repositorio Backend](https://github.com/MatiasUrielGluck/be-apps-int)) incluye:
 
--⁠  **Java Spring Boot**: Framework para construir la API REST con arquitectura de microservicios.
--⁠  ⁠**JPA (Java Persistence API)**: Maneja el mapeo objeto-relacional y la interacción con la base de datos.
--⁠  ⁠**Repositorio CRUD**: Maneja las operaciones de Crear, Leer, Actualizar, y Eliminar para la base de datos.
--⁠  ⁠**JWT (JSON Web Token)**: Proporciona autenticación y autorización seguras para las rutas de la API.
--⁠  **MySQL**: Base de datos para almacenar información estructurada de productos, usuarios y compras.
+-⁠ **Java Spring Boot**: Framework para construir la API REST con arquitectura de microservicios.
+-⁠ **JPA (Java Persistence API)**: Maneja el mapeo objeto-relacional y la interacción con la base de datos.
+-⁠ **Repositorio CRUD**: Maneja las operaciones de Crear, Leer, Actualizar, y Eliminar para la base de datos.
+-⁠ **JWT (JSON Web Token)**: Proporciona autenticación y autorización seguras para las rutas de la API.
+-⁠ **MySQL**: Base de datos para almacenar información estructurada de productos, usuarios y compras.
 
 ## Casos de Uso
 
 #### Gestión de Usuarios:
--  ⁠**Registro de Usuarios**: Permite a los usuarios registrarse con nombre de usuario, email, contraseña, fecha de nacimiento, nombre y apellido.
--⁠  ⁠**Inicio de Sesión**: Autentica a los usuarios usando email/nombre de usuario y contraseña, generando un JWT para acceder al sistema.
+- ⁠**Registro de Usuarios**: Permite a los usuarios registrarse con nombre de usuario, email, contraseña, fecha de nacimiento, nombre y apellido.
+-⁠ **Inicio de Sesión**: Autentica a los usuarios usando email/nombre de usuario y contraseña, generando un JWT para acceder al sistema.
 
 #### Catálogo de Productos:
--  ⁠**Visualización de Productos**: Los usuarios autenticados pueden acceder a una página principal que muestra productos destacados, artículos por categoría y productos vistos recientemente.
--  ⁠**Detalle de Productos**: Los usuarios pueden ver detalles de cada producto, incluyendo precio, stock y descripción. Si el producto está agotado, se notifica a los usuarios y no pueden añadirlo al carrito. También pueden agregar artículos a una lista de favoritos.
+- ⁠**Visualización de Productos**: Los usuarios autenticados pueden acceder a una página principal que muestra productos destacados, artículos por categoría y productos vistos recientemente.
+- ⁠**Detalle de Productos**: Los usuarios pueden ver detalles de cada producto, incluyendo precio, stock y descripción. Si el producto está agotado, se notifica a los usuarios y no pueden añadirlo al carrito. También pueden agregar artículos a una lista de favoritos.
 
 #### Carrito de Compras:
--  ⁠**Gestión del Carrito**: Los usuarios pueden agregar, eliminar o vaciar elementos de su carrito. Durante el pago, se verifica la disponibilidad de stock y se marcan los artículos agotados.
+- **Gestión del Carrito**: Los usuarios pueden agregar, eliminar o vaciar elementos de su carrito. Durante el pago, se verifica la disponibilidad de stock y se marcan los artículos agotados.
 -⁠  ⁠**Reducción de Stock**: Los artículos comprados exitosamente tienen su stock ajustado en consecuencia.
 
 #### Gestión de Productos:
-•⁠  ⁠**Publicación de Productos**: Los administradores pueden añadir nuevos productos con imágenes, descripciones y categorías.
-•⁠  ⁠**Gestión de Stock**: Los administradores pueden actualizar el stock de los productos o eliminar productos según sea necesario.
+•⁠ **Publicación de Productos**: Los administradores pueden añadir nuevos productos con imágenes, descripciones y categorías.
+•⁠ **Gestión de Stock**: Los administradores pueden actualizar el stock de los productos o eliminar productos según sea necesario.
 
 #### Sección de Perfil:-
--  ⁠**Mi Perfil**: Los usuarios pueden ver su información personal y un historial de transacciones completadas con sus fechas.
+- **Mi Perfil**: Los usuarios pueden ver su información personal y un historial de transacciones completadas con sus fechas.
+
+## Características Adicionales Implementadas
+
+-  ⁠**Motor de Recomendación de Productos**: Recomienda productos según género, década, director y artículos favoritos.
+-⁠  ⁠**Módulo de Solicitudes para Administradores**: Permite a los administradores gestionar solicitudes específicas.
+-⁠  ⁠**Sección de Reseñas**: Los usuarios pueden dejar reseñas y calificar productos comprados.
