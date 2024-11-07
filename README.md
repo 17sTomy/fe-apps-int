@@ -1,4 +1,4 @@
-# E-Commerce Web Application 
+# E-Commerce Web Application (English README 🇺🇸)
 
 ## Frontend with React.js for the Interactive Applications Course
 
@@ -117,7 +117,7 @@ This project was developed for the Interactive Applications course as an academi
 This project is licensed for academic and non-commercial use only. Redistribution and use in source and binary forms, with or without modification, are permitted for educational purposes. Commercial use, distribution, or sublicensing is prohibited without explicit permission.
 
 
-# Aplicación Web de E-Commerce
+# Aplicación Web de E-Commerce (README en español 🇦🇷)
 
 ## Frontend con React.js para la materia de Aplicaciones Interactivas
 
