@@ -123,7 +123,7 @@ This project is licensed for academic and non-commercial use only. Redistributio
 
 ![](Imagenes/LogoUADE.svg)
 
-Este proyecto es la primera entrega del Trabajo Práctico Obligatorio (TPO) para la materia de *Aplicaciones Interactivas* del segundo semestre de 2024, en la carrera de *Ingeniería en Informática* en la *Universidad Argentina de la Empresa (UADE)*. Consiste en un frontend desarrollado en **React.js* y un backend en *Java Spring Boot*, formando una aplicación de e-commerce completa
+Este proyecto es la primera entrega del Trabajo Práctico Obligatorio (TPO) para la materia de *Aplicaciones Interactivas* del segundo semestre de 2024, en la carrera de *Ingeniería en Informática* en la *Universidad Argentina de la Empresa (UADE)*. Consiste en un frontend desarrollado en *React.js* y un backend en *Java Spring Boot*, formando una aplicación de e-commerce completa
 
 ![Project Preview](src/assets/preview.gif)
 
