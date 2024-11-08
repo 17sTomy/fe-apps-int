@@ -12,6 +12,8 @@ import {
   faRightToBracket,
   faUser,
   faHeart,
+  faLightbulb, 
+  faStar,   
 } from '@fortawesome/free-solid-svg-icons';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -19,6 +21,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useSelector } from 'react-redux';
 import { logout } from '../../helpers/authenticationHelper';
 import { useDevice } from '../../hooks/useDevice';
+import InsightsIcon from '@mui/icons-material/Insights';
+import RateReviewIcon from '@mui/icons-material/RateReview';
 
 export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
   const navigate = useNavigate();
@@ -54,6 +58,16 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
         label: 'Compras',
         icon: faReceipt,
       },
+      {
+        path: '/recomendaciones',
+        label: 'Recomendaciones',
+        icon: faLightbulb,
+      },
+      {
+        path: '/reseñas',
+        label: 'Reseñas',
+        icon: faStar,
+      },    
       {
         dividerLabel: 'Perfil',
         path: '/profile',
