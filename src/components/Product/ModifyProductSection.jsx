@@ -9,7 +9,7 @@ import {
   updateProductV2,
 } from '../../services/productsService';
 import { useTheme } from '../../hooks/useTheme';
-import { Alert, Box, Button, Snackbar } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
@@ -18,6 +18,7 @@ import Carousel from 'react-material-ui-carousel';
 import { ImageModifier } from './ImageModifier';
 import ComboBox from '../ComboBox/ComboBox';
 import { validateUpdateProductData } from '../../helpers/products.helper';
+import { snackbarType, useSnackbar } from '../../hooks/useSnackbar';
 
 export const ModifyProductSection = () => {
   const { id } = useParams();
@@ -25,8 +26,7 @@ export const ModifyProductSection = () => {
   const { products, loading, error } = useProducts(getProduct, id);
   const navigate = useNavigate();
 
-  const [showSnackbar, setShowSnackbar] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
+  const { showSnackbar } = useSnackbar();
 
   const inputStyles = {
     marginTop: 3,
@@ -75,9 +75,7 @@ export const ModifyProductSection = () => {
     try {
       validateUpdateProductData({ name, price, stock, mainImage });
     } catch (error) {
-      console.warn(error.message);
-      setErrorMsg(error.message);
-      setShowSnackbar(true);
+      showSnackbar(error.message, snackbarType.error);
       return;
     }
 
@@ -98,10 +96,6 @@ export const ModifyProductSection = () => {
     navigate(-1);
   };
 
-  const handleCloseSnackbar = () => {
-    setShowSnackbar(false);
-  };
-
   return (
     <>
       {loading && <Loader />}
@@ -118,19 +112,6 @@ export const ModifyProductSection = () => {
             width: '100%',
             margin: 'auto',
           }}>
-          <Snackbar
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={showSnackbar}
-            onClose={handleCloseSnackbar}
-            autoHideDuration={5000}>
-            <Alert
-              onClose={handleCloseSnackbar}
-              severity="error"
-              variant="filled"
-              sx={{ width: '100%' }}>
-              {errorMsg}
-            </Alert>
-          </Snackbar>
           <Button
             startIcon={<ArrowBackIosNewIcon />}
             onClick={() => navigate(-1)}

@@ -8,10 +8,10 @@ export function validateCreateProductData({
   let error;
 
   if (!name.trim()) error = `Completar campo "Título"`;
-  else if (!director.trim()) error = `Completar campo "Director"`;
-  else if (!price.trim() || Number(price) < 0) error = 'Ingresar un precio válido';
-  else if (!stock.trim() || Number(stock) < 0) error = 'Ingresar un stock válido';
-  else if (!mainImage.trim()) error = 'Debés subir al menos una imágen';
+  else if (!String(director).trim()) error = `Completar campo "Director"`;
+  else if (!String(price).trim() || Number(price) < 0) error = 'Ingresar un precio válido';
+  else if (!String(stock).trim() || Number(stock) < 0) error = 'Ingresar un stock válido';
+  else if (!String(mainImage).trim()) error = 'Debés subir al menos una imágen';
   else return;
 
   throw new Error(error);
@@ -20,10 +20,10 @@ export function validateCreateProductData({
 export function validateUpdateProductData({ name = '', price = '', stock = '', mainImage = '' }) {
   let error;
 
-  if (!name.trim()) error = `Completar campo "Título"`;
-  else if (!price.trim() || Number(price) < 0) error = 'Ingresar un precio válido';
-  else if (!stock.trim() || Number(stock) < 0) error = 'Ingresar un stock válido';
-  else if (!mainImage.trim()) error = 'Debés subir al menos una imágen';
+  if (!String(name).trim()) error = `Completar campo "Título"`;
+  else if (!String(price).trim() || Number(price) < 0) error = 'Ingresar un precio válido';
+  else if (!String(stock).trim() || Number(stock) < 0) error = 'Ingresar un stock válido';
+  else if (!String(mainImage).trim()) error = 'Debés subir al menos una imágen';
   else return;
 
   throw new Error(error);
