@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addImage, createProductV2 } from '../../services/productsService';
 import { useTheme } from '../../hooks/useTheme';
-import { Box, Button } from '@mui/material';
+import { Alert, Box, Button, Snackbar } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
@@ -12,6 +12,9 @@ import { motion } from 'framer-motion';
 export const CreateProductSection = () => {
   const { theme } = useTheme();
   const navigate = useNavigate();
+
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const inputStyles = {
     width: '100%',
@@ -39,7 +42,27 @@ export const CreateProductSection = () => {
   const [mainImage, setMainImage] = useState('');
   const [images, setImages] = useState([]);
 
+  const validateInputs = () => {
+    let error;
+
+    if (!name.trim()) error = `Completar campo "Título"`;
+    else if (!director.trim()) error = `Completar campo "Director"`;
+    else if (!price.trim() || Number(price) < 0) error = 'Ingresar un precio válido';
+    else if (!stock.trim() || Number(stock) < 0) error = 'Ingresar un stock válido';
+    else if (!mainImage.trim()) error = 'Debés subir al menos una imágen';
+    else {
+      setShowSnackbar(false);
+      return;
+    }
+
+    setErrorMsg(error);
+    setShowSnackbar(true);
+    throw new Error('Validation error');
+  };
+
   const handleSave = async () => {
+    validateInputs();
+
     try {
       const response = await createProductV2({
         name,
@@ -55,11 +78,13 @@ export const CreateProductSection = () => {
           await addImage(response.id, image);
         }
       }
+
+      navigate(-1);
     } catch (e) {
       console.error(e);
+      setErrorMsg('Por favor, verificá que los datos sean correctos.');
+      setShowSnackbar(true);
     }
-
-    navigate(-1);
   };
 
   const handleRemoveImage = (index) => {
@@ -78,6 +103,10 @@ export const CreateProductSection = () => {
     setImages(imgs);
   };
 
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
+  };
+
   return (
     <Box
       sx={{
@@ -89,6 +118,19 @@ export const CreateProductSection = () => {
         width: '100%',
         margin: 'auto',
       }}>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={showSnackbar}
+        onClose={handleCloseSnackbar}
+        autoHideDuration={5000}>
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="error"
+          variant="filled"
+          sx={{ width: '100%' }}>
+          {errorMsg}
+        </Alert>
+      </Snackbar>
       <Button
         startIcon={<ArrowBackIosNewIcon />}
         onClick={() => navigate(-1)}
@@ -142,6 +184,7 @@ export const CreateProductSection = () => {
         <TextField
           id="outlined-basic"
           label="Precio"
+          type="number"
           variant="outlined"
           value={price}
           onChange={(e) => {
@@ -152,6 +195,7 @@ export const CreateProductSection = () => {
         <TextField
           id="outlined-basic"
           label="Stock"
+          type="number"
           variant="outlined"
           value={stock}
           onChange={(e) => {
