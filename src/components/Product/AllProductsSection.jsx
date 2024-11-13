@@ -5,9 +5,10 @@ import { getAllProducts } from '../../services/productsService';
 import Loader from '../common/Loader/Loader';
 import { AnimatedView } from '../common/AnimatedElements/AnimatedView';
 import { MaterialLoader } from '../common/Loader/MaterialLoader';
+import { CustomInput } from '../common/CustomInput/CustomInput';
 
 export const AllProductsSection = () => {
-  const { products, loading, error } = useProducts(getAllProducts);
+  const { filteredProducts, nameQuery, loading, error, setNameQuery } = useProducts(getAllProducts);
 
   return (
     <>
@@ -16,6 +17,14 @@ export const AllProductsSection = () => {
 
       {!loading && !error && (
         <AnimatedView orientation="horizontal">
+          <div style={{ width: '100%', display: 'grid', placeItems: 'center' }}>
+            <CustomInput
+              value={nameQuery}
+              onChange={setNameQuery}
+              label="Buscar por título"
+              sx={{ marginTop: 0, marginBottom: 3 }}
+            />
+          </div>
           <Box
             sx={{
               display: 'flex',
@@ -23,7 +32,7 @@ export const AllProductsSection = () => {
               gap: 2,
               justifyContent: 'center',
             }}>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <Box key={product.id}>
                 <ProductCard product={product} />
               </Box>
