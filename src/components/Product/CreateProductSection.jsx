@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import { Add, Delete, Save } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import { validateDataInputs } from '../../helpers/products.helper';
 
 export const CreateProductSection = () => {
   const { theme } = useTheme();
@@ -42,6 +43,7 @@ export const CreateProductSection = () => {
   const [mainImage, setMainImage] = useState('');
   const [images, setImages] = useState([]);
 
+  /*
   const validateInputs = () => {
     let error;
 
@@ -60,8 +62,16 @@ export const CreateProductSection = () => {
     throw new Error('Validation error');
   };
 
+   */
+
   const handleSave = async () => {
-    validateInputs();
+    try {
+      validateDataInputs({ name, director, price, stock, mainImage });
+    } catch (error) {
+      setErrorMsg(error.message);
+      setShowSnackbar(true);
+      return;
+    }
 
     try {
       const response = await createProductV2({
