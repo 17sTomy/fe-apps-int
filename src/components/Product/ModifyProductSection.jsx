@@ -17,7 +17,7 @@ import { Delete, Save } from '@mui/icons-material';
 import Carousel from 'react-material-ui-carousel';
 import { ImageModifier } from './ImageModifier';
 import ComboBox from '../ComboBox/ComboBox';
-import { validateDataInputs } from '../../helpers/products.helper';
+import { validateUpdateProductData } from '../../helpers/products.helper';
 
 export const ModifyProductSection = () => {
   const { id } = useParams();
@@ -73,7 +73,7 @@ export const ModifyProductSection = () => {
 
   const handleSave = async () => {
     try {
-      validateDataInputs({ name, price, stock, mainImage });
+      validateUpdateProductData({ name, price, stock, mainImage });
     } catch (error) {
       console.warn(error.message);
       setErrorMsg(error.message);
