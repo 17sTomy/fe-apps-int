@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import { Add, Delete, Save } from '@mui/icons-material';
 import { motion } from 'framer-motion';
-import { validateDataInputs } from '../../helpers/products.helper';
+import { validateCreateProductData } from '../../helpers/products.helper';
 
 export const CreateProductSection = () => {
   const { theme } = useTheme();
@@ -43,30 +43,9 @@ export const CreateProductSection = () => {
   const [mainImage, setMainImage] = useState('');
   const [images, setImages] = useState([]);
 
-  /*
-  const validateInputs = () => {
-    let error;
-
-    if (!name.trim()) error = `Completar campo "Título"`;
-    else if (!director.trim()) error = `Completar campo "Director"`;
-    else if (!price.trim() || Number(price) < 0) error = 'Ingresar un precio válido';
-    else if (!stock.trim() || Number(stock) < 0) error = 'Ingresar un stock válido';
-    else if (!mainImage.trim()) error = 'Debés subir al menos una imágen';
-    else {
-      setShowSnackbar(false);
-      return;
-    }
-
-    setErrorMsg(error);
-    setShowSnackbar(true);
-    throw new Error('Validation error');
-  };
-
-   */
-
   const handleSave = async () => {
     try {
-      validateDataInputs({ name, director, price, stock, mainImage });
+      validateCreateProductData({ name, director, price, stock, mainImage });
     } catch (error) {
       setErrorMsg(error.message);
       setShowSnackbar(true);

@@ -9,7 +9,7 @@ import {
   updateProductV2,
 } from '../../services/productsService';
 import { useTheme } from '../../hooks/useTheme';
-import { Box, Button } from '@mui/material';
+import { Alert, Box, Button, Snackbar } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
@@ -17,12 +17,16 @@ import { Delete, Save } from '@mui/icons-material';
 import Carousel from 'react-material-ui-carousel';
 import { ImageModifier } from './ImageModifier';
 import ComboBox from '../ComboBox/ComboBox';
+import { validateDataInputs } from '../../helpers/products.helper';
 
 export const ModifyProductSection = () => {
   const { id } = useParams();
   const { theme } = useTheme();
   const { products, loading, error } = useProducts(getProduct, id);
   const navigate = useNavigate();
+
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const inputStyles = {
     marginTop: 3,
@@ -59,8 +63,8 @@ export const ModifyProductSection = () => {
   useEffect(() => {
     setName(products.name || '');
     setDescription(products.description || '');
-    setPrice(products.price || '');
-    setStock(products.stock || '');
+    setPrice(products.price || '0');
+    setStock(products.stock || '0');
     setMainImage(products.imageUrl || '');
     setCategory(products.category || '');
 
@@ -68,6 +72,15 @@ export const ModifyProductSection = () => {
   }, [products]);
 
   const handleSave = async () => {
+    try {
+      validateDataInputs({ name, price, stock, mainImage });
+    } catch (error) {
+      console.warn(error.message);
+      setErrorMsg(error.message);
+      setShowSnackbar(true);
+      return;
+    }
+
     await updateProductV2(products.id, {
       name,
       description,
@@ -83,6 +96,10 @@ export const ModifyProductSection = () => {
   const handleDelete = async () => {
     await deleteProductV2(products.id);
     navigate(-1);
+  };
+
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
   };
 
   return (
@@ -101,6 +118,19 @@ export const ModifyProductSection = () => {
             width: '100%',
             margin: 'auto',
           }}>
+          <Snackbar
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={showSnackbar}
+            onClose={handleCloseSnackbar}
+            autoHideDuration={5000}>
+            <Alert
+              onClose={handleCloseSnackbar}
+              severity="error"
+              variant="filled"
+              sx={{ width: '100%' }}>
+              {errorMsg}
+            </Alert>
+          </Snackbar>
           <Button
             startIcon={<ArrowBackIosNewIcon />}
             onClick={() => navigate(-1)}
