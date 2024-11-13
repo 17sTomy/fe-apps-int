@@ -23,6 +23,7 @@ import { snackbarType, useSnackbar } from '../../hooks/useSnackbar';
 import { VisuallyHiddenInput } from './CreateProductSection';
 import { addImage_v2, updateProduct_v2 } from '../../services/productsV2Service';
 import { toBase64 } from '../../helpers';
+import { IntermediateLoader } from '../common/Loader/IntermediateLoader';
 
 export const ModifyProductSection = () => {
   const { id } = useParams();
@@ -144,6 +145,7 @@ export const ModifyProductSection = () => {
             width: '100%',
             margin: 'auto',
           }}>
+          <IntermediateLoader open={isCreating} />
           <Button
             startIcon={<ArrowBackIosNewIcon />}
             onClick={() => navigate(-1)}
