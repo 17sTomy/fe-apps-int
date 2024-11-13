@@ -13,7 +13,7 @@ import { toBase64 } from '../../helpers';
 import { addImage_v2, createProduct_v2 } from '../../services/productsV2Service';
 import { IntermediateLoader } from '../common/Loader/IntermediateLoader';
 
-const VisuallyHiddenInput = styled('input')({
+export const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
   height: 1,

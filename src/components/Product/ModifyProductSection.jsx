@@ -6,6 +6,7 @@ import {
   deleteProductV2,
   getAllImages,
   getProduct,
+  removeAllImages,
   updateProductV2,
 } from '../../services/productsService';
 import { useTheme } from '../../hooks/useTheme';
@@ -13,12 +14,15 @@ import { Box, Button } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
-import { Delete, Save } from '@mui/icons-material';
+import { CloudUpload, Delete, Save } from '@mui/icons-material';
 import Carousel from 'react-material-ui-carousel';
 import { ImageModifier } from './ImageModifier';
 import ComboBox from '../ComboBox/ComboBox';
 import { validateUpdateProductData } from '../../helpers/products.helper';
 import { snackbarType, useSnackbar } from '../../hooks/useSnackbar';
+import { VisuallyHiddenInput } from './CreateProductSection';
+import { addImage_v2, updateProduct_v2 } from '../../services/productsV2Service';
+import { toBase64 } from '../../helpers';
 
 export const ModifyProductSection = () => {
   const { id } = useParams();
@@ -54,6 +58,9 @@ export const ModifyProductSection = () => {
   const [mainImage, setMainImage] = useState(products?.imageUrl ?? '');
   const [images, setImages] = useState([]);
   const [category, setCategory] = useState(null);
+  const [file, setFile] = useState('');
+  const [secondaryImages, setSecondaryImages] = useState('');
+  const [isCreating, setIsCreating] = useState(false);
 
   const fetchAllImages = async () => {
     const images = await getAllImages(products.id);
@@ -72,28 +79,53 @@ export const ModifyProductSection = () => {
   }, [products]);
 
   const handleSave = async () => {
+    setIsCreating(true);
     try {
-      validateUpdateProductData({ name, price, stock, mainImage });
+      validateUpdateProductData({ name, price, stock });
     } catch (error) {
       showSnackbar(error.message, snackbarType.error);
       return;
     }
 
-    await updateProductV2(products.id, {
-      name,
-      description,
-      stock,
-      price,
-      category,
-      imageUrl: mainImage,
-    });
+    const base64 = file ? await toBase64(file) : undefined;
 
+    try {
+      await updateProduct_v2(products.id, {
+        name,
+        description,
+        stock,
+        price,
+        category,
+        imageUrl: base64,
+      });
+    } catch (e) {
+      setIsCreating(true);
+      console.error(e);
+    }
+
+    if (secondaryImages.length) {
+      await removeAllImages(products.id);
+      for (const image of secondaryImages) {
+        const base64 = await toBase64(image);
+        await addImage_v2(products.id, { url: base64 });
+      }
+    }
+
+    setIsCreating(false);
     location.reload();
   };
 
   const handleDelete = async () => {
     await deleteProductV2(products.id);
     navigate(-1);
+  };
+
+  const handleAddSecondaryImages = (e) => {
+    if (e.target.files && e.target.files) setSecondaryImages(e.target.files);
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) setFile(e.target.files[0]);
   };
 
   return (
@@ -182,16 +214,6 @@ export const ModifyProductSection = () => {
               }}
               sx={inputStyles}
             />
-            <TextField
-              id="outlined-basic"
-              label="URL Imágen de portada"
-              variant="outlined"
-              value={mainImage}
-              onChange={(e) => {
-                setMainImage(e.target.value);
-              }}
-              sx={inputStyles}
-            />
 
             <ComboBox
               setCategory={setCategory}
@@ -213,6 +235,37 @@ export const ModifyProductSection = () => {
                 },
               }}
             />
+
+            <Button
+              sx={{ width: 300 }}
+              component="label"
+              role={undefined}
+              variant="contained"
+              tabIndex={-1}
+              startIcon={<CloudUpload />}>
+              Adjuntar imágen de portada
+              <VisuallyHiddenInput
+                type="file"
+                onChange={(e) => handleFileChange(e)}
+                accept={'image/png, image/jpeg'}
+              />
+            </Button>
+
+            <Button
+              sx={{ width: 300 }}
+              component="label"
+              role={undefined}
+              variant="contained"
+              tabIndex={-1}
+              startIcon={<CloudUpload />}>
+              Imágenes secundarias
+              <VisuallyHiddenInput
+                type="file"
+                onChange={(e) => handleAddSecondaryImages(e)}
+                multiple
+                accept={'image/png, image/jpeg'}
+              />
+            </Button>
 
             <Box
               sx={{

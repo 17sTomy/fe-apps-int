@@ -24,7 +24,6 @@ export function validateUpdateProductData({ name = '', price = '', stock = '', m
   if (!String(name).trim()) error = `Completar campo "Título"`;
   else if (!String(price).trim() || Number(price) < 0) error = 'Ingresar un precio válido';
   else if (!String(stock).trim() || Number(stock) < 0) error = 'Ingresar un stock válido';
-  else if (!String(mainImage).trim()) error = 'Debés subir al menos una imágen';
   else return;
 
   throw new Error(error);

@@ -86,3 +86,8 @@ export const addImage = async (id, data) => {
   const response = await AuthorizedService.post(`${BASE_URL}/post/${id}/images`, data);
   return response.data;
 };
+
+export const removeAllImages = async (id) => {
+  const response = await AuthorizedService.delete(`${BASE_URL}/${id}/images`);
+  return response.data;
+};
