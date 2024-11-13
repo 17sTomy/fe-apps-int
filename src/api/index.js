@@ -26,8 +26,7 @@ AuthorizedService.interceptors.response.use(
   },
   (error) => {
     if ([401, 403].includes(error?.response?.status)) {
-      logout();
-      window.location.replace('/login?error=true');
+      logout(true);
     } else if ([400].includes(error?.response?.status)) {
       throw error?.response?.data;
     }
