@@ -1,15 +1,29 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addImage, createProductV2 } from '../../services/productsService';
 import { useTheme } from '../../hooks/useTheme';
 import { Box, Button } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
-import { Delete, Save } from '@mui/icons-material';
-import { motion } from 'framer-motion';
+import { CloudUpload, Save } from '@mui/icons-material';
 import { validateCreateProductData } from '../../helpers/products.helper';
 import { snackbarType, useSnackbar } from '../../hooks/useSnackbar';
+import { styled } from '@mui/material/styles';
+import { toBase64 } from '../../helpers';
+import { addImage_v2, createProduct_v2 } from '../../services/productsV2Service';
+import { IntermediateLoader } from '../common/Loader/IntermediateLoader';
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
 
 export const CreateProductSection = () => {
   const { theme } = useTheme();
@@ -40,54 +54,53 @@ export const CreateProductSection = () => {
   const [director, setDirector] = useState('');
   const [price, setPrice] = useState('');
   const [stock, setStock] = useState('');
-  const [mainImage, setMainImage] = useState('');
-  const [images, setImages] = useState([]);
+  const [file, setFile] = useState('');
+  const [secondaryImages, setSecondaryImages] = useState('');
+  const [isCreating, setIsCreating] = useState(false);
 
   const handleSave = async () => {
+    setIsCreating(true);
     try {
-      validateCreateProductData({ name, director, price, stock, mainImage });
+      validateCreateProductData({ name, director, price, stock, file });
     } catch (error) {
       showSnackbar(error.message, snackbarType.error);
       return;
     }
 
     try {
-      const response = await createProductV2({
+      const base64Image = await toBase64(file);
+
+      const response = await createProduct_v2({
         name,
         description,
         director,
         stock,
         price,
-        imageUrl: mainImage,
+        imageUrl: base64Image,
       });
 
-      if (images.length) {
-        for (const image of images) {
-          await addImage(response.id, image);
+      if (secondaryImages.length) {
+        for (const image of secondaryImages) {
+          const base64 = await toBase64(image);
+          await addImage_v2(response.id, { url: base64 });
         }
       }
-
+      setIsCreating(false);
+      showSnackbar('¡Producto creado exitosamente!', snackbarType.success);
       navigate(-1);
     } catch (e) {
       console.error(e);
       showSnackbar('Por favor, verificá que los datos sean correctos.', snackbarType.error);
     }
+    setIsCreating(false);
   };
 
-  const handleRemoveImage = (index) => {
-    const filteredImages = images.filter((img, i) => i !== index);
-    setImages(filteredImages);
+  const handleAddSecondaryImages = (e) => {
+    if (e.target.files && e.target.files) setSecondaryImages(e.target.files);
   };
 
-  const handleAddImage = () => {
-    setImages([...images, { url: '' }]);
-  };
-
-  const handleImageChange = (e, index) => {
-    const imgs = [...images];
-    const image = imgs[index];
-    image.url = e.target.value;
-    setImages(imgs);
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) setFile(e.target.files[0]);
   };
 
   return (
@@ -101,6 +114,7 @@ export const CreateProductSection = () => {
         width: '100%',
         margin: 'auto',
       }}>
+      <IntermediateLoader open={isCreating} />
       <Button
         startIcon={<ArrowBackIosNewIcon />}
         onClick={() => navigate(-1)}
@@ -173,66 +187,21 @@ export const CreateProductSection = () => {
           }}
           sx={inputStyles}
         />
-        <TextField
-          id="outlined-basic"
-          label="URL Imágen de portada"
-          variant="outlined"
-          value={mainImage}
-          onChange={(e) => {
-            setMainImage(e.target.value);
-          }}
-          sx={inputStyles}
-        />
 
-        {images.map((image, index) => (
-          <motion.div
-            key={index}
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-              width: '100%',
-            }}
-            initial={{
-              opacity: 0,
-              scale: 0,
-            }}
-            animate={{
-              opacity: 1,
-              scale: '100%',
-            }}>
-            <TextField
-              id="outlined-basic"
-              label="URL de imágen secundaria"
-              variant="outlined"
-              value={images[index].url}
-              onChange={(e) => {
-                handleImageChange(e, index);
-              }}
-              sx={inputStyles}
-            />
-            <motion.div
-              transition={{ duration: 0.3 }}
-              whileHover={{
-                rotate: 360,
-                scale: 1.1,
-              }}
-              style={{
-                cursor: 'pointer',
-                background: 'red',
-                width: 40,
-                height: 40,
-                display: 'grid',
-                placeItems: 'center',
-                borderRadius: '100%',
-              }}
-              onClick={() => handleRemoveImage(index)}>
-              <Delete fontSize="large" sx={{ color: '#fff' }} />
-            </motion.div>
-          </motion.div>
-        ))}
+        <Button
+          sx={{ width: '100%' }}
+          component="label"
+          role={undefined}
+          variant="contained"
+          tabIndex={-1}
+          startIcon={<CloudUpload />}>
+          Adjuntar imágen de portada
+          <VisuallyHiddenInput
+            type="file"
+            onChange={(e) => handleFileChange(e)}
+            accept={'image/png, image/jpeg'}
+          />
+        </Button>
 
         <Box
           sx={{
@@ -241,9 +210,22 @@ export const CreateProductSection = () => {
             justifyContent: 'center',
             gap: 4,
           }}>
-          <Button startIcon={<Save />} variant="contained" color="info" onClick={handleAddImage}>
-            Agregar imágen
+          <Button
+            sx={{ width: '100%' }}
+            component="label"
+            role={undefined}
+            variant="contained"
+            tabIndex={-1}
+            startIcon={<CloudUpload />}>
+            Agregar imágenes secundarias
+            <VisuallyHiddenInput
+              type="file"
+              onChange={(e) => handleAddSecondaryImages(e)}
+              multiple
+              accept={'image/png, image/jpeg'}
+            />
           </Button>
+
           <Button startIcon={<Save />} variant="contained" color="success" onClick={handleSave}>
             Crear
           </Button>
