@@ -2,20 +2,20 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addImage, createProductV2 } from '../../services/productsService';
 import { useTheme } from '../../hooks/useTheme';
-import { Alert, Box, Button, Snackbar } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
-import { Add, Delete, Save } from '@mui/icons-material';
+import { Delete, Save } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { validateCreateProductData } from '../../helpers/products.helper';
+import { snackbarType, useSnackbar } from '../../hooks/useSnackbar';
 
 export const CreateProductSection = () => {
   const { theme } = useTheme();
   const navigate = useNavigate();
 
-  const [showSnackbar, setShowSnackbar] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
+  const { showSnackbar } = useSnackbar();
 
   const inputStyles = {
     width: '100%',
@@ -47,8 +47,7 @@ export const CreateProductSection = () => {
     try {
       validateCreateProductData({ name, director, price, stock, mainImage });
     } catch (error) {
-      setErrorMsg(error.message);
-      setShowSnackbar(true);
+      showSnackbar(error.message, snackbarType.error);
       return;
     }
 
@@ -71,8 +70,7 @@ export const CreateProductSection = () => {
       navigate(-1);
     } catch (e) {
       console.error(e);
-      setErrorMsg('Por favor, verificá que los datos sean correctos.');
-      setShowSnackbar(true);
+      showSnackbar('Por favor, verificá que los datos sean correctos.', snackbarType.error);
     }
   };
 
@@ -92,10 +90,6 @@ export const CreateProductSection = () => {
     setImages(imgs);
   };
 
-  const handleCloseSnackbar = () => {
-    setShowSnackbar(false);
-  };
-
   return (
     <Box
       sx={{
@@ -107,19 +101,6 @@ export const CreateProductSection = () => {
         width: '100%',
         margin: 'auto',
       }}>
-      <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={showSnackbar}
-        onClose={handleCloseSnackbar}
-        autoHideDuration={5000}>
-        <Alert
-          onClose={handleCloseSnackbar}
-          severity="error"
-          variant="filled"
-          sx={{ width: '100%' }}>
-          {errorMsg}
-        </Alert>
-      </Snackbar>
       <Button
         startIcon={<ArrowBackIosNewIcon />}
         onClick={() => navigate(-1)}
