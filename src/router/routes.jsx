@@ -18,6 +18,7 @@ import { CreateProductPage } from '../pages/ProductsPage/CreateProductPage';
 import { FavoritesPage } from '../pages/FavoritesPage/FavoritesPage.jsx';
 import { CheckoutPage } from '../pages/CheckoutPage/CheckoutPage';
 import { SuccessPaymentPage } from '../pages/SuccessPaymentPage/SuccessPaymentPage';
+import { LoadingPage } from '../pages/LoadingPage/LoadingPage';
 
 export default [
   {
@@ -159,5 +160,9 @@ export default [
         <SuccessPaymentPage />
       </OptionalAuthRoute>
     ),
+  },
+  {
+    path: '/cargando',
+    element: <LoadingPage />,
   },
 ];

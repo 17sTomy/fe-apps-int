@@ -3,6 +3,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { Sidebar, Topbar, Content } from './';
 import './dashboard.styles.scss';
 import { useDevice } from '../../hooks/useDevice';
+import { CustomSnackbar } from '../../components/common/CustomSnackbar/CustomSnackbar';
 
 export const DashboardLayout = React.memo(({ children }) => {
   const { theme } = useTheme();
@@ -19,6 +20,7 @@ export const DashboardLayout = React.memo(({ children }) => {
       <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <Sidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <Content menuOpen={menuOpen} children={children} />
+      <CustomSnackbar />
     </div>
   );
 });
