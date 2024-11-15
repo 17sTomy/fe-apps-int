@@ -16,3 +16,13 @@ export const getAccountInfo = async () => {
   const response = await AuthorizedService.get(`${BASE_URL}/info`);
   return response.data;
 };
+
+export const resendVerificationCode = async () => {
+  const response = await AuthorizedService.put(`${BASE_URL}/resend-code`);
+  return response.data;
+};
+
+export const verifyVerificationCode = async (data) => {
+  const response = await AuthorizedService.post(`${BASE_URL}/verify-code`, data);
+  return response.data;
+};

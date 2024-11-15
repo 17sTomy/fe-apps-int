@@ -25,9 +25,11 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useTheme } from '../hooks/useTheme';
 import { DashboardLayout } from '../template/DashboardLayout';
+import { IntermediateLoader } from '../components/common/Loader/IntermediateLoader';
+import * as React from 'react';
 
 export const SignupPage = () => {
-  const { handleSignup, showSnackbar, handleCloseSnackbar, authError } = useAuth();
+  const { handleSignup, showSnackbar, handleCloseSnackbar, authError, isLoading } = useAuth();
   const { materialTheme } = useTheme();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -36,6 +38,7 @@ export const SignupPage = () => {
 
   return (
     <DashboardLayout>
+      <IntermediateLoader open={isLoading} />
       <Container component="main" maxWidth="xs">
         <Snackbar
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}

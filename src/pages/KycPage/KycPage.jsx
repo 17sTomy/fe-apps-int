@@ -12,8 +12,11 @@ import { LoadingButton } from '@mui/lab';
 import { updateBasicKyc, updateResidentialKyc } from '../../services/customerService';
 import { KycResidential } from './steps/KycResidential';
 import { KycComplete } from './steps/KycComplete';
+import { KycCodeVerification } from './steps/KycCodeVerification';
+import { CustomSnackbar } from '../../components/common/CustomSnackbar/CustomSnackbar';
 
 const steps = [
+  { name: 'Verificación', component: KycCodeVerification },
   { name: 'Información básica', component: KycBasic },
   { name: 'Información de envío', component: KycResidential },
   { name: 'Finalizar', component: KycComplete },
@@ -41,9 +44,10 @@ export const KycPage = () => {
   const [emitData, setEmitData] = useState({});
 
   const initActiveStep = () => {
-    if (accountStore.accountInfo.kycStatus === 'BASIC_KYC') return 0;
-    else if (accountStore.accountInfo.kycStatus === 'RESIDENTIAL_KYC') return 1;
-    return 2;
+    if (!accountStore.accountInfo.verified) return 0;
+    else if (accountStore.accountInfo.kycStatus === 'BASIC_KYC') return 1;
+    else if (accountStore.accountInfo.kycStatus === 'RESIDENTIAL_KYC') return 2;
+    return 3;
   };
 
   const [activeStep, setActiveStep] = React.useState(initActiveStep());
@@ -56,6 +60,8 @@ export const KycPage = () => {
     }
 
     if (activeStep === 0) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } else if (activeStep === 1) {
       try {
         await executeStepOneAction();
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -63,7 +69,7 @@ export const KycPage = () => {
         console.error(e);
         setIsLoading(false);
       }
-    } else if (activeStep === 1) {
+    } else if (activeStep === 2) {
       try {
         await executeStepTwoAction();
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -93,15 +99,19 @@ export const KycPage = () => {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    if (!disableNext && activeStep === 0) handleNext();
+  }, [disableNext]);
+
   return (
     <ThemeProvider theme={materialTheme}>
+      <CustomSnackbar />
       <Box className="stepper-container">
         <Stepper
           orientation={isMobile ? 'vertical' : 'horizontal'}
           activeStep={activeStep}
           className="stepper"
-          style={{ background: theme.name === 'dark' ? '' : '' }}
-        >
+          style={{ background: theme.name === 'dark' ? '' : '' }}>
           {steps.map((step, index) => {
             const stepProps = {};
             const labelProps = {};
@@ -126,8 +136,7 @@ export const KycPage = () => {
                     disabled={disableNext}
                     variant="contained"
                     onClick={handleNext}
-                    className="button"
-                  >
+                    className="button">
                     Siguiente
                   </Button>
                 )}
