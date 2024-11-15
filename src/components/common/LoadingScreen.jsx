@@ -16,9 +16,6 @@ export const LoadingScreen = () => {
       dispatch(resetAccount());
       localStorage.clear();
       window.location.replace('/login');
-    } else {
-      // Cae a esta página sin motivos, llevamos al usuario a productos
-      navigate('/productos');
     }
   }, []);
 
