@@ -13,6 +13,7 @@ export default function useAuth() {
 
   const [authError, setAuthError] = useState(false);
   const [showSnackbar, setShowSnackbar] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCloseSnackbar = () => setShowSnackbar(false);
 
@@ -28,11 +29,12 @@ export default function useAuth() {
     const loginResponse = await login(data);
     localStorage.setItem('token', loginResponse.token);
     const accountData = await initSession();
+    setIsLoading(false);
     if (accountData.accountInfo.kycStatus !== 'COMPLETED_KYC') {
       return navigate('/kyc');
     }
     return navigate('/productos');
-  }
+  };
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -53,6 +55,7 @@ export default function useAuth() {
   };
 
   const handleSignup = async (event) => {
+    setIsLoading(true);
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email')?.trim();
@@ -71,12 +74,13 @@ export default function useAuth() {
         password,
       };
       await signup(data);
-      await initLogin(data)
+      await initLogin(data);
     } catch (e) {
       console.error(e);
       setAuthError(true);
       setShowSnackbar(true);
     }
+    setIsLoading(false);
   };
 
   return {
@@ -86,5 +90,6 @@ export default function useAuth() {
     handleSignup,
     authError,
     initSession,
+    isLoading,
   };
 }
