@@ -12,6 +12,7 @@ import { useDevice } from '../../hooks/useDevice';
 import { PayBtn } from '../../components/PayBtn/PayBtn';
 import useAuth from '../../hooks/useAuth';
 import { Navigate } from 'react-router-dom';
+import { IntermediateLoader } from '../../components/common/Loader/IntermediateLoader';
 
 export const CheckoutPage = () => {
   const accountStore = useSelector((state) => state.account);
@@ -25,6 +26,7 @@ export const CheckoutPage = () => {
   const [errorSnackbarOpen, setErrorSnackbarOpen] = useState(false);
   const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   if (!accountStore.authenticated) {
     return <RestrictedPage />;
@@ -81,6 +83,8 @@ export const CheckoutPage = () => {
       return;
     }
 
+    setIsLoading(true);
+
     try {
       await checkout();
       localStorage.setItem('redirection', '/payment/success');
@@ -88,6 +92,7 @@ export const CheckoutPage = () => {
     } catch (err) {
       setError(err?.error ?? 'Ocurrió un error al realizar la compra');
       setErrorSnackbarOpen(true);
+      setIsLoading(false);
     }
   };
 
@@ -102,6 +107,7 @@ export const CheckoutPage = () => {
 
   return (
     <DashboardLayout>
+      <IntermediateLoader open={isLoading} />
       <AnimatedView orientation="horizontal">
         <>
           <h1 style={{ textAlign: 'center', marginBottom: 24 }}>Realizar pago</h1>
