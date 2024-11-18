@@ -115,6 +115,7 @@ export const CheckoutPage = () => {
             <div className="left-container">
               <CustomInput
                 value={cardNumber}
+                type="number"
                 onChange={handleCardNumberChange}
                 label="Número de tarjeta"
               />
