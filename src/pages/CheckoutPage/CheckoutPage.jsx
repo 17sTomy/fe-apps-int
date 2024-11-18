@@ -6,26 +6,25 @@ import './checkout-page.styles.scss';
 import { CustomInput } from '../../components/common/CustomInput/CustomInput';
 import React, { useState } from 'react';
 import { CreditCard } from '../../components/CreditCard/CreditCard';
-import { Alert, Snackbar } from '@mui/material';
 import { checkout } from '../../services/transactionService';
 import { useDevice } from '../../hooks/useDevice';
 import { PayBtn } from '../../components/PayBtn/PayBtn';
 import useAuth from '../../hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 import { IntermediateLoader } from '../../components/common/Loader/IntermediateLoader';
+import { CustomSnackbar } from '../../components/common/CustomSnackbar/CustomSnackbar';
+import { snackbarType, useSnackbar } from '../../hooks/useSnackbar';
 
 export const CheckoutPage = () => {
   const accountStore = useSelector((state) => state.account);
   const { initSession } = useAuth();
+  const { showSnackbar, hideSnackbar } = useSnackbar();
   const { width } = useDevice();
 
   const [cardNumber, setCardNumber] = useState('');
   const [cardName, setCardName] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
   const [cvv, setCvv] = useState('');
-  const [errorSnackbarOpen, setErrorSnackbarOpen] = useState(false);
-  const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
-  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   if (!accountStore.authenticated) {
@@ -78,8 +77,7 @@ export const CheckoutPage = () => {
       expirationDate.length !== 5 ||
       cvv.length !== 3
     ) {
-      setError('Por favor completá todos los datos');
-      setErrorSnackbarOpen(true);
+      showSnackbar('Por favor completá todos los datos', snackbarType.error);
       return;
     }
 
@@ -90,23 +88,14 @@ export const CheckoutPage = () => {
       localStorage.setItem('redirection', '/payment/success');
       await initSession();
     } catch (err) {
-      setError(err?.error ?? 'Ocurrió un error al realizar la compra');
-      setErrorSnackbarOpen(true);
+      showSnackbar("err?.error ?? 'Ocurrió un error al realizar la compra'", snackbarType.error);
       setIsLoading(false);
     }
   };
 
-  const handleErrorCloseSnackbar = () => {
-    setErrorSnackbarOpen(false);
-  };
-
-  const handleSuccessCloseSnackbar = () => {
-    setSuccessSnackbarOpen(false);
-    window.location.reload();
-  };
-
   return (
     <DashboardLayout>
+      <CustomSnackbar />
       <IntermediateLoader open={isLoading} />
       <AnimatedView orientation="horizontal">
         <>
@@ -115,6 +104,7 @@ export const CheckoutPage = () => {
             <div className="left-container">
               <CustomInput
                 value={cardNumber}
+                type="number"
                 onChange={handleCardNumberChange}
                 label="Número de tarjeta"
               />
@@ -132,31 +122,6 @@ export const CheckoutPage = () => {
               />
 
               {width <= 1000 && <PayBtn handleCheckout={handleCheckout} />}
-
-              <Snackbar
-                open={errorSnackbarOpen}
-                autoHideDuration={5000}
-                onClose={handleErrorCloseSnackbar}
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                sx={{ width: '100%', marginTop: '-6%' }}>
-                <Alert onClose={handleErrorCloseSnackbar} severity="error" sx={{ width: '100%' }}>
-                  {error}
-                </Alert>
-              </Snackbar>
-
-              <Snackbar
-                open={successSnackbarOpen}
-                autoHideDuration={5000}
-                onClose={handleSuccessCloseSnackbar}
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                sx={{ width: '100%', marginTop: '-6%' }}>
-                <Alert
-                  onClose={handleSuccessCloseSnackbar}
-                  severity="success"
-                  sx={{ width: '100%', textAlign: 'center' }}>
-                  Compra Realizada con Éxito. Gracias!
-                </Alert>
-              </Snackbar>
             </div>
             <div className="right-container">
               <CreditCard
