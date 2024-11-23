@@ -43,7 +43,7 @@ export default function ProductCard({ product, modifier = false }) {
   const favorites = useSelector((state) => state.favorites.favorites);
   const { handleToggleFavorite } = useFavorites();
 
-  const isFavorite = favorites?.some(favorite => favorite === product.id);
+  const isFavorite = favorites?.some((favorite) => favorite === product.id);
 
   return (
     <StyledCard>
@@ -71,8 +71,9 @@ export default function ProductCard({ product, modifier = false }) {
               WebkitBoxOrient: 'vertical',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
-              WebkitLineClamp: 3, 
-            }}>
+              WebkitLineClamp: 3,
+            }}
+          >
             {product.description}
           </Typography>
           <Typography variant="h6" sx={{ color: 'white', marginTop: 'auto' }}>
@@ -85,7 +86,8 @@ export default function ProductCard({ product, modifier = false }) {
             justifyContent: 'space-between',
             alignItems: 'center',
             width: '100%',
-          }}>
+          }}
+        >
           {modifier ? (
             <ModifyButton productId={product.id} />
           ) : (
@@ -93,13 +95,9 @@ export default function ProductCard({ product, modifier = false }) {
               {product.stock > 0 ? (
                 <CartButton productId={product.id} productStock={product.stock} />
               ) : (
-                <Chip
-                  label="Producto Agotado"
-                  color="error"
-                  variant="contained"
-                />
+                <Chip label="Producto Agotado" color="error" variant="contained" />
               )}
-              <IconButton 
+              <IconButton
                 aria-label="add to favorites"
                 onClick={() => handleToggleFavorite(product.id)}
               >

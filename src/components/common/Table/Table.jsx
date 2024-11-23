@@ -66,11 +66,13 @@ function EnhancedTableHead(props) {
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
-            sortDirection={orderBy === headCell.id ? order : false}>
+            sortDirection={orderBy === headCell.id ? order : false}
+          >
             <TableSortLabel
               sx={{ color: theme.accent, ':hover': { color: theme.accent } }}
               direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}>
+              onClick={createSortHandler(headCell.id)}
+            >
               <p style={{ color: theme.accent }}>{headCell.label}</p>
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
@@ -119,7 +121,8 @@ function EnhancedTableToolbar(props) {
           bgcolor: (theme) =>
             alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
         },
-      ]}>
+      ]}
+    >
       {numSelected > 0 ? (
         <Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="subtitle1" component="div">
           {numSelected} seleccionadas
@@ -131,7 +134,8 @@ function EnhancedTableToolbar(props) {
             flexDirection: 'row',
             alignItems: 'center',
             gap: 4,
-          }}>
+          }}
+        >
           <TextField
             id="outlined-basic"
             label="Filtrar por email"
@@ -304,7 +308,8 @@ export default function EnhancedTable(props) {
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}>
+            size={dense ? 'small' : 'medium'}
+          >
             <EnhancedTableHead
               headCells={props.headCells}
               numSelected={selected.length}
@@ -328,7 +333,8 @@ export default function EnhancedTable(props) {
                     tabIndex={-1}
                     key={row.id}
                     selected={isItemSelected}
-                    sx={{ cursor: 'pointer' }}>
+                    sx={{ cursor: 'pointer' }}
+                  >
                     <TableCell padding="checkbox">
                       <Checkbox
                         sx={{ color: theme.secondary }}
@@ -343,7 +349,8 @@ export default function EnhancedTable(props) {
                       id={labelId}
                       scope="row"
                       padding="none"
-                      sx={{ color: theme.secondary }}>
+                      sx={{ color: theme.secondary }}
+                    >
                       {row[Object.keys(row)[1]]}
                     </TableCell>
                     {Object.keys(row)
@@ -360,7 +367,8 @@ export default function EnhancedTable(props) {
                 <TableRow
                   style={{
                     height: (dense ? 33 : 53) * emptyRows,
-                  }}>
+                  }}
+                >
                   <TableCell colSpan={6} />
                 </TableRow>
               )}

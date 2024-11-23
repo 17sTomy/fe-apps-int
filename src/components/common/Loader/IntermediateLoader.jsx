@@ -18,7 +18,8 @@ export const IntermediateLoader = ({ open = false }) => {
         left: 0,
         background: theme.name === 'light' ? 'rgba(255,255,255,0.90)' : 'rgba(12,12,12,0.90)',
         zIndex: 2000,
-      }}>
+      }}
+    >
       <CircularProgress size={76} />
     </div>,
     document.getElementById('preloader')

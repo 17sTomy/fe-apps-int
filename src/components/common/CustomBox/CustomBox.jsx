@@ -41,7 +41,8 @@ export const CustomBox = ({
         background: background ?? theme.accent,
         animation: animate && `${reflectionName[reflectionColor]} 6s linear infinite forwards`,
         color: (color ?? theme.name === 'light') ? theme.primary : theme.secondary,
-      }}>
+      }}
+    >
       {children}
     </motion.div>
   );

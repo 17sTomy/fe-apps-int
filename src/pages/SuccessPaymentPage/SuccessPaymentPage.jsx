@@ -26,7 +26,8 @@ export const SuccessPaymentPage = () => {
             justifyContent: 'center',
             alignItems: 'center',
             gap: 24,
-          }}>
+          }}
+        >
           <Check style={{ color: 'green', fontSize: 68 }} />
           <h1>Pago exitoso</h1>
           <h3>¡Muchas gracias!</h3>

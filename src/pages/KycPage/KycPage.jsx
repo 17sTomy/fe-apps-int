@@ -111,7 +111,8 @@ export const KycPage = () => {
           orientation={isMobile ? 'vertical' : 'horizontal'}
           activeStep={activeStep}
           className="stepper"
-          style={{ background: theme.name === 'dark' ? '' : '' }}>
+          style={{ background: theme.name === 'dark' ? '' : '' }}
+        >
           {steps.map((step, index) => {
             const stepProps = {};
             const labelProps = {};
@@ -136,7 +137,8 @@ export const KycPage = () => {
                     disabled={disableNext}
                     variant="contained"
                     onClick={handleNext}
-                    className="button">
+                    className="button"
+                  >
                     Siguiente
                   </Button>
                 )}

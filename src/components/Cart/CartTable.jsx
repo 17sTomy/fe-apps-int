@@ -68,7 +68,8 @@ export default function CartTable() {
               color="primary"
               component={Link}
               to="/productos"
-              sx={{ margin: 'auto' }}>
+              sx={{ margin: 'auto' }}
+            >
               Comprar Ahora
               <HdIcon sx={{ marginLeft: '8px' }} />
             </Button>
@@ -95,11 +96,11 @@ export default function CartTable() {
                       src={item.product.imageUrl}
                       alt={item.product.name}
                       style={{ width: '50px', height: '50px', objectFit: 'cover' }}
-                      />
+                    />
                   </Link>
                 </TableCell>
                 <TableCell sx={tableCellStyles}>
-                  <Link 
+                  <Link
                     to={`/productos/${item.product.id}`}
                     style={{ textDecoration: 'none', color: 'white' }}
                   >
@@ -116,12 +117,13 @@ export default function CartTable() {
                     size="small"
                     variant="contained"
                     onClick={() => removeOneProductFromCart(item.product.id)}
-                    sx={{ 
-                      width: '25px', 
-                      height: '25px', 
-                      minWidth: '0', 
-                      padding: '0' 
-                    }}>
+                    sx={{
+                      width: '25px',
+                      height: '25px',
+                      minWidth: '0',
+                      padding: '0',
+                    }}
+                  >
                     -
                   </Button>
                   <Button
@@ -138,14 +140,16 @@ export default function CartTable() {
                       minWidth: '0',
                       padding: '0',
                       marginLeft: '5px',
-                    }}>
+                    }}
+                  >
                     +
                   </Button>
                   <IconButton
                     size="small"
                     onClick={() => removeProductFromCart(item.product.id)}
                     sx={{ marginLeft: '10px' }}
-                    color="error">
+                    color="error"
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
@@ -171,7 +175,8 @@ export default function CartTable() {
                   variant="contained"
                   color="primary"
                   sx={{ width: '100%' }}
-                  onClick={handleCheckout}>
+                  onClick={handleCheckout}
+                >
                   Comprar
                 </Button>
               </TableCell>
@@ -180,7 +185,8 @@ export default function CartTable() {
                   variant="contained"
                   color="error"
                   onClick={clearAllFromCart}
-                  sx={{ width: '100%' }}>
+                  sx={{ width: '100%' }}
+                >
                   Eliminar todos
                 </Button>
               </TableCell>
@@ -194,10 +200,11 @@ export default function CartTable() {
         autoHideDuration={5000}
         onClose={handleErrorCloseSnackbar}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        sx={{ 
-          width: '100%', 
-          marginTop: '-6%' 
-        }}>
+        sx={{
+          width: '100%',
+          marginTop: '-6%',
+        }}
+      >
         <Alert onClose={handleErrorCloseSnackbar} severity="error" sx={{ width: '100%' }}>
           {error}
         </Alert>
@@ -208,17 +215,19 @@ export default function CartTable() {
         autoHideDuration={5000}
         onClose={handleSuccessCloseSnackbar}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        sx={{ 
-          width: '100%', 
-          marginTop: '-6%' 
-        }}>
+        sx={{
+          width: '100%',
+          marginTop: '-6%',
+        }}
+      >
         <Alert
           onClose={handleSuccessCloseSnackbar}
           severity="success"
-          sx={{ 
-            width: '100%', 
-            textAlign: 'center' 
-          }}>
+          sx={{
+            width: '100%',
+            textAlign: 'center',
+          }}
+        >
           Compra Realizada con Éxito. Gracias!
         </Alert>
       </Snackbar>

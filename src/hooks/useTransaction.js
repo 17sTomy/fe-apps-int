@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { 
-  getTransactions as fetchTransactions, 
-  getTransactionById as fetchTransactionById, 
-  checkout as performCheckout 
+import {
+  getTransactions as fetchTransactions,
+  getTransactionById as fetchTransactionById,
+  checkout as performCheckout,
 } from '../services/transactionService';
 
 export const useTransaction = () => {
@@ -12,9 +12,9 @@ export const useTransaction = () => {
 
   const getTransactions = async () => {
     setLoading(true);
-    setError(null); 
+    setError(null);
     try {
-      const data = await fetchTransactions(); 
+      const data = await fetchTransactions();
       setTransactions(data);
     } catch (err) {
       setError(err.message);
@@ -25,9 +25,9 @@ export const useTransaction = () => {
 
   const getTransactionById = async (id) => {
     setLoading(true);
-    setError(null); 
+    setError(null);
     try {
-      const data = await fetchTransactionById(id); 
+      const data = await fetchTransactionById(id);
       return data;
     } catch (err) {
       setError(err.message);
@@ -43,7 +43,7 @@ export const useTransaction = () => {
       const data = await performCheckout();
       return data;
     } catch (err) {
-      throw new Error("Error");
+      throw new Error('Error');
     } finally {
       setLoading(false);
     }
@@ -53,13 +53,12 @@ export const useTransaction = () => {
     getTransactions();
   }, []);
 
-  return { 
-    transactions, 
-    loading, 
-    error, 
-    getTransactions, 
-    getTransactionById, 
-    checkout 
+  return {
+    transactions,
+    loading,
+    error,
+    getTransactions,
+    getTransactionById,
+    checkout,
   };
 };
-

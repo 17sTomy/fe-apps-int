@@ -31,7 +31,8 @@ export const AllProductsSection = () => {
               flexWrap: 'wrap',
               gap: 2,
               justifyContent: 'center',
-            }}>
+            }}
+          >
             {filteredProducts.map((product) => (
               <Box key={product.id}>
                 <ProductCard product={product} />

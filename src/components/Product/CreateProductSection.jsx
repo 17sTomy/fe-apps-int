@@ -113,7 +113,8 @@ export const CreateProductSection = () => {
         padding: '20px',
         width: '100%',
         margin: 'auto',
-      }}>
+      }}
+    >
       <IntermediateLoader open={isCreating} />
       <Button
         startIcon={<ArrowBackIosNewIcon />}
@@ -121,7 +122,8 @@ export const CreateProductSection = () => {
         sx={{
           alignSelf: 'flex-start',
           marginTop: '-20px',
-        }}>
+        }}
+      >
         Volver
       </Button>
 
@@ -134,7 +136,8 @@ export const CreateProductSection = () => {
           alignItems: 'center',
           textAlign: 'center',
           gap: 2,
-        }}>
+        }}
+      >
         <TextField
           id="outlined-basic"
           label="Título"
@@ -194,7 +197,8 @@ export const CreateProductSection = () => {
           role={undefined}
           variant="contained"
           tabIndex={-1}
-          startIcon={<CloudUpload />}>
+          startIcon={<CloudUpload />}
+        >
           Adjuntar imágen de portada
           <VisuallyHiddenInput
             type="file"
@@ -209,14 +213,16 @@ export const CreateProductSection = () => {
             display: 'flex',
             justifyContent: 'center',
             gap: 4,
-          }}>
+          }}
+        >
           <Button
             sx={{ width: '100%' }}
             component="label"
             role={undefined}
             variant="contained"
             tabIndex={-1}
-            startIcon={<CloudUpload />}>
+            startIcon={<CloudUpload />}
+          >
             Agregar imágenes secundarias
             <VisuallyHiddenInput
               type="file"

@@ -92,7 +92,8 @@ export const KycCodeVerification = ({ setDisableNext, setEmitData }) => {
         alignItems: 'center',
         justifyContent: 'center',
         gap: 3,
-      }}>
+      }}
+    >
       <IntermediateLoader open={isLoading} />
       <Typography variant={isMobile ? 'h6' : 'h4'}>Verificación</Typography>
 

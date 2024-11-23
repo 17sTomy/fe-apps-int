@@ -23,7 +23,7 @@ export default function CartButtonInPage({ productId, productStock }) {
   const handleAddToCart = async () => {
     if (quantity < productStock) {
       addProductToCart(productId);
-    };
+    }
   };
 
   const handleRemoveOneFromCart = () => {

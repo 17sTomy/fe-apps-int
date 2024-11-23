@@ -20,7 +20,8 @@ export const AnimatedView = ({
       transition={{ duration: duration }}
       initial="hidden"
       animate="visible"
-      {...props}>
+      {...props}
+    >
       {children}
     </motion.div>
   );

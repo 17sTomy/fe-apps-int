@@ -75,7 +75,8 @@ export const PublicationsPage = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: 24,
-              }}>
+              }}
+            >
               <TextField
                 id="outlined-basic"
                 label="Buscar por nombre"
@@ -114,7 +115,8 @@ export const PublicationsPage = () => {
                   placeItems: 'center',
                   borderRadius: '100%',
                 }}
-                onClick={() => navigate('/crear')}>
+                onClick={() => navigate('/crear')}
+              >
                 <Add fontSize="large" sx={{ color: '#fff' }} />
               </motion.div>
             </div>
@@ -126,7 +128,8 @@ export const PublicationsPage = () => {
                 gap: 2,
                 justifyContent: 'center',
                 marginTop: 2,
-              }}>
+              }}
+            >
               {filteredProducts.map((product) => (
                 <Box key={product.id}>
                   <ProductCard product={product} modifier />

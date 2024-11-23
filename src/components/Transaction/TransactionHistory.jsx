@@ -39,7 +39,8 @@ const TransactionHistory = () => {
               color="primary"
               component={Link}
               to="/productos"
-              sx={{ margin: 'auto' }}>
+              sx={{ margin: 'auto' }}
+            >
               Comprar Ahora
               <HdIcon sx={{ marginLeft: '8px' }} />
             </Button>

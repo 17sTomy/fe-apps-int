@@ -60,7 +60,8 @@ export const ProfilePage = () => {
           alignItems: 'center',
           textAlign: 'center',
           gap: 2,
-        }}>
+        }}
+      >
         <h1>Mi perfil</h1>
         <h3>
           ¡Hola de nuevo,{' '}
@@ -88,7 +89,8 @@ export const ProfilePage = () => {
           color="success"
           startIcon={<Save />}
           sx={{ marginTop: 1 }}
-          onClick={handleSave}>
+          onClick={handleSave}
+        >
           Guardar
         </Button>
 
@@ -96,14 +98,16 @@ export const ProfilePage = () => {
           open={successSnackbarOpen}
           autoHideDuration={5000}
           onClose={handleSuccessCloseSnackbar}
-          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
           <Alert
             onClose={handleSuccessCloseSnackbar}
             severity="success"
             sx={{
               width: '100%',
               textAlign: 'center',
-            }}>
+            }}
+          >
             Datos modificados exitosamente.
           </Alert>
         </Snackbar>

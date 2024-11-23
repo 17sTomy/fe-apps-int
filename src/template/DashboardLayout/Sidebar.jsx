@@ -95,7 +95,8 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
   return (
     <div
       className={`side-bar ${menuOpen ? 'open' : ''}`}
-      style={{ background: theme.primary, color: theme.secondary }}>
+      style={{ background: theme.primary, color: theme.secondary }}
+    >
       <div className="top-sidebar">
         {routes.map((route, index) => (
           <div className="route" key={index} onClick={() => handleNavigation(route.path)}>
@@ -115,7 +116,8 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
                       : theme.primary
                     : theme.secondary,
                 borderRadius: route.path === window.location.pathname ? 16 : 0,
-              }}>
+              }}
+            >
               <div className="icon">
                 {route.customIcon ? (
                   route.customIcon

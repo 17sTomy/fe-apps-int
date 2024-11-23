@@ -144,12 +144,14 @@ export const ModifyProductSection = () => {
             padding: '20px',
             width: '100%',
             margin: 'auto',
-          }}>
+          }}
+        >
           <IntermediateLoader open={isCreating} />
           <Button
             startIcon={<ArrowBackIosNewIcon />}
             onClick={() => navigate(-1)}
-            sx={{ alignSelf: 'flex-start', marginTop: '-20px' }}>
+            sx={{ alignSelf: 'flex-start', marginTop: '-20px' }}
+          >
             Volver
           </Button>
           <Carousel
@@ -162,7 +164,8 @@ export const ModifyProductSection = () => {
               borderRadius: '10px',
             }}
             next={(next, active) => console.log(`we left ${active}, and are now at ${next}`)}
-            prev={(prev, active) => console.log(`we left ${active}, and are now at ${prev}`)}>
+            prev={(prev, active) => console.log(`we left ${active}, and are now at ${prev}`)}
+          >
             {images.map((item, i) => (
               <ImageModifier key={i} item={item} />
             ))}
@@ -175,7 +178,8 @@ export const ModifyProductSection = () => {
               alignItems: 'center',
               textAlign: 'center',
               gap: 2,
-            }}>
+            }}
+          >
             <TextField
               id="outlined-basic"
               label="Título"
@@ -244,7 +248,8 @@ export const ModifyProductSection = () => {
               role={undefined}
               variant="contained"
               tabIndex={-1}
-              startIcon={<CloudUpload />}>
+              startIcon={<CloudUpload />}
+            >
               Adjuntar imágen de portada
               <VisuallyHiddenInput
                 type="file"
@@ -259,7 +264,8 @@ export const ModifyProductSection = () => {
               role={undefined}
               variant="contained"
               tabIndex={-1}
-              startIcon={<CloudUpload />}>
+              startIcon={<CloudUpload />}
+            >
               Imágenes secundarias
               <VisuallyHiddenInput
                 type="file"
@@ -277,12 +283,14 @@ export const ModifyProductSection = () => {
                 width: '100%',
                 maxWidth: '300px',
                 gap: 2,
-              }}>
+              }}
+            >
               <Button
                 startIcon={<Delete />}
                 variant="contained"
                 color="error"
-                onClick={handleDelete}>
+                onClick={handleDelete}
+              >
                 Eliminar
               </Button>
               <Button startIcon={<Save />} variant="contained" color="success" onClick={handleSave}>

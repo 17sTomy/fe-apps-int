@@ -19,7 +19,8 @@ export default function ModifyButton({ productId }) {
         size="small"
         onClick={() => {
           navigate(`/publicaciones/${productId}`);
-        }}>
+        }}
+      >
         Modificar
       </StyledButton>
     </>

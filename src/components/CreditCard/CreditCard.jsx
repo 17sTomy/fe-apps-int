@@ -12,7 +12,8 @@ export const CreditCard = (props) => {
       animate={{ rotateY: 0 }}
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.4 }}
-      className="credit-card">
+      className="credit-card"
+    >
       <div className="internal-container">
         <div className="top-container">
           <p>

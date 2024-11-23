@@ -28,7 +28,8 @@ export const LoadingScreen = () => {
         width: '100vw',
         zIndex: '2000',
         background: theme.primary,
-      }}>
+      }}
+    >
       <CircularProgress />
     </div>
   );

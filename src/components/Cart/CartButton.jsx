@@ -32,7 +32,7 @@ export default function CartButton({ productId, productStock }) {
   const handleAddToCart = async () => {
     if (quantity < productStock) {
       addProductToCart(productId);
-    };
+    }
   };
 
   const handleRemoveOneFromCart = () => {

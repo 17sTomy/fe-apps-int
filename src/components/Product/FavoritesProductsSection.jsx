@@ -12,10 +12,10 @@ export const FavoritesProductsSection = () => {
   const { fetchFavorites } = useFavorites();
 
   const { products, loading, error } = useProducts(getAllProducts);
-  const favoriteProducts = products.filter(product => favorites.includes(product.id));
+  const favoriteProducts = products.filter((product) => favorites.includes(product.id));
 
   useEffect(() => {
-    fetchFavorites()
+    fetchFavorites();
   }, []);
 
   return (
@@ -24,20 +24,22 @@ export const FavoritesProductsSection = () => {
       {error && <p>Error fetching products: {error.message}</p>}
 
       {!loading && !error && (
-        <Box
-          
-        >
+        <Box>
           {favoriteProducts?.length === 0 ? (
-            <h1 style={{ marginTop: '30px', textAlign: 'center' }}>Puedes agregar a favoritos clickeando: ❤️</h1>
+            <h1 style={{ marginTop: '30px', textAlign: 'center' }}>
+              Puedes agregar a favoritos clickeando: ❤️
+            </h1>
           ) : (
             <>
               <h1 style={{ marginBottom: '30px', textAlign: 'center' }}>Tus ❤️</h1>
-              <Box sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: 2,
-                justifyContent: 'center',
-              }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 2,
+                  justifyContent: 'center',
+                }}
+              >
                 {favoriteProducts.map((product) => (
                   <Box key={product.id}>
                     <ProductCard product={product} />

@@ -57,11 +57,13 @@ export const OneProductSection = () => {
             padding: '20px',
             width: '100%',
             margin: 'auto',
-          }}>
+          }}
+        >
           <Button
             startIcon={<ArrowBackIosNewIcon />}
             onClick={() => navigate(-1)}
-            sx={{ alignSelf: 'flex-start', marginTop: '-20px' }}>
+            sx={{ alignSelf: 'flex-start', marginTop: '-20px' }}
+          >
             Volver
           </Button>
           <Carousel
@@ -74,7 +76,8 @@ export const OneProductSection = () => {
               borderRadius: '10px',
             }}
             next={(next, active) => console.log(`we left ${active}, and are now at ${next}`)}
-            prev={(prev, active) => console.log(`we left ${active}, and are now at ${prev}`)}>
+            prev={(prev, active) => console.log(`we left ${active}, and are now at ${prev}`)}
+          >
             {images.map((item, i) => (
               <ImageModifier key={i} item={item} />
             ))}
@@ -87,7 +90,8 @@ export const OneProductSection = () => {
               alignItems: 'center',
               textAlign: 'center',
               gap: 2,
-            }}>
+            }}
+          >
             <Typography variant="h4" component="h1" gutterBottom>
               {products.title}
             </Typography>
@@ -108,7 +112,8 @@ export const OneProductSection = () => {
                 width: '100%',
                 maxWidth: '300px',
                 gap: 2,
-              }}>
+              }}
+            >
               {products.stock > 0 ? (
                 <CartButtonInPage productId={products.id} productStock={products.stock} />
               ) : (
@@ -117,16 +122,17 @@ export const OneProductSection = () => {
                   size="large"
                   color="error"
                   variant="contained"
-                  sx={{ 
-                    width: '100%', 
-                    justifyContent: 'center', 
-                    textAlign: 'center' 
+                  sx={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    textAlign: 'center',
                   }}
                 />
               )}
               <IconButton
                 sx={{ color: isFavorite ? 'red' : theme.name === 'dark' ? 'white' : 'black' }}
-                onClick={() => handleToggleFavorite(products.id)}>
+                onClick={() => handleToggleFavorite(products.id)}
+              >
                 <FavoriteIcon />
               </IconButton>
             </Box>

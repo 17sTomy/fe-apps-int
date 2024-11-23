@@ -20,32 +20,30 @@ export const ManagementPage = () => {
   return (
     <DashboardLayout>
       <div className="management-page">
-        <div className="actions" style={{display: 'flex', flexDirection: 'column'}}>
+        <div className="actions" style={{ display: 'flex', flexDirection: 'column' }}>
           <Button
-            sx={{width: '30%'}}
-            variant='contained'
+            sx={{ width: '30%' }}
+            variant="contained"
             animate
             onClick={() => {
               navigate('/gestionar/usuarios');
-            }}>
+            }}
+          >
             Gestionar usuarios
           </Button>
 
           <Button
-            sx={{width: '30%'}}
-            variant='contained'
+            sx={{ width: '30%' }}
+            variant="contained"
             animate
             onClick={() => {
               navigate('/publicaciones');
-            }}>
+            }}
+          >
             Gestionar publicaciones
           </Button>
 
-          <Button 
-            variant='contained' 
-            sx={{width: '30%'}} 
-            animate
-          >
+          <Button variant="contained" sx={{ width: '30%' }} animate>
             Proximamente...
           </Button>
         </div>

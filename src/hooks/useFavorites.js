@@ -5,11 +5,11 @@ import { getFavoriteProducts, toggleFavoriteProduct } from '../services/products
 const useFavorites = () => {
   const accountStore = useSelector((state) => state.account);
   const dispatch = useDispatch();
- 
+
   const fetchFavorites = async () => {
     if (!accountStore.authenticated) {
       return null;
-    };
+    }
 
     dispatch(setLoading());
     try {
@@ -17,7 +17,7 @@ const useFavorites = () => {
       dispatch(setFavorites(favorites));
     } catch (err) {
       dispatch(setError(err.message));
-    } 
+    }
   };
 
   const handleToggleFavorite = async (id) => {
@@ -25,13 +25,13 @@ const useFavorites = () => {
       await toggleFavoriteProduct(id);
       await fetchFavorites();
     } catch (err) {
-      dispatch(setError("Error al actualizar el estado de favorito del producto"));
+      dispatch(setError('Error al actualizar el estado de favorito del producto'));
     } finally {
       dispatch(setLoading(false));
     }
   };
 
-  return { 
+  return {
     fetchFavorites,
     handleToggleFavorite,
   };
