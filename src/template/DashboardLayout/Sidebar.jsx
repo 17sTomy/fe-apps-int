@@ -57,11 +57,6 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
         icon: faReceipt,
       },
       {
-        path: '/recomendaciones',
-        label: 'Recomendaciones',
-        icon: faLightbulb,
-      },
-      {
         path: '/reseñas',
         label: 'Reseñas',
         icon: faStar,
