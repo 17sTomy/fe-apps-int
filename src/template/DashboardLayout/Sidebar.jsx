@@ -57,12 +57,6 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
         icon: faReceipt,
       },
       {
-        dividerLabel: 'Perfil',
-        path: '/profile',
-        label: 'Mi Perfil',
-        icon: faUser,
-      },
-      {
         path: '/recomendaciones',
         label: 'Recomendaciones',
         icon: faLightbulb,
@@ -71,6 +65,12 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
         path: '/reseñas',
         label: 'Reseñas',
         icon: faStar,
+      },
+      {
+        dividerLabel: 'Perfil',
+        path: '/profile',
+        label: 'Mi Perfil',
+        icon: faUser,
       }, 
       { path: '/publicaciones', label: 'Publicaciones', icon: faFolder, requiresAdmin: true },
       { path: '/gestionar', label: 'Gestionar sitio', icon: faGear, requiresAdmin: true },

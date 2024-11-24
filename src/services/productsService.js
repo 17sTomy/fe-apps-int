@@ -91,3 +91,22 @@ export const removeAllImages = async (id) => {
   const response = await AuthorizedService.delete(`${BASE_URL}/${id}/images`);
   return response.data;
 };
+
+export const getReviewsByProductId = async (productId) => {
+  try {
+    const response = await axios.get(`/customer/products/${productId}/reviews`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Error fetching reviews");
+  }
+};
+
+
+export const addReview = async (customerId, reviewData) => {
+  try {
+    const response = await axios.post(`/customer/addReview/${customerId}`, reviewData);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'Error adding review');
+  }
+};

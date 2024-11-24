@@ -58,6 +58,23 @@ export default [
     ),
   },
   {
+    path: "/recomendaciones",
+    element: (
+      <OptionalAuthRoute>
+        <RecommendationsPage />
+      </OptionalAuthRoute>
+    ) 
+  },
+  {
+    path: "/reseñas",
+    element:(
+      <OptionalAuthRoute>
+        <ReviewsPage />,
+      </OptionalAuthRoute>
+
+    ) 
+  },
+  {
     path: '/carrito',
     element: (
       <OptionalAuthRoute>
