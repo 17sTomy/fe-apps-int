@@ -12,6 +12,8 @@ import {
   faRightToBracket,
   faUser,
   faHeart,
+  faLightbulb, 
+  faStar,   
 } from '@fortawesome/free-solid-svg-icons';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -60,6 +62,16 @@ export const Sidebar = React.memo(({ menuOpen, setMenuOpen }) => {
         label: 'Mi Perfil',
         icon: faUser,
       },
+      {
+        path: '/recomendaciones',
+        label: 'Recomendaciones',
+        icon: faLightbulb,
+      },
+      {
+        path: '/reseñas',
+        label: 'Reseñas',
+        icon: faStar,
+      }, 
       { path: '/publicaciones', label: 'Publicaciones', icon: faFolder, requiresAdmin: true },
       { path: '/gestionar', label: 'Gestionar sitio', icon: faGear, requiresAdmin: true },
     ];
