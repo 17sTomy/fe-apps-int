@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { DashboardLayout } from '../../template/DashboardLayout/DashboardLayout';
 import { Box, Typography, CircularProgress, Alert, Divider } from '@mui/material';
 import { getReviewsByProductId } from '../../services/productsService';
-import AddReview from '../../components/Reviews/AddReview';
+import AddReview from '../../components/Reviews/ReviewForm';
 
 const ReviewsPage = ({ productId, customerId }) => {
   const [reviews, setReviews] = useState([]);

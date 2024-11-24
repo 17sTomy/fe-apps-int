@@ -112,11 +112,18 @@ export const addReview = async (customerId, reviewData) => {
 
 import axios from 'axios';
 
-export const getRecommendations = async (criteria) => {
+export const fetchRecommendations = async (productId) => {
   try {
-    const response = await axios.get('/customer/recommendations', { params: criteria });
-    return response.data;
+    if (!productId) {  
+      throw new Error('Product ID is missing');
+    }
+    
+    const response = await AuthorizedService.get(`${BASE_URL}/recommendations/${productId}`);
+    
+    // Suponiendo que el servicio retorna un array de productos recomendados
+    return response.data || [];
   } catch (error) {
-    throw new Error(error.response?.data?.message || 'Error fetching recommendations');
+    console.error('Error fetching recommendations:', error);
+    return [];  
   }
 };

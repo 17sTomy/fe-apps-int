@@ -5,9 +5,12 @@ import { styled } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import CartButton from '../Cart/CartButton';
+import RecommendationsButton from '../Recommendations/RecommendationsButton'
 import PropTypes from 'prop-types';
 import ModifyButton from './ModifyButton';
 import useFavorites from '../../hooks/useFavorites';
+import useRecommendation from '../../hooks/useRecommendations';
+
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: 'relative',
@@ -44,6 +47,16 @@ export default function ProductCard({ product, modifier = false }) {
   const { handleToggleFavorite } = useFavorites();
 
   const isFavorite = favorites?.some((favorite) => favorite === product.id);
+
+  const { recommendations, loading, error } = useRecommendation(product.id);
+
+  const handleRecommendationClick = () => {
+    if (recommendations) {
+      navigate(`/products/recommendations/${product.id}`, { state: { recommendations } });
+    } else {
+      console.error('No se han cargado recomendaciones.');
+    }
+  };
 
   return (
     <StyledCard>
@@ -105,6 +118,7 @@ export default function ProductCard({ product, modifier = false }) {
               </IconButton>
             </>
           )}
+          <RecommendationsButton productId={product.id} />
         </Box>
       </Details>
     </StyledCard>

@@ -19,8 +19,8 @@ import { FavoritesPage } from '../pages/FavoritesPage/FavoritesPage.jsx';
 import { CheckoutPage } from '../pages/CheckoutPage/CheckoutPage';
 import { SuccessPaymentPage } from '../pages/SuccessPaymentPage/SuccessPaymentPage';
 import { LoadingPage } from '../pages/LoadingPage/LoadingPage';
-import { ReviewsPage } from '../pages/ReviewsPage/ReviewsPage';
-import { RecommendationsPage } from '../pages/RecommendationsPage/RecommendationsPage';
+import ReviewsPage from '../pages/ReviewsPage/ReviewsPage';
+import RecommendationsPage from '../pages/RecommendationsPage/RecommendationsPage';
 
 
 export default [
@@ -61,12 +61,12 @@ export default [
     ),
   },
   {
-    path: "/recomendaciones",
+    path: "/recomendaciones/:id", 
     element: (
       <OptionalAuthRoute>
         <RecommendationsPage />
       </OptionalAuthRoute>
-    ) 
+    ),
   },
   {
     path: "/reseñas",
