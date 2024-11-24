@@ -101,12 +101,22 @@ export const getReviewsByProductId = async (productId) => {
   }
 };
 
-
 export const addReview = async (customerId, reviewData) => {
   try {
     const response = await axios.post(`/customer/addReview/${customerId}`, reviewData);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'Error adding review');
+  }
+};
+
+import axios from 'axios';
+
+export const getRecommendations = async (criteria) => {
+  try {
+    const response = await axios.get('/customer/recommendations', { params: criteria });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'Error fetching recommendations');
   }
 };

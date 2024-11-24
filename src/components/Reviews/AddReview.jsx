@@ -11,6 +11,11 @@ const AddReview = ({ customerId, productId, onReviewAdded }) => {
     e.preventDefault();
     setError(null);
 
+    if (rating < 1 || rating > 5) {
+      setError("Rating must be between 1 and 5.");
+      return;
+    }
+
     const reviewData = { productId, rating: Number(rating), comment };
 
     try {

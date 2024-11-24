@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { DashboardLayout } from '../../template/DashboardLayout/DashboardLayout';
-import { Box, Typography, CircularProgress, Alert } from '@mui/material';
+import { Box, Typography, CircularProgress, Alert, Divider } from '@mui/material';
 import { getReviewsByProductId } from '../../services/productsService';
 import AddReview from '../../components/Reviews/AddReview';
 
@@ -43,6 +43,7 @@ const ReviewsPage = ({ productId, customerId }) => {
 
         {!loading && !error && (
           <>
+            <Divider sx={{ marginBottom: 2 }} />
             {reviews.length > 0 ? (
               reviews.map((review) => (
                 <Box key={`${review.userId}-${review.productId}`} sx={{ marginBottom: 2 }}>
@@ -56,6 +57,7 @@ const ReviewsPage = ({ productId, customerId }) => {
           </>
         )}
 
+        <Divider sx={{ marginTop: 3, marginBottom: 2 }} />
         <AddReview customerId={customerId} productId={productId} onReviewAdded={handleReviewAdded} />
       </Box>
     </DashboardLayout>

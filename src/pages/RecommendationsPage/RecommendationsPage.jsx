@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DashboardLayout } from '../../template/DashboardLayout/DashboardLayout';
 import { Box, Typography, CircularProgress, Alert } from '@mui/material';
-import { getRecommendations } from '../../services/recommendationsService';
+import { getRecommendations } from '../../services/productsService';
 
 const RecommendationsPage = ({ criteria }) => {
   const [recommendations, setRecommendations] = useState([]);
