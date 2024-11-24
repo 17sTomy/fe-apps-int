@@ -21,7 +21,7 @@ export const FavoritesProductsSection = () => {
   return (
     <>
       {loading && <Loader />}
-      {error && <p>Error fetching products: {error.message}</p>}
+      {error && <h1 style={{textAlign: 'center'}}>Ops! Ocurrió un error😭</h1>}
 
       {!loading && !error && (
         <Box>

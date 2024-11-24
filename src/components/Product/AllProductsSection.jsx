@@ -12,8 +12,8 @@ export const AllProductsSection = () => {
 
   return (
     <>
-      {loading && <MaterialLoader />}
-      {error && <p>Error fetching products: {error.message}</p>}
+      {loading && <Loader />}
+      {error && <h1 style={{textAlign: 'center'}}>Ops! Ocurrió un error😭</h1>}
 
       {!loading && !error && (
         <AnimatedView orientation="horizontal">
