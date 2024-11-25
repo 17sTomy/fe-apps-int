@@ -102,7 +102,6 @@ export const KycBasic = ({ setDisableNext, setEmitData }) => {
           label="Apellido/s"
           name="lastName"
           autoComplete="lastName"
-          autoFocus
           error={!!lastNameError}
           helperText={lastNameError}
           value={lastName}

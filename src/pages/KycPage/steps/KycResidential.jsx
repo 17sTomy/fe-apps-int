@@ -79,7 +79,6 @@ export const KycResidential = ({ setDisableNext, setEmitData }) => {
           label="Número"
           name="streetNumber"
           autoComplete="streetNumber"
-          autoFocus
           error={!!streetNumberError}
           helperText={streetNumberError}
           value={streetNumber}
@@ -96,7 +95,6 @@ export const KycResidential = ({ setDisableNext, setEmitData }) => {
           label="Dpto/Piso"
           name="complementaryAddress"
           autoComplete="complementaryAddress"
-          autoFocus
           value={complementaryAddress}
           onChange={(e) => {
             handleInputChange(e.target.value, setComplementaryAddress);
@@ -112,7 +110,6 @@ export const KycResidential = ({ setDisableNext, setEmitData }) => {
           label="Número de celular"
           name="phoneNumber"
           autoComplete="phoneNumber"
-          autoFocus
           error={!!phoneNumberError}
           helperText={phoneNumberError}
           value={phoneNumber}

@@ -98,14 +98,6 @@ export default [
     ),
   },
   {
-    path: '/admin',
-    element: (
-      <OptionalAuthRoute>
-        <AdminPage />
-      </OptionalAuthRoute>
-    ),
-  },
-  {
     path: '/profileEdition',
     element: (
       <OptionalAuthRoute>
