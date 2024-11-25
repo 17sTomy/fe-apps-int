@@ -88,7 +88,7 @@ export const CheckoutPage = () => {
       localStorage.setItem('redirection', '/payment/success');
       await initSession();
     } catch (err) {
-      showSnackbar("err?.error ?? 'Ocurrió un error al realizar la compra'", snackbarType.error);
+      showSnackbar(err?.error ?? 'Ocurrió un error al realizar la compra', snackbarType.error);
       setIsLoading(false);
     }
   };

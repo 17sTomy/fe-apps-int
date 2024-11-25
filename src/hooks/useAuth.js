@@ -65,6 +65,7 @@ export default function useAuth() {
     if (!email || !password || !repeatPassword || password !== repeatPassword) {
       setAuthError(true);
       setShowSnackbar(true);
+      setIsLoading(false);
       return;
     }
 
