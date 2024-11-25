@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { DashboardLayout } from '../../template/DashboardLayout/DashboardLayout';
 import { Box, Typography, CircularProgress, Alert, Divider } from '@mui/material';
-import { getReviewsByProductId } from '../../services/productsService';
-import AddReview from '../../components/Reviews/ReviewForm';
+import { getReviewsByProductId, addReview } from '../../services/productsService';
+import ReviewList from '../../components/Reviews/ReviewList';
+import ReviewForm from '../../components/Reviews/ReviewForm';
+import { useParams } from 'react-router-dom';
 
-const ReviewsPage = ({ productId, customerId }) => {
+const ReviewsPage = () => {
+  const { productId } = useParams(); 
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!productId) {
+      setError("Product ID is required.");
+      return;
+    }
+
     const fetchReviews = async () => {
       setLoading(true);
       setError(null);
-
       try {
         const fetchedReviews = await getReviewsByProductId(productId);
-        setReviews(fetchedReviews);
+        setReviews(Array.isArray(fetchedReviews) ? fetchedReviews : []);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -27,8 +34,20 @@ const ReviewsPage = ({ productId, customerId }) => {
     fetchReviews();
   }, [productId]);
 
-  const handleReviewAdded = (newReview) => {
-    setReviews((prevReviews) => [...prevReviews, newReview]);
+  const handleReviewAdded = async (newReviewData) => {
+    try {
+      const reviewDataToSend = {
+        productId: productId,        
+        rating: newReviewData.rating, 
+        comment: newReviewData.comment, 
+      };
+
+      const newReview = await addReview(reviewDataToSend); 
+      setReviews((prevReviews) => [...prevReviews, newReview]);  
+    } catch (error) {
+      console.error('Error adding review:', error.message);
+      setError('Error adding review');
+    }
   };
 
   return (
@@ -45,12 +64,7 @@ const ReviewsPage = ({ productId, customerId }) => {
           <>
             <Divider sx={{ marginBottom: 2 }} />
             {reviews.length > 0 ? (
-              reviews.map((review) => (
-                <Box key={`${review.userId}-${review.productId}`} sx={{ marginBottom: 2 }}>
-                  <Typography><strong>Rating:</strong> {review.rating}</Typography>
-                  <Typography><strong>Comment:</strong> {review.comment}</Typography>
-                </Box>
-              ))
+              <ReviewList reviews={reviews} />
             ) : (
               <Typography>No reviews available for this product.</Typography>
             )}
@@ -58,7 +72,8 @@ const ReviewsPage = ({ productId, customerId }) => {
         )}
 
         <Divider sx={{ marginTop: 3, marginBottom: 2 }} />
-        <AddReview customerId={customerId} productId={productId} onReviewAdded={handleReviewAdded} />
+        {/* Pasa la función handleReviewAdded al formulario */}
+        <ReviewForm onSubmit={handleReviewAdded} />
       </Box>
     </DashboardLayout>
   );

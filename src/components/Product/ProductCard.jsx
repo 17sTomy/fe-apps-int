@@ -6,6 +6,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import CartButton from '../Cart/CartButton';
 import RecommendationsButton from '../Recommendations/RecommendationsButton'
+import ReviewsButton from '../Reviews/ReviewsButton'
 import PropTypes from 'prop-types';
 import ModifyButton from './ModifyButton';
 import useFavorites from '../../hooks/useFavorites';
@@ -48,18 +49,18 @@ export default function ProductCard({ product, modifier = false }) {
 
   const isFavorite = favorites?.some((favorite) => favorite === product.id);
 
-  const { recommendations, loading, error } = useRecommendation(product.id);
-
-  const handleRecommendationClick = () => {
-    if (recommendations) {
-      navigate(`/products/recommendations/${product.id}`, { state: { recommendations } });
-    } else {
-      console.error('No se han cargado recomendaciones.');
-    }
-  };
-
   return (
     <StyledCard>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 8,
+            left: 8,
+            zIndex: 2,
+          }}
+        >
+        <ReviewsButton productId={product.id}/>
+      </Box>
       <Link to={modifier ? `/publicaciones/${product.id}` : `/productos/${product.id}`}>
         <CardActionArea>
           <CardMedia

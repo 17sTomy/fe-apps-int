@@ -69,12 +69,11 @@ export default [
     ),
   },
   {
-    path: "/reseñas",
+    path: "/reseñas/:productId",
     element:(
       <OptionalAuthRoute>
         <ReviewsPage />
       </OptionalAuthRoute>
-
     ) 
   },
   {
