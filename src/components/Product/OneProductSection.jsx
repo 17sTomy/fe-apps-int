@@ -46,7 +46,9 @@ export const OneProductSection = () => {
     <>
       {loading && <Loader />}
       {error && (
-        <h2>Error al obtener el producto. Comprobá tu conexión y que el producto exista.</h2>
+        <h2 style={{ textAlign: 'center' }}>
+          Error al obtener el producto. Comprobá tu conexión y que el producto exista.
+        </h2>
       )}
 
       {!loading && !error && (
