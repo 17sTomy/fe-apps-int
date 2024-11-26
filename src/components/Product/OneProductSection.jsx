@@ -42,7 +42,6 @@ export const OneProductSection = () => {
     if (products.id) fetchAllImages();
   }, [products]);
 
-  console.warn(error);
   return (
     <>
       {loading && <Loader />}
