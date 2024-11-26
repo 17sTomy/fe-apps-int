@@ -5,9 +5,13 @@ import { styled } from '@mui/system';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import CartButton from '../Cart/CartButton';
+import RecommendationsButton from '../Recommendations/RecommendationsButton'
+import ReviewsButton from '../Reviews/ReviewsButton'
 import PropTypes from 'prop-types';
 import ModifyButton from './ModifyButton';
 import useFavorites from '../../hooks/useFavorites';
+import useRecommendation from '../../hooks/useRecommendations';
+
 
 const StyledCard = styled(Card)(({ theme }) => ({
   position: 'relative',
@@ -47,6 +51,16 @@ export default function ProductCard({ product, modifier = false }) {
 
   return (
     <StyledCard>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 8,
+            left: 8,
+            zIndex: 2,
+          }}
+        >
+        <ReviewsButton productId={product.id}/>
+      </Box>
       <Link to={modifier ? `/publicaciones/${product.id}` : `/productos/${product.id}`}>
         <CardActionArea>
           <CardMedia
@@ -105,6 +119,7 @@ export default function ProductCard({ product, modifier = false }) {
               </IconButton>
             </>
           )}
+          <RecommendationsButton productId={product.id} />
         </Box>
       </Details>
     </StyledCard>
