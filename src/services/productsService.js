@@ -1,4 +1,5 @@
 import { AuthorizedService, UnauthorizedService } from '../api';
+import axios from 'axios';
 
 const BASE_URL = 'api/products';
 
@@ -90,4 +91,46 @@ export const addImage = async (id, data) => {
 export const removeAllImages = async (id) => {
   const response = await AuthorizedService.delete(`${BASE_URL}/${id}/images`);
   return response.data;
+};
+
+export const getReviewsByProductId = async (productId) => {
+  try {
+    const response = await AuthorizedService.get(`http://localhost:8080/customer/products/${productId}/reviews`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Error fetching reviews");
+  }
+};
+
+export const addReview = async (reviewData) => {
+  try {
+    const token = localStorage.getItem('token'); 
+    const response = await axios.post(
+      'http://localhost:8080/customer/addReview',
+      reviewData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Error adding review");
+  }
+};
+
+export const fetchRecommendations = async (productId) => {
+  try {
+    if (!productId) {  
+      throw new Error('Product ID is missing');
+    }
+    
+    const response = await AuthorizedService.get(`${BASE_URL}/recommendations/${productId}`);
+  
+    return response.data || [];
+  } catch (error) {
+    console.error('Error fetching recommendations:', error);
+    return [];  
+  }
 };
